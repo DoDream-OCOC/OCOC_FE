@@ -1,2 +1,7 @@
-const temp = "";
-export default temp;
+import React from "react";
+
+function MainContainer({ children }) {
+    return <main>{children}</main>;
+}
+
+export default MainContainer;
