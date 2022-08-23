@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 function MainFooter() {
-    return <footer></footer>;
+  return <footer></footer>;
 }
 
 export default MainFooter;

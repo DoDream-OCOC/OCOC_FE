@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 function MainContainer({ children }) {
-    return <main>{children}</main>;
+  return <main>{children}</main>;
 }
 
 export default MainContainer;
