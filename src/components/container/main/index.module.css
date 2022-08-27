@@ -1,0 +1,7 @@
+main {
+  background-color: aqua;
+
+  /* [Todo] common.css로 추출하기 */
+  width: 100vw;
+  max-width: 48rem;
+}
