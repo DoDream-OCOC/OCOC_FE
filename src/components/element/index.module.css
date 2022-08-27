@@ -1,0 +1,52 @@
+/* [Todo] 자동완성 도입 -> propType? */
+
+span {
+  width: fit-content;
+  letter-spacing: 1.5px;
+}
+
+/* Font-size */
+/* [Todo] 폰트 정해서 weight 좀 더 다양하게 */
+/* [Todo] 자간 추가 */
+.L {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.M-Bold {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.M {
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.M-Light {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.S {
+  font-size: 1.2rem;
+}
+
+.S-Ligher {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+/* Button */
+#button {
+  max-width: 25rem;
+  width: 80vw;
+  height: 3rem;
+
+  border: 0px;
+  border-radius: 20px;
+  background-color: #2d9e1b; /*[Todo] theme 컬러로 ㄱ*/
+
+  font-weight: 700;
+  color: white;
+}

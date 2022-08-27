@@ -1,0 +1,5 @@
+main {
+  /* [Todo] 스크롤 제어 기능 추가 */
+  width: 100vw;
+  max-width: 48rem;
+}

@@ -1,0 +1,18 @@
+header {
+  position: fixed;
+  width: 100vw;
+  max-width: 48rem;
+  background-color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0.5rem 0.8rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}

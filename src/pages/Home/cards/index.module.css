@@ -1,0 +1,22 @@
+article {
+  margin-top: 3rem; /*[Temp] 임시*/
+  height: calc(100vh - 3rem);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.FeatureTitle {
+  width: 95%;
+}
+
+/* [Temp] 일단 이름 box */
+.box {
+  width: 60%;
+  height: 50%;
+
+  background-color: #d9d9d9;
+  border-radius: 10px;
+}
