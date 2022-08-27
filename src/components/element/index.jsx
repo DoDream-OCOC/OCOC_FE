@@ -7,7 +7,7 @@ import style from './index.module.css';
 
 /**
  * Text component
- * @param {L, M-Bold, M, M-Light, S} size text size
+ * @param {L, M-Bold, M, M-Light, S-Bold, S} size text size
  * @param {String} text text's content
  * @returns Common text
  */

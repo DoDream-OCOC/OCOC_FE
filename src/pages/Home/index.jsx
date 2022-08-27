@@ -3,7 +3,7 @@ import React from 'react';
 import MainHeader from '../../components/header/main';
 import MainContainer from '../../components/container/main';
 import MainFooter from '../../components/footer/main';
-import { MainCard } from './cards';
+import { MainCard, FeatureCard } from './cards';
 
 import style from './index.module.css';
 
@@ -13,7 +13,7 @@ function Home() {
       <MainHeader />
       <MainContainer>
         <MainCard />
-        <div id={style.test}>Home</div>
+        <FeatureCard />
       </MainContainer>
       <MainFooter />
     </>

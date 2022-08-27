@@ -1,3 +1,4 @@
-import { MainCard } from './main';
+import { MainCard } from './Main';
+import { FeatureCard } from './Feature';
 
-export { MainCard };
+export { MainCard, FeatureCard };
