@@ -1,6 +1,8 @@
 header {
+  position: fixed;
   width: 100vw;
   max-width: 48rem;
+  background-color: white;
 
   display: flex;
   justify-content: space-between;
