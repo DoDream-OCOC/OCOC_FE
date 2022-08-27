@@ -11,8 +11,12 @@ import style from './index.module.css';
  * @param {String} text text's content
  * @returns Common text
  */
-export const Text = ({ size, text }) => {
-  return <div className={style[size]}>{text}</div>;
+export const Text = ({ size, text, ...props }) => {
+  return (
+    <div className={style[size]} {...props}>
+      {text}
+    </div>
+  );
 };
 
 /**
@@ -21,5 +25,13 @@ export const Text = ({ size, text }) => {
  * @returns Empty
  */
 export const Empty = ({ size }) => {
-  return <div style={{ height: { size } }} />;
+  return <div style={{ height: size }} />;
+};
+
+export const Button = ({ ...props }) => {
+  return (
+    <button id={style.button} {...props}>
+      시작하기
+    </button>
+  );
 };

@@ -26,3 +26,9 @@
 .S {
   font-size: 1.2rem;
 }
+
+/* Button */
+#button {
+  width: 60vw;
+  height: 2rem;
+}
