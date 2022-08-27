@@ -1,5 +1,10 @@
 /* [Todo] 자동완성 도입 -> propType? */
 
+span {
+  width: fit-content;
+  letter-spacing: 1.5px;
+}
+
 /* Font-size */
 /* [Todo] 폰트 정해서 weight 좀 더 다양하게 */
 /* [Todo] 자간 추가 */

@@ -13,9 +13,9 @@ import style from './index.module.css';
  */
 export const Text = ({ size, text, ...props }) => {
   return (
-    <div className={style[size]} {...props}>
+    <span className={style[size]} {...props}>
       {text}
-    </div>
+    </span>
   );
 };
 
