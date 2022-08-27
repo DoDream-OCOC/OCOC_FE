@@ -1,7 +1,9 @@
 main {
+  /* [Todo] 스크롤 제어 기능 추가 */
   background-color: aqua;
 
-  /* [Todo] common.css로 추출하기 */
   width: 100vw;
   max-width: 48rem;
+  /* 컴포넌트로 빼주기 */
+  height: calc((100vh - 3rem) + (2 * 100vh));
 }

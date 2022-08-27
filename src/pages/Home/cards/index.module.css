@@ -1,0 +1,9 @@
+article {
+  margin-top: 3rem; /*[Temp] 임시*/
+  height: calc(100vh - 3rem);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import MainHeader from '../../components/header/main';
 import MainContainer from '../../components/container/main';
 import MainFooter from '../../components/footer/main';
+import { MainCard } from './cards';
 
 import style from './index.module.css';
 
@@ -11,7 +12,7 @@ function Home() {
     <>
       <MainHeader />
       <MainContainer>
-        <div id={style.test}>Home</div>
+        <MainCard />
         <div id={style.test}>Home</div>
       </MainContainer>
       <MainFooter />
