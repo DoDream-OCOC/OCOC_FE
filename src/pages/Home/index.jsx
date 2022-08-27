@@ -13,7 +13,8 @@ function Home() {
       <MainHeader />
       <MainContainer>
         <MainCard />
-        <FeatureCard />
+        <FeatureCard type="left" />
+        <FeatureCard type="right" />
       </MainContainer>
       <MainFooter />
     </>
