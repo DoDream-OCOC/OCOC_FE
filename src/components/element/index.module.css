@@ -1,0 +1,27 @@
+/* [Todo] 자동완성 도입 -> propType? */
+
+/* Font-size */
+/* [Todo] 폰트 정해서 weight 좀 더 다양하게 */
+.L {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.M-Bold {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.M {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.M-Light {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+.S {
+  font-size: 0.8rem;
+}
