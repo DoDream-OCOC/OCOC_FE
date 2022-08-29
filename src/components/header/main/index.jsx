@@ -8,10 +8,10 @@ function MainHeader() {
   return (
     <header>
       <div className={style.flex}>
-        <Logo style={{ marginRight: '0.5rem' }} />
+        <Logo title="header-logo" style={{ marginRight: '0.5rem' }} />
         <Text size="M" text={'Logo here'} />
       </div>
-      <div>hamburger</div>
+      <div title="header-hamburger">hamburger</div>
     </header>
   );
 }
