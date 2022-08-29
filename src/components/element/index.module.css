@@ -10,7 +10,7 @@ span {
 /* [Todo] 자간 추가 */
 .L {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .M-Bold {
@@ -29,11 +29,11 @@ span {
 }
 
 .S {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .S-Ligher {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 100;
 }
 
@@ -45,8 +45,9 @@ span {
 
   border: 0px;
   border-radius: 20px;
-  background-color: #2d9e1b; /*[Todo] theme 컬러로 ㄱ*/
+  background-color: var(--ococ-Green);
 
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
   color: white;
 }
