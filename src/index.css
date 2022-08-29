@@ -18,7 +18,7 @@ body {
   --Gray-2: #f4f4f4;
   --Gray-3: #e5e5e5;
   --Gray-4: #4a4a4a;
-  --black: #000000;
+  --Black: #000000;
 
   /* Theme */
   --ococ-Green: #2d9e1b;
@@ -35,5 +35,5 @@ body {
 
   /* Text */
   --Text-1: var(--Gray-4);
-  --Text-2: var(var(--black));
+  --Text-2: var(--black);
 }

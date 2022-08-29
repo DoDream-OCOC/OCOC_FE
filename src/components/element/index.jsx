@@ -3,17 +3,17 @@ import React from 'react';
 import style from './index.module.css';
 
 // [Todo] props 안 넣으면 에러발생시키게 하기 -> TS밖에 답이 없나
-// enum 구현할까
 
 /**
  * Text component
  * @param {L, M-Bold, M, M-Light, S-Bold, S} size text size
+ * @param {Text-1, Text-2} color text's color
  * @param {String} text text's content
  * @returns Common text
  */
-export const Text = ({ size = 'M', color = '', text, ...props }) => {
+export const Text = ({ size = 'M', color = 'Text-2', text, ...props }) => {
   return (
-    <span className={style[size]} style={{ color: 'var(--ococ-Green)' }} {...props}>
+    <span className={style[size]} style={{ color: `var(--${color})` }} {...props}>
       {text}
     </span>
   );
