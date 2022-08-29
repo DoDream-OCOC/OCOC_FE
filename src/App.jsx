@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Pages
 import Home from './pages/Home';
 import Fail from './pages/Fail';
+import LevelSelection from './pages/LevelSelection';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/lvl-slc" element={<LevelSelection />} />
           <Route path="*" element={<Fail />} />
         </Routes>
       </Router>
