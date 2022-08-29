@@ -22,5 +22,7 @@ describe('LevelSelection page', () => {
     screen.getByTitle('header-logo');
     test.text('Logo here');
     screen.getByTitle('header-hamburger');
+
+    test.text('학습 레벨을 선택해주세요.');
   });
 });

@@ -11,10 +11,10 @@ import style from './index.module.css';
  * @param {String} text text's content
  * @returns Common text
  */
-export const Text = ({ size = 'M', color = 'Text-2', text, ...props }) => {
+export const Text = ({ size = 'M', color = 'Text-2', content, ...props }) => {
   return (
     <span className={style[size]} style={{ color: `var(--${color})` }} {...props}>
-      {text}
+      {content}
     </span>
   );
 };
