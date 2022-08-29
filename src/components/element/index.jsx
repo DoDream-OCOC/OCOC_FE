@@ -28,6 +28,7 @@ export const Empty = ({ size }) => {
   return <div style={{ height: size }} />;
 };
 
+// [Todo] 버튼 disabled 만들기
 export const Button = ({ ...props }) => {
   return (
     <button id={style.button} {...props}>
