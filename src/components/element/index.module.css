@@ -28,13 +28,13 @@ span {
   font-weight: 300;
 }
 
-.S {
+.S-Bold {
   font-size: 1rem;
+  font-weight: bold;
 }
 
-.S-Ligher {
+.S {
   font-size: 1rem;
-  font-weight: 100;
 }
 
 /* Button */
