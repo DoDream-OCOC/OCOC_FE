@@ -1,0 +1,26 @@
+.outer {
+  max-width: 25rem;
+  width: 80vw;
+  height: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 20px;
+  background-color: var(--Gray-2);
+
+  margin: 1rem 0px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+
+  width: 90%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
