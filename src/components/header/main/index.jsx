@@ -15,7 +15,7 @@ function MainHeader() {
     <header>
       <div className={style.flex} onClick={() => navigate('/')}>
         <div title="header-hamburger"><Hamburger /></div>
-      </div>
+      </div>  
     </header>
     </>
   );
