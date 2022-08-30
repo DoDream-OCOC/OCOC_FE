@@ -11,4 +11,4 @@ const handlers = [
   //   rest.post(`${ROUTE}/result`, (req, res, ctx) => {}),
 ];
 
-export default handlers;
+export { handlers };
