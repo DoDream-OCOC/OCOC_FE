@@ -9,13 +9,13 @@ function Hamburger() {
 
     return(
         <nav className={style.navbar}>
-            <Text className={style.logo} size="M" text={'Logo here'} />
+            <Text className={style.logo} size="M" content={'Logo here'} />
             <ul className={isMobile ? style.nav_links_mobile : style.nav_links}
             onClick={() => setIsMobile(false)}>
-                <li className={style.premium}><Text size="S" text={'프리미엄 서비스'} /></li>
-                <li className={style.tip}><Text size="S" text={'작문 팁'} /></li>
-                <li className={style.debate}><Text size="S" text={'영작 팁'} /></li>
-                <li className={style.sign_up}><Text size="S" text={'Sign up'} /></li>
+                <li className={style.premium}><Text size="S" content={'프리미엄 서비스'} /></li>
+                <li className={style.tip}><Text size="S" content={'작문 팁'} /></li>
+                <li className={style.debate}><Text size="S" content={'영작 팁'} /></li>
+                <li className={style.sign_up}><Text size="S" content={'Sign up'} /></li>
             </ul>
             <button className={style.mobile_menu_icon}
             onClick={() => setIsMobile(!isMobile)}>
