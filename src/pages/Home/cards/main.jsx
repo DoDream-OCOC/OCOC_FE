@@ -16,7 +16,7 @@ export const MainCard = () => {
       {/* [Todo] 시멘틱웹을 고려해 h태그로 고치기 */}
       <OCOC_title  style={{  width: '9.43rem', height: '2.563rem', fill: 'var(--Green)' }} />
       <Empty size="2.9rem" />
-      <img class = 'mockupimg' src={Phone_img} style={{width:'17.9rem'}} />
+      <img class = 'mockupimg' src={Phone_img} style={{width:'16.9rem'}} />
       <Button style={{ position: 'absolute', top:'43.12rem'}} />
     </article>
   );
