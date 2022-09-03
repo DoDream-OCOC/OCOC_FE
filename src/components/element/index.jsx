@@ -14,7 +14,7 @@ import style from './index.module.css';
 export const Text = ({ size = 'B1', color = 'Text-2', text, ...props }) => {
   return (
     <span className={style[size]} style={{ color: `var(--${color})` }} {...props}>
-      {text}
+      {content}
     </span>
   );
 };

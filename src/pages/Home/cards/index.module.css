@@ -1,13 +1,3 @@
-article {
-  margin-top: 3rem; /*[Temp] 임시*/
-  height: calc(100vh - 3rem);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .FeatureTitle {
   width: 95%;
 }
@@ -19,6 +9,8 @@ article {
 
   background-color: #d9d9d9;
   border-radius: 10px;
+
+  color: var(--Gray-0);
 }
 
 .Button {
