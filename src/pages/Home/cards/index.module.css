@@ -1,18 +1,34 @@
 .FeatureTitle {
-  width: 95%;
+  width: 100vw;
+  padding: 0rem 1rem;
+    max-width: 48rem;
 }
 
 /* [Temp] 일단 이름 box */
 .box {
   width: 60%;
   height: 50%;
-
   background-color: #d9d9d9;
   border-radius: 10px;
-
   color: var(--Gray-0);
 }
 
 .Button {
-  width:1px;
+  width:3px;
 }
+
+.video_wrapper{
+  position: relative;
+  width:100vw;
+  z-index: -10;
+}
+
+.video_wrapper video{
+  position:absolute;
+  left:50%;
+  max-width: 1920px;
+  transform: translateX(-50%);
+  top:-20rem;
+}
+
+

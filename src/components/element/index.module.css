@@ -6,7 +6,6 @@ span {
 }
 
 /* Font-size */
-/* [Todo] 폰트 정해서 weight 좀 더 다양하게 */
 /* [Todo] 자간 추가 */
 
 
@@ -28,6 +27,7 @@ span {
 .H4 {
   font-size: 1.18rem;
   font-weight: 700;
+
 }
 
 .H5 {
