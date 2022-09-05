@@ -7,7 +7,7 @@ import { ReactComponent as OCOC_title} from '../../assets/OCOC/OCOC_text.svg';
 import { ReactComponent as Profile} from '../../assets/icons/icon_profile.svg';
 import { Text } from '../element';
 
-function MainHeader() {
+function NavBar() {
   const navigate = useNavigate();
 
   return (
@@ -25,4 +25,4 @@ function MainHeader() {
   );
 }
 
-export default MainHeader;
+export default NavBar;
