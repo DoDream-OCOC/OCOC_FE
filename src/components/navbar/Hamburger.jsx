@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text } from '../../element';
+import { Text } from '../element';
 import style from './index.module.css';
 import { FaBars, FaBeer, FaTimes } from 'react-icons/fa';
 

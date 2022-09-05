@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainHeader from '../../components/header/main';
+import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import { LevelSelectionBtn } from './Button';
 import { Empty, Text } from '../../components/element';
@@ -8,7 +8,7 @@ import { Empty, Text } from '../../components/element';
 function LevelSelection() {
   return (
     <>
-      <MainHeader />
+      <NavBar />
       <MainContainer>
         <article className="">
           <div style={{ width: '95%' }}>

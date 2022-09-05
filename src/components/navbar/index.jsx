@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import style from './index.module.css';
-import { ReactComponent as Logo } from '../../../assets/fake/logo.svg';
-import { ReactComponent as OCOC_title} from '../../../assets/OCOC/OCOC_text.svg';
-import { ReactComponent as Profile} from '../../../assets/icons/icon_profile.svg';
-import { Text } from '../../element';
+import { ReactComponent as Logo } from '../../assets/fake/logo.svg';
+import { ReactComponent as OCOC_title} from '../../assets/OCOC/OCOC_text.svg';
+import { ReactComponent as Profile} from '../../assets/icons/icon_profile.svg';
+import { Text } from '../element';
 
 function MainHeader() {
   const navigate = useNavigate();
