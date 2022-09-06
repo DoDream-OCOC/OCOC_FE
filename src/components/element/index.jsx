@@ -6,12 +6,12 @@ import style from './index.module.css';
 
 /**
  * Text component
- * @param {L, M-Bold, M, M-Light, S-Bold, S} size text size
+ * @param {H1, H2, H3, H4, H5, B1, B2, B3} size text size
  * @param {Text-1, Text-2} color text's color
- * @param {String} text text's content
+ * @param {String} content text's content
  * @returns Common text
  */
-export const Text = ({ size = 'M', color = 'Text-2', content, ...props }) => {
+export const Text = ({ size = 'B1', color = 'Text-2', content, ...props }) => {
   return (
     <span className={style[size]} style={{ color: `var(--${color})` }} {...props}>
       {content}

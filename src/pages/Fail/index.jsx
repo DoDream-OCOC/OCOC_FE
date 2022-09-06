@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainHeader from '../../components/header/main';
+import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import MainFooter from '../../components/footer/main';
 
@@ -8,7 +8,7 @@ import MainFooter from '../../components/footer/main';
 function Fail() {
   return (
     <>
-      <MainHeader />
+      <NavBar />
       <MainContainer>Home</MainContainer>
       <MainFooter />
     </>

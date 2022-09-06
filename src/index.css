@@ -21,8 +21,8 @@ body {
   --Black: #000000;
 
   /* Theme */
-  --ococ-Green: #2d9e1b;
-  --ococ-Red: #da3838;
+  --Green: #2d9e1b;
+  --Red: #da3838;
 
   /* Background */
   --BG-1: var(--Gray-0);
