@@ -12,8 +12,10 @@ export const MainCard = () => {
   return (
     <article>
       <Empty size="1rem" />
-      <div className={style.video_wrapper}>
-        <video className ={style.video} src={header_video} autoPlay muted loop preload="auto"></video>
+      <div style={{ position: 'absolute', x: '400px' }}>
+        <div className={style.video_wrapper}>
+          <video src={header_video} autoPlay muted loop preload="auto"></video>
+        </div>
       </div>
       <Empty size="17rem" />
       <Text  size="H5" color="black" content="영어 작문의 꾸준한 첫걸음," />

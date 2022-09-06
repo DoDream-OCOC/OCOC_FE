@@ -29,14 +29,15 @@
   position: relative;
   width:100vw;
   z-index: -10;
+  height:1080px;
+  overflow:hidden;
 }
 
 .video_wrapper video{
-  position:absolute;
+  position: absolute;
   left:50%;
-  max-width: 1920px;
   transform: translateX(-50%);
-  top:-20rem;
+  top:-4rem;
 }
 
 
