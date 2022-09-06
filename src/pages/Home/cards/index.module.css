@@ -1,14 +1,43 @@
 .FeatureTitle {
-  width: 95%;
+  width: 100vw;
+  padding: 0rem 1rem;
+  max-width: 48rem;
+  margin-top:15rem;
+}
+
+@media  screen  and (min-width:  768px) {
+  .FeatureTitle{
+  margin-top: 10rem;
+  }
+  
 }
 
 /* [Temp] 일단 이름 box */
 .box {
   width: 60%;
   height: 50%;
-
   background-color: #d9d9d9;
   border-radius: 10px;
-
   color: var(--Gray-0);
 }
+
+.Button {
+  width: 3px;
+}
+
+.video_wrapper{
+  position: relative;
+  width:100vw;
+  z-index: -10;
+  height:1080px;
+  overflow:hidden;
+}
+
+.video_wrapper video{
+  position: absolute;
+  left:50%;
+  transform: translateX(-50%);
+  top:-4rem;
+}
+
+

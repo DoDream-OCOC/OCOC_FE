@@ -1,15 +1,27 @@
-header {
-  position: fixed;
+.Navbar {
+  position:fixed;
   width: 100vw;
-  max-width: 48rem;
+  justify-content: center;
+  left:0;
+  right:0;
   background-color: white;
+  border-bottom: 1px solid transparent;
+  z-index: 4;
+}
 
+.navborder {
+  background-color: white;
+  border-bottom-color: rgba(0, 27, 55, 0.1);
+}
+
+.navbar_wrapper {
+  max-width: 48rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  margin: 0 auto;
   box-sizing: border-box;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem 1rem;
 }
 
 .flex {
@@ -70,11 +82,20 @@ header {
   display: none;
 }
 
+.mobileapp {
+  display:none;
+  width:10px;
+}
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .navbar{
       justify-content: space-between;
       background-color: var(--BG-1);
+  }
+
+  .mobileapp {
+    width:5rem;
+    display: flex;
   }
 
   .logo{
