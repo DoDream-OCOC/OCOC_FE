@@ -1,7 +1,15 @@
 .FeatureTitle {
   width: 100vw;
   padding: 0rem 1rem;
-    max-width: 48rem;
+  max-width: 48rem;
+  margin-top:15rem;
+}
+
+@media  screen  and (min-width:  768px) {
+  .FeatureTitle{
+  margin-top: 10rem;
+  }
+  
 }
 
 /* [Temp] 일단 이름 box */

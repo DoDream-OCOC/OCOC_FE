@@ -2,11 +2,11 @@
   position:fixed;
   width: 100vw;
   justify-content: center;
-  margin: 0 auto;
   left:0;
   right:0;
   background-color: white;
   border-bottom: 1px solid transparent;
+  z-index: 4;
 }
 
 .navborder {
