@@ -20,7 +20,6 @@ export const MainCard = () => {
       <Empty size="17rem" />
       <Text size="H5" color="black" content="영어 작문의 꾸준한 첫걸음," />
       <Empty size="1rem" />
-      {/* [Todo] 시멘틱웹을 고려해 h태그로 고치기 */}
       <OCOCTitle style={{ width: '9.43rem', height: '2.563rem', fill: 'var(--Green)', ZIndex: '3' }} />
       <Empty size="4.9rem" />
       <Button onClick={() => navigate('/lvl-slc')} />
