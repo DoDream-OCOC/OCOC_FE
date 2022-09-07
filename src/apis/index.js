@@ -1,2 +1,2 @@
-import * as click from './click';
-export { click };
+import * as study from './study';
+export { study };
