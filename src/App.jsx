@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Fail from './pages/Fail';
 import LevelSelection from './pages/LevelSelection';
+import ClickEng from './pages/ClickEng';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/lvl-slc" element={<LevelSelection />} />
+          <Route path="/click-eng" element={<ClickEng />} />
           <Route path="*" element={<Fail />} />
         </Routes>
       </Router>
