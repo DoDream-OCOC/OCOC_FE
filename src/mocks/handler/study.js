@@ -12,9 +12,31 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
 
   return res(
     ctx.json({
-      words: ['has', 'determination', 'to', 'great', 'she', 'succeed'],
-      length: 6,
-      setence: ['she succeed has to determination great'],
+      words: [
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+        ['has', 'determination', 'to', 'great', 'she', 'succeed'],
+      ],
+      length: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+      setence: [
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+        'she succeed has to determination great',
+      ],
     }),
   );
 });
