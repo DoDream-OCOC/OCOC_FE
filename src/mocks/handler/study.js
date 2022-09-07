@@ -1,10 +1,10 @@
 import { rest } from 'msw';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
 const ROUTE = 'study';
 
-export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req, res, ctx) => {
-  const { level, studyType } = req.json();
+export const sendStudyTypeHandler = rest.post(`/${ROUTE}`, async (req, res, ctx) => {
+  const { level, studyType } = await req.json();
 
   // [Todo] 작업 수행 추가하기
   console.log(level);
@@ -41,7 +41,7 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
   );
 });
 
-export const sendStudyResultHandler = rest.post(`${BASE_URL}/${ROUTE}/result`, (req, res, ctx) => {
+export const sendStudyResultHandler = rest.post(`/${ROUTE}/result`, (req, res, ctx) => {
   const { answerList, answer } = req.json();
 
   // [Todo] 작업 수행 추가하기
