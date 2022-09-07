@@ -9,13 +9,14 @@ ococ.interceptors.request.use(
     if (config.url === '') {
       return config;
     } else {
-      // return {
-      //   ...config,
-      //   headers: {
-      //     // [Temp] 따로 전역관리 안하면 그냥 로컬에서/세션에서 가져옴
-      //     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      //   },
-      // };
+      return {
+        ...config,
+        headers: {
+          // [Temp] 따로 전역관리 안하면 그냥 로컬에서/세션에서 가져옴
+          // [Todo] 비회원일경우 null로 주기
+          Authorization: !!localStorage.getItem('accessToken') ? `Bearer ${localStorage.getItem('accessToken')}` : null,
+        },
+      };
     }
   },
   error => error,
