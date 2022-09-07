@@ -10,8 +10,8 @@ export const LevelSelectionBtn = ({ title, content }) => {
       <span className={style.inner}>
         <Circle style={{ marginRight: '1rem' }} />
         <span className={style.text}>
-          <Text size="S-Bold" content={title} />
-          <Text size="S" content={content} />
+          <Text size="B2" content={title} />
+          <Text size="B1" content={content} />
         </span>
       </span>
     </div>

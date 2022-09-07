@@ -12,7 +12,7 @@ function LevelSelection() {
       <MainContainer>
         <article className="">
           <div style={{ width: '95%' }}>
-            <Text size="M-Bold" content="학습 레벨을 선택해주세요." style={{ textAlign: 'left', marginLeft: '0.5rem' }} />
+            <Text size="H4" content="학습 레벨을 선택해주세요." style={{ textAlign: 'left', marginLeft: '0.5rem' }} />
           </div>
           <Empty size="3.2rem" />
           {/* [Todo] 48rem 이후 웹 CSS 만들기 */}
