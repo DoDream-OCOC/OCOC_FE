@@ -1,3 +1,3 @@
-import * as clickHandlers from './click';
+import * as studyHandlers from './study';
 
-export const handlers = [...Object.values(clickHandlers)];
+export const handlers = [...Object.values(studyHandlers)];
