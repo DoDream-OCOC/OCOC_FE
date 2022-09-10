@@ -8,7 +8,6 @@ span {
 /* Font-size */
 /* [Todo] 자간 추가 */
 
-
 .H1 {
   font-size: 3rem;
   font-weight: 700;
@@ -27,7 +26,6 @@ span {
 .H4 {
   font-size: 1.18rem;
   font-weight: 700;
-
 }
 
 .H5 {
@@ -58,11 +56,11 @@ span {
 
   border: 0px;
   border-radius: 20px;
-  background-color: var(--Green);
 
   font-size: 1rem;
   font-weight: 400;
-  color: white;
 
   z-index: 2;
+  color: var(--Gray-0);
+  background-color: var(--Green);
 }

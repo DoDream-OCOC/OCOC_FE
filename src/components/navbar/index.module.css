@@ -1,9 +1,9 @@
 .Navbar {
-  position:fixed;
+  position: fixed;
   width: 100vw;
   justify-content: center;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   background-color: white;
   border-bottom: 1px solid transparent;
   z-index: 4;
@@ -15,7 +15,7 @@
 }
 
 .navbar_wrapper {
-  max-width: 48rem;
+  max-width: var(--Break-Point);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,14 +30,13 @@
 }
 
 /*Hamburger*/
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-.navbar{
+.navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -46,23 +45,21 @@
   color: var(--Text-2);
 }
 
-.logo{
+.logo {
   font-size: 30px;
 }
 
-
-.nav_links{
+.nav_links {
   display: flex;
   justify-content: flex-end;
   list-style: none;
   width: 80%;
-  
 }
 
 .premium,
 .tip,
 .debate,
-.sign_up{
+.sign_up {
   color: var(--Text-2);
   font-size: 18px;
   padding: 10px 20px;
@@ -70,89 +67,85 @@
   text-decoration: none;
 }
 
-.sign_up{
+.sign_up {
   border: 1px solid var(--Black);
   border-radius: 5px;
   padding: 8px 50px;
   margin-left: 40px;
-      
 }
 
-.mobile_menu_icon{
+.mobile_menu_icon {
   display: none;
 }
 
 .mobileapp {
-  display:none;
-  width:10px;
+  display: none;
+  width: 10px;
 }
 
 @media screen and (max-width: 768px) {
-  .navbar{
-      justify-content: space-between;
-      background-color: var(--BG-1);
+  .navbar {
+    justify-content: space-between;
+    background-color: var(--BG-1);
   }
 
   .mobileapp {
-    width:5rem;
+    width: 5rem;
     display: flex;
   }
 
-  .logo{
-      margin-left: 16px;
-     
-  }
- 
-  .nav_links{
-      display: none;
+  .logo {
+    margin-left: 16px;
   }
 
-  .nav_links_mobile{
-      position: absolute;
-      display: block;
-      list-style: none;
-      background-color: var(--BG-1);
-      left: 0;
-      top: 64px;
-      transition: all 0.5s ease-out;
-      width: 100%;
+  .nav_links {
+    display: none;
+  }
+
+  .nav_links_mobile {
+    position: absolute;
+    display: block;
+    list-style: none;
+    background-color: var(--BG-1);
+    left: 0;
+    top: 64px;
+    transition: all 0.5s ease-out;
+    width: 100%;
   }
 
   .premium,
   .tip,
   .debate,
-  .sign_up{
-      text-decoration: none;
-      color: var(--Text-2);
-      text-align: right;
-      padding: 32px;
-      transition: all 0.5 ease;
+  .sign_up {
+    text-decoration: none;
+    color: var(--Text-2);
+    text-align: right;
+    padding: 32px;
+    transition: all 0.5 ease;
   }
 
-  .sign_up{
-      border: none;
+  .sign_up {
+    border: none;
   }
-  
-  .mobile_menu_icon{
-      display: block;
-      position: absolute;
-      font-size: 36px;
-      color: var(--Text-2);
-      background-color: var(--BG-1);
-      border: none;
-      outline: none;
-      top: 16px;
-      right: 25px;
+
+  .mobile_menu_icon {
+    display: block;
+    position: absolute;
+    font-size: 36px;
+    color: var(--Text-2);
+    background-color: var(--BG-1);
+    border: none;
+    outline: none;
+    top: 16px;
+    right: 25px;
   }
-    
 }
 
 @media screen and (min-width: 700px) {
-  .nav_links_mobile{
-      display: flex;
-      justify-content: flex-end;
-      list-style: none;
-      width: 80%;
+  .nav_links_mobile {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    width: 80%;
   }
-
 }

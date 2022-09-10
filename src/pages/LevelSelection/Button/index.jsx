@@ -8,7 +8,7 @@ export const LevelSelectionBtn = ({ title, content, onClick }) => {
   return (
     <div className={style.outer} onClick={() => onClick(title)}>
       <span className={style.inner}>
-        <Circle style={{ marginRight: '1rem' }} />
+        <Circle id={style.circle} />
         <span className={style.text}>
           <Text size="B2" content={title} />
           <Text size="B1" content={content} />
