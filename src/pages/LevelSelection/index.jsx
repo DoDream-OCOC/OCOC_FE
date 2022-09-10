@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import { study } from '../../apis/index';
@@ -14,10 +15,12 @@ function LevelSelection() {
   const mutation = useMutation({
     mutationFn: data => study.sendStudyType(data),
   });
+  const navigate = useNavigate();
 
   const onClick = level => {
     // [Temp]  studyType = 'click'
     mutation.mutate(level, 'click');
+    navigate('/click-eng');
   };
 
   // 로딩중일 때 컴포넌트 추가해주기
