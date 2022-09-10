@@ -12,6 +12,9 @@ body {
 }
 
 :root {
+  /* Break point */
+  --Break-Point: 48rem;
+
   /* Gray scale */
   --Gray-0: #ffffff;
   --Gray-1: #f9f9f9;

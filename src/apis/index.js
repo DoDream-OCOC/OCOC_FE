@@ -1,2 +1,2 @@
-const temp = '';
-export default temp;
+import * as study from './study';
+export { study };
