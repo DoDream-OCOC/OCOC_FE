@@ -6,10 +6,8 @@ export const studySlice = createSlice({
 
   initialState: studyInitialState,
   reducers: {
-    // 레벨 선택 후 응답 저장
     setAllCorpus(state, action) {
       state.words = action.payload.words;
-      state.studyResult = action.payload.studyResult;
     },
     // 문제 풀이가 끝나면 호출
     cleanAllCorpus(state, action) {
@@ -22,5 +20,6 @@ export const studySlice = createSlice({
       state.studyResult.answerList.correct && state.studyResult.answer++;
     },
     // [Todo] studyResult.answerList.length에 따라서 progress bar랑 로그인 유도 페이지
+    // 도중에 데이터가 날아갔을때는?
   },
 });
