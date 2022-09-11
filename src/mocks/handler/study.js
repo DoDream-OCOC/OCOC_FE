@@ -9,6 +9,7 @@ export const sendStudyTypeHandler = rest.post(`/${ROUTE}`, async (req, res, ctx)
   // [Todo] 작업 수행 추가하기
   console.log(level);
   console.log(studyType);
+  (!level || !studyType) && res(ctx.delay(1000), ctx.status(400));
 
   const words = [
     {
@@ -37,5 +38,5 @@ export const sendStudyResultHandler = rest.post(`/${ROUTE}/result`, (req, res, c
   // [Todo] 작업 수행 추가하기
   console.dir(answerList);
   console.log(answer);
-  return res();
+  return res(ctx.delay(1000));
 });
