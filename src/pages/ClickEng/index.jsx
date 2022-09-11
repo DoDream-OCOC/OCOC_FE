@@ -13,7 +13,9 @@ import ButtonItem from './buttons/ButtonItem';
 
 function ClickEng() {
   const dispatch = useDispatch();
-
+  const { words } = useSelector(state => state.study);
+  // [@지은님] words이용하시면 됩니답. 콘솔보면서 작업하세요~
+  console.log('words : ', words); // 완료되면 지우셔도 되세요~
   const location = useLocation();
 
   //받아오는 단어 배열
@@ -63,15 +65,12 @@ function ClickEng() {
 
   React.useEffect(() => {
     return () => {
-      // 새로고침할 때도 날라감
       dispatch(studySlice.actions.cleanAllCorpus());
-      console.log(`${location.pathname} : onleave`);
     };
   }, [location, dispatch]);
 
   return (
     <>
-      {/* <Prompt message="Are you sure you want to leave?" /> */}
       <NavBar />
       <MainContainer>
         <article>
