@@ -10,13 +10,14 @@ import { Text } from '../../components/element';
 import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import ButtonItem from './buttons/ButtonItem';
-import { fromSecondRedering } from '../../utils/render';
+import { GradingButton } from '../../components/element';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const { words } = useSelector(state => state.study);
+  const aCorpus = useSelector(state => state.study.words[state.study.stage]);
+
   // [@지은님] words이용하시면 됩니답. 콘솔보면서 작업하세요~
-  console.log('words : ', words); // 완료되면 지우셔도 되세요~
+  console.log('aCorpus : ', aCorpus); // 완료되면 지우셔도 되세요~
   const location = useLocation();
 
   //받아오는 단어 배열
@@ -64,6 +65,8 @@ function ClickEng() {
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
 
+  React.useLayoutEffect(() => {}, []);
+
   // [Todo] Hook으로 빼기
   const initialRender = React.useRef(true);
   React.useEffect(() => {
@@ -102,6 +105,7 @@ function ClickEng() {
               </div>
             </div>
           </div>
+          <GradingButton style={{ marginBottom: '1rem' }} content="정답 확인하기" />
         </article>
       </MainContainer>
     </>

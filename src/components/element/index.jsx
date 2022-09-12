@@ -46,6 +46,23 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
   );
 };
 
+/**
+ * Graiding button component
+ * @param {boolean} isDisabled
+ * @param {boolean} isGrading
+ * @param {string} content button's content
+ * @returns Button
+ */
+export const GradingButton = ({ isDisabled = false, isGrading = false, content, ...props }) => {
+  const disabled = isDisabled || isGrading;
+  return (
+    <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
+      {!isGrading ? content : '채점중입니다'}
+      {isGrading && <Loading />}
+    </button>
+  );
+};
+
 // Types -> 적용이 안되네?
 Text.propTypes = {
   size: PropTypes.oneOf(['H1', 'H2', 'H3', 'H4', 'H5', 'B1', 'B2', 'B3']),

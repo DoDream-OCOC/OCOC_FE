@@ -4,6 +4,7 @@
  * @param {function} func
  * @returns
  */
+// 에러 나서 사용 x
 export const fromSecondRedering = (initialRender, func) => {
   if (initialRender.current) {
     initialRender.current = false;
