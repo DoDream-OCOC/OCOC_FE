@@ -50,6 +50,9 @@ span {
 
 /* Button */
 #button {
+  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+  letter-spacing: 1px;
+
   max-width: 25rem;
   width: 80vw;
   height: 3.5rem;
