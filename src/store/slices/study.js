@@ -9,10 +9,12 @@ export const studySlice = createSlice({
     setAllCorpus(state, action) {
       state.words = action.payload.words;
     },
-    // 문제 풀이가 끝나면 호출
-    // 페이지에서 벗어나면 호출
+    increaseStage(state, action) {
+      state.stage++;
+    },
     cleanAllCorpus(state, action) {
       state.words = studySlice.getInitialState().words;
+      state.stage = studySlice.getInitialState().stage;
       state.studyResult = studySlice.getInitialState().studyResult;
     },
     setStudyResult(state, action) {
