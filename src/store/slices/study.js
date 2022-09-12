@@ -9,11 +9,12 @@ export const studySlice = createSlice({
     setAllCorpus(state, action) {
       state.words = action.payload.words;
     },
-    shiftCorpus(state, action) {
-      return state.words.shift();
+    increaseStage(state, action) {
+      state.stage++;
     },
     cleanAllCorpus(state, action) {
       state.words = studySlice.getInitialState().words;
+      state.stage = studySlice.getInitialState().stage;
       state.studyResult = studySlice.getInitialState().studyResult;
     },
     setStudyResult(state, action) {
