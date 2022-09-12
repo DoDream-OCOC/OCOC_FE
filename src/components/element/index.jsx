@@ -40,8 +40,8 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
   const disabled = isDisabled || isLoading;
   return (
     <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
-      {content}
-      <Loading />
+      {!isLoading && content}
+      {isLoading && <Loading />}
     </button>
   );
 };
