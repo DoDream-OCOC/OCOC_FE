@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ReactComponent as Loading } from '../../assets/loading/ellipsis.svg';
+
 import style from './index.module.css';
 
 /**
@@ -39,6 +41,7 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
   return (
     <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
       {content}
+      <Loading />
     </button>
   );
 };
