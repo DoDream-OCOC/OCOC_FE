@@ -10,6 +10,7 @@ import { Text } from '../../components/element';
 import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import ButtonItem from './buttons/ButtonItem';
+import { fromSecondRedering } from '../../utils/render';
 
 function ClickEng() {
   const dispatch = useDispatch();
@@ -63,10 +64,14 @@ function ClickEng() {
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
 
+  // [Todo] Hook으로 빼기
+  const initialRender = React.useRef(true);
   React.useEffect(() => {
-    return () => {
-      dispatch(studySlice.actions.cleanAllCorpus());
-    };
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      return () => dispatch(studySlice.actions.cleanAllCorpus());
+    }
   }, [location, dispatch]);
 
   return (
