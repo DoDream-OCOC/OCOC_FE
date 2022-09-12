@@ -1,9 +1,12 @@
 import ococ from './core';
+import store from '../store';
+import { studySlice } from '../store/slices/study';
 
 const ROUTE = 'study';
 
-export const sendStudyType = async (level, studyType) => {
+export const sendStudyType = async (level, studyType = 'click') => {
   await ococ.post(`/${ROUTE}`, { level, studyType }).then(res => {
+    store.dispatch(studySlice.actions.setAllCorpus({ words: res.data.words }));
     return res;
   });
 };
