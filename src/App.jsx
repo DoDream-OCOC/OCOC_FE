@@ -8,16 +8,19 @@ import ClickEng from './pages/ClickEng';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lvl-slc" element={<LevelSelection />} />
-          <Route path="/click-eng" element={<ClickEng />} />
-          <Route path="*" element={<Fail />} />
-        </Routes>
-      </Router>
-    </div>
+    <>
+      <div id="root-modal"></div>
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/lvl-slc" element={<LevelSelection />} />
+            <Route path="/click-eng" element={<ClickEng />} />
+            <Route path="*" element={<Fail />} />
+          </Routes>
+        </Router>
+      </div>
+    </>
   );
 }
 
