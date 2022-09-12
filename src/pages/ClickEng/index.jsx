@@ -17,6 +17,7 @@ function ClickEng() {
   const aCorpus = useSelector(state => state.study.words[state.study.stage]);
 
   // [@지은님] words이용하시면 됩니답. 콘솔보면서 작업하세요~
+  // 버튼 누를 때마다 정답결과 스토어에 업로드되게 해주시고, increaseStage이용해서 작업해주세욥 -> 모르시겠으면 제가 하겠습니다
   console.log('aCorpus : ', aCorpus); // 완료되면 지우셔도 되세요~
   const location = useLocation();
 
