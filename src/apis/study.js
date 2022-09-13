@@ -6,7 +6,7 @@ const ROUTE = 'study';
 
 export const sendStudyType = async (level, studyType = 'click') => {
   await ococ.post(`/${ROUTE}`, { level, studyType }).then(res => {
-    store.dispatch(studySlice.actions.setAllCorpus({ words: res.data.words }));
+    store.dispatch(studySlice.actions.setAllCorpus({ wordsObj: res.data.wordsObj }));
     return res;
   });
 };
