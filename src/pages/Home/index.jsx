@@ -6,6 +6,7 @@ import MainFooter from '../../components/footer/main';
 import { MainCard, FeatureCard } from './cards';
 
 function Home() {
+  console.log(process.env);
   return (
     <>
       <Navbar />
