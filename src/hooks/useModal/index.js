@@ -4,7 +4,6 @@ import style from './index.module.css';
 
 /**
  * Modal hook
- * @param {JSX.Element} component
  * @returns { Render, openModal, closeModal }
  * ex)
  * const { Render, openModal } = useModal();
@@ -15,7 +14,7 @@ import style from './index.module.css';
  *   ...
  * );
  */
-function useModal(component) {
+function useModal() {
   const [isModalOpened, setIsModalOpened] = React.useState(false);
   const ref = React.useRef();
 
@@ -29,12 +28,12 @@ function useModal(component) {
     }
   }, []);
 
-  const Render = () => {
+  const Render = ({ children }) => {
     const ModalComponent = () => {
       return (
         <div className={style.modalContainer}>
           <div className={style.closeBtn} onClick={() => closeModal()} />
-          {component}
+          {children}
         </div>
       );
     };
