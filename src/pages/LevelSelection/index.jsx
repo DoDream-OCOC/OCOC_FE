@@ -35,9 +35,9 @@ function LevelSelection() {
           </div>
           <Empty size="3.2rem" />
           <div className={styled.flexDirection}>
-            <LevelSelectionBtn onClick={onClick} title="초급" content="3~5개 단어 클릭 영작" />
-            <LevelSelectionBtn onClick={onClick} title="중급" content="6~10개 단어 클릭 영작" />
-            <LevelSelectionBtn onClick={onClick} title="고급" content="11~15개 단어 클릭 영작" />
+            <LevelSelectionBtn onClick={onClick} isLoading={mutation.isLoading} title="초급" content="3~5개 단어 클릭 영작" />
+            <LevelSelectionBtn onClick={onClick} isLoading={mutation.isLoading} title="중급" content="6~10개 단어 클릭 영작" />
+            <LevelSelectionBtn onClick={onClick} isLoading={mutation.isLoading} title="고급" content="11~15개 단어 클릭 영작" />
           </div>
           <Empty size="3.2rem" />
         </article>
