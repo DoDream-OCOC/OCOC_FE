@@ -28,7 +28,7 @@ function useModal() {
     }
   }, []);
 
-  const Render = ({ children }) => {
+  const Modal = ({ children }) => {
     const ModalComponent = () => {
       return (
         <div className={style.modalContainer}>
@@ -43,7 +43,7 @@ function useModal() {
     }
   };
 
-  return { Render, openModal, closeModal };
+  return { Modal, openModal, closeModal };
 }
 
 export default useModal;
