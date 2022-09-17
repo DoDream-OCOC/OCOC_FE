@@ -1,7 +1,21 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
+import style from './index.module.css';
 
-// [Todo] Add useCallback
-function useModal() {
+/**
+ * Modal hook
+ * @param {JSX.Element} component
+ * @returns { Render, openModal, closeModal }
+ * ex)
+ * const { Render, openModal } = useModal();
+ * return (
+ *   ...
+ *   <Render /> *Need
+ *   <button style={{ marginTop: '500px' }} onClick={openModal} />
+ *   ...
+ * );
+ */
+function useModal(component) {
   const [isModalOpened, setIsModalOpened] = React.useState(false);
   const ref = React.useRef();
 
@@ -10,22 +24,27 @@ function useModal() {
 
   React.useEffect(() => {
     if (document) {
-      const dom = document.getElementById('root-modal');
-      console.log(dom);
-      ref.current = dom;
+      const $modal = document.getElementById('root-modal');
+      ref.current = $modal;
     }
   }, []);
 
-  if (ref.current && isModalOpened) {
-    return React.createPortal(
-      <div style={{ position: 'fixed', width: '200px', height: '200px', backgroundColor: 'tomato' }}>
-        <div onClick={() => closeModal()} />
-      </div>,
-      ref.current,
-    );
-  }
+  const Render = () => {
+    const ModalComponent = () => {
+      return (
+        <div style={{ position: 'fixed', zIndex: '100', left: '0px', top: '0px', width: '220px', height: '220px', backgroundColor: 'tomato' }}>
+          <div className={style.closeBtn} onClick={() => closeModal()} />
+          {component}
+        </div>
+      );
+    };
 
-  return { openModal, closeModal };
+    if (ref.current && isModalOpened) {
+      return createPortal(<ModalComponent />, ref.current);
+    }
+  };
+
+  return { Render, openModal, closeModal };
 }
 
 export default useModal;

@@ -9,7 +9,6 @@ import ClickEng from './pages/ClickEng';
 function App() {
   return (
     <>
-      <div id="root-modal"></div>
       <div className="App">
         <Router>
           <Routes>
