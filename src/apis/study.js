@@ -6,6 +6,7 @@ const ROUTE = 'study';
 
 export const sendStudyType = async (level, studyType = 'click') => {
   await ococ.post(`/${ROUTE}`, { level, studyType }).then(res => {
+    // [Todo] store를 아예 빼주고 page마다 mutation부분을 빼주자
     store.dispatch(studySlice.actions.setAllCorpus({ wordsObj: res.data.wordsObj }));
     return res;
   });
