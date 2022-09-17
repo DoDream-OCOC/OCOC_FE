@@ -32,7 +32,7 @@ function useModal(component) {
   const Render = () => {
     const ModalComponent = () => {
       return (
-        <div style={{ position: 'fixed', zIndex: '100', left: '0px', top: '0px', width: '220px', height: '220px', backgroundColor: 'tomato' }}>
+        <div className={style.modalContainer}>
           <div className={style.closeBtn} onClick={() => closeModal()} />
           {component}
         </div>
