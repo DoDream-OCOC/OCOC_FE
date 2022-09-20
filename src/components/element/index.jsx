@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ReactComponent as Loading } from '../../assets/loading/ellipsis.svg';
+
 import style from './index.module.css';
 
 /**
@@ -38,7 +40,25 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
   const disabled = isDisabled || isLoading;
   return (
     <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
-      {content}
+      {!isLoading && content}
+      {isLoading && <Loading />}
+    </button>
+  );
+};
+
+/**
+ * Graiding button component
+ * @param {boolean} isDisabled
+ * @param {boolean} isGrading
+ * @param {string} content button's content
+ * @returns Button
+ */
+export const GradingButton = ({ isDisabled = false, isGrading = false, content, ...props }) => {
+  const disabled = isDisabled || isGrading;
+  return (
+    <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
+      {!isGrading ? content : '채점중입니다'}
+      {isGrading && <Loading />}
     </button>
   );
 };
