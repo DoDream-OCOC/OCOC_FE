@@ -1,5 +1,10 @@
 export const studyInitialState = {
-  wordsObj: [],
+  wordsObj: [{
+    english: [],
+    korean: "",
+    length: 0,
+    words: "",
+  }],
   stage: 0,
   studyResult: {
     answerList: [],
