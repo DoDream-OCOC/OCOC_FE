@@ -1,7 +1,5 @@
 import { Text } from '../../../components/element';
 import style from './index.module.css';
-import Button from './Button';
-
 
 function ButtonItem({ keyword, onClick })
     {

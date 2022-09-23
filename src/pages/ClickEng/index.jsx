@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
-import shortid from 'shortid';
 
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
@@ -10,39 +9,37 @@ import style from './index.module.css';
 import { Text } from '../../components/element';
 import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
-import ButtonItem from './buttons/ButtonItem';
 import { GradingButton } from '../../components/element';
 import store from '../../store';
+import shortid from 'shortid';
+import { gradeStudy } from '../../utils/gradeStudy';
+import { array } from 'prop-types';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const {english, korean, length, wordsObj} = useSelector((state) => state.study.wordsObj[0]); //[state.study.stage]
-  const {answerList} = useSelector((state) => state.study.studyResult);
+  const {korean, length} = useSelector((state) => state.study.wordsObj[state.study.stage]); //[state.study.stage]
+  let english = useSelector((state) => state.study.wordsObj[state.study.stage].english);
+  const stage = useSelector((state) => state.study.stage);
+  let answerList = useSelector((state) => state.study.studyResult.answerList);
 
-  const [keywords, setKeywords] = useState([]);
-  const [newKeywords, setNewKeywords] = useState([]);
+  const [keywords, setKeywords] = useState([]); //english 배열
+  const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
 
+  english = english.slice().sort(() => Math.random() - 0.5) //english 배열 무작위로 섞는 함수
+  answerList = newKeywords; //store에 답변 리스트 저장
+  
+  //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
   while((keywords.length) + (newKeywords.length) < length){
     for(let i = 0; i < length; i++) {
       let id = shortid.generate();
-      let text = english[i]
+      let text = english[i];
       keywords.push({id, text});
     }
   }
 
-  console.log(keywords);
-  console.log(newKeywords);
-
-  // [@지은님] words이용하시면 됩니답. 콘솔보면서 작업하세요~
-  // 버튼 누를 때마다 정답결과 스토어에 업로드되게 해주시고, increaseStage이용해서 작업해주세욥 -> 모르시겠으면 제가 하겠습니다
-  //console.log('english : ', english); // 완료되면 지우셔도 되세요~
-  //console.log('answer : ', answerList);
-
   const location = useLocation();
 
   //영작 칸에 띄울 단어 배열
-  //filter를 통해 클릭한 컴포넌트의 id가 일치하는 keyword 값이 담긴 새로운 배열 반환
-  //concat을 통해 새로 만든 배열과 기존 newKeywords 배열 합치기
   const insertButton = (id) => {
     setNewKeywords(newKeywords.concat
       (keywords.filter((keyword) => keyword.id == id))
@@ -61,11 +58,15 @@ function ClickEng() {
   //스테이지 증가
   const onIncreaseStage = () => {
     dispatch(studySlice.actions.increaseStage());
-    dispatch(studySlice.actions.setStudyResult()); 
+    dispatch(studySlice.actions.setStudyResult());
 
-    //store 확인 콘솔창
-    console.log(store.getState());
+    if(stage == 10){ //정답 확인 버튼 10번 눌렀을 때 gradeStudy 함수 호출
+      gradeStudy();
+    }
   };
+
+  //store에 stage 확인 콘솔 창
+  //console.log(store.getState());
 
   React.useLayoutEffect(() => {}, []);
 

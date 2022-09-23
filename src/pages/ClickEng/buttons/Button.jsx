@@ -1,7 +1,3 @@
-import { useSelector } from 'react-redux';
-import { Text } from '../../../components/element';
-import uuid from 'react-uuid';
-import style from './index.module.css';
 import ButtonItem from './ButtonItem';
 
 //map()으로 배열을 ButtonItem 컴포넌트로 가공
