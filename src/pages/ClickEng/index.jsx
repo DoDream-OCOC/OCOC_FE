@@ -17,10 +17,10 @@ import { array } from 'prop-types';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const {korean, length} = useSelector((state) => state.study.wordsObj[state.study.stage]); //[state.study.stage]
+  const {korean, length} = useSelector((state) => state.study.wordsObj[state.study.stage]);
   let english = useSelector((state) => state.study.wordsObj[state.study.stage].english);
   const stage = useSelector((state) => state.study.stage);
-  let answerList = useSelector((state) => state.study.studyResult.answerList);
+  let answerList = useSelector((state) => state.study.studyResult.answerList[state.study.stage]);
 
   const [keywords, setKeywords] = useState([]); //english 배열
   const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
@@ -54,6 +54,12 @@ function ClickEng() {
     );
     setNewKeywords(newKeywords.filter((keyword) => keyword.id !== id));
   }
+
+  //콘솔창
+  console.log(keywords);
+  console.log(newKeywords);
+  console.log(stage);
+  console.log(answerList);
 
   //스테이지 증가
   const onIncreaseStage = () => {
