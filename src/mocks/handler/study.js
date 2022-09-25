@@ -31,12 +31,15 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
   ];
 
   let _json = {
-    datasets: datasets,
+    data: {
+      datasets: datasets,
+      study: { id: 123123 },
+    },
   };
 
   for (let i = 1; i < 10; i++) {
-    if (i === 2) _json = { ..._json, datasets: [..._json.datasets, ...datasets2] };
-    else _json = { ..._json, datasets: [..._json.datasets, ...datasets] };
+    if (i === 2) _json.data = { ..._json.data, datasets: [..._json.data.datasets, ...datasets2] };
+    else _json.data = { ..._json.data, datasets: [..._json.data.datasets, ...datasets] };
   }
   return res(ctx.delay(1000), ctx.json(_json));
 });
