@@ -17,25 +17,23 @@ import { array } from 'prop-types';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const {korean, length} = useSelector((state) => state.study.wordsObj[state.study.stage]);
-  let english = useSelector((state) => state.study.wordsObj[state.study.stage].english);
+  const {korean, length, english} = useSelector((state) => state.study.wordsObj[state.study.stage]);
   const stage = useSelector((state) => state.study.stage);
   let answerList = useSelector((state) => state.study.studyResult.answerList[state.study.stage]);
 
-  const [keywords, setKeywords] = useState([]); //english 배열
-  const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
-
-  english = english.slice().sort(() => Math.random() - 0.5) //english 배열 무작위로 섞는 함수
-  answerList = newKeywords; //store에 답변 리스트 저장
-  
-  //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
-  while((keywords.length) + (newKeywords.length) < length){
+  const [keywords, setKeywords] = useState(()=>{
+    //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
+    let _keywords = []
     for(let i = 0; i < length; i++) {
       let id = shortid.generate();
       let text = english[i];
-      keywords.push({id, text});
+      _keywords.push({id, text})
     }
-  }
+    return _keywords
+  }); //english 배열
+  const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
+
+  answerList = newKeywords; //store에 답변 리스트 저장
 
   const location = useLocation();
 
