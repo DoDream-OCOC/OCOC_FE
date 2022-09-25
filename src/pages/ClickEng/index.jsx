@@ -88,9 +88,9 @@ function ClickEng() {
 
             <div className={style.question_container}>
               <div className={style.question_text}>
-                <Text size="H3" content={'다음 문장을 번역하세요.'} />
+                <Text size="H4" content={'다음 문장을 번역하세요.'} />
               </div>
-              <Text size="S" content={'그녀는 성공에 대한 강한 결심을 갖고 있습니다.'} />
+              <Text size="B1" content={'그녀는 성공에 대한 강한 결심을 갖고 있습니다.'} />
             </div>
 
             <div className={style.input_box_container}>
