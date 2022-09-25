@@ -9,6 +9,7 @@ export const studyInitialState = {
       words: [],
     },
   ],
+  studyId: 0,
   stage: 0,
   studyResult: {
     answerList: [],

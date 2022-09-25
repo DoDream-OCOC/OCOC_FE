@@ -8,6 +8,7 @@ export const studySlice = createSlice({
   reducers: {
     setAllCorpus(state, action) {
       state.datasets = action.payload.datasets;
+      state.studyId = action.payload.studyId;
     },
     increaseStage(state, action) {
       state.stage++;

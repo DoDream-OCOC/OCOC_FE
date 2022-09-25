@@ -6,40 +6,38 @@ const ROUTE = 'study';
 export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req, res, ctx) => {
   const { level, studyType } = await req.json();
 
-  // [Todo] 작업 수행 추가하기
-  console.log(level);
-  console.log(studyType);
   (!level || !studyType) && res(ctx.delay(1000), ctx.status(400));
 
-  const wordsObj = [
+  const dataSets = [
     {
-      words: 'It will be truly honored for us to work with you.',
-      length: 11,
-      english: ['It', 'will', 'be', 'truly', 'honored', 'for', 'us', 'to', 'work', 'with', 'you.'],
+      clause: 11,
+      createdAt: '생성날짜',
+      english: 'It will be truly honored for us to work with you.',
+      id: 123123,
       korean: '우리들 또한 당신들과 함께 한다면 큰 영광일 것입니다.',
+      words: ['It', 'will', 'be', 'truly', 'honored', 'for', 'us', 'to', 'work', 'with', 'you.'],
     },
   ];
 
-  const wordsObj2 = [
+  const dataSets2 = [
     {
-      words: 'It will be truly honored for us to work with you2.',
-      length: 11,
-      english: ['It', 'will', 'be', 'truly', 'honored', 'for', 'us', 'to', 'work', 'with', 'you2.'],
-      korean: '우리들 또한 당신들과 함께 한다면 큰 영광일 것입니다2.',
+      clause: 11,
+      createdAt: '생성날짜',
+      english: 'It will be truly honored for us to work with you.2',
+      id: 123122,
+      korean: '우리들 또한 당신들과 함께 한다면 큰 영광일 것입니다.2',
+      words: ['It', 'will', 'be', 'truly', 'honored', 'for', 'us', 'to', 'work', 'with', 'you.2'],
     },
   ];
 
   let _json = {
-    wordsObj: wordsObj,
+    wordsObj: dataSets,
   };
 
   for (let i = 1; i < 10; i++) {
-    if(i===2) _json = { ..._json, wordsObj: [..._json.wordsObj, ...wordsObj2, ] };
-    else _json = { ..._json, wordsObj: [..._json.wordsObj, ...wordsObj, ] };
+    if (i === 2) _json = { ..._json, dataSets: [..._json.dataSets, ...dataSets2] };
+    else _json = { ..._json, dataSets: [..._json.dataSets, ...dataSets] };
   }
-
-  console.dir(_json);
-
   return res(ctx.delay(1000), ctx.json(_json));
 });
 
