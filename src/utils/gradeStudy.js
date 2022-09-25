@@ -3,34 +3,24 @@ import { studySlice } from '../store/slices/study';
 
 /**
  * Grade study
- * @param {string[]} questionArray
+ * @param {string} userAnswer
  * @param {string} answer
  */
-export const gradeStudy = (questionArray, answer) => {
-  const question = arrayToString(questionArray);
-  const isCorrect = question === answer;
-  setStudyResultInLS(question, answer, isCorrect);
-};
-
-/**
- * Replace string array to string
- * @param {string[]} stringArray
- * @returns
- */
-const arrayToString = stringArray => {
-  return stringArray.join(' ');
+export const gradeStudy = (userAnswer, answer) => {
+  const isCorrect = userAnswer === answer;
+  setStudyResultInLS(userAnswer, answer, isCorrect);
 };
 
 /**
  * Set study's result in local storage
- * @param {string} question
+ * @param {string} userAnswer
  * @param {boolean} isCorrect
  */
-const setStudyResultInLS = (question, isCorrect) => {
+const setStudyResultInLS = (userAnswer, isCorrect) => {
   store.dispatch(
     studySlice.actions.setStudyResult({
       answerList: {
-        resultSentence: question,
+        resultSentence: userAnswer,
         correct: isCorrect,
       },
     }),

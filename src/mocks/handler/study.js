@@ -20,12 +20,22 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
     },
   ];
 
+  const wordsObj2 = [
+    {
+      words: 'It will be truly honored for us to work with you2.',
+      length: 11,
+      english: ['It', 'will', 'be', 'truly', 'honored', 'for', 'us', 'to', 'work', 'with', 'you2.'],
+      korean: '우리들 또한 당신들과 함께 한다면 큰 영광일 것입니다2.',
+    },
+  ];
+
   let _json = {
     wordsObj: wordsObj,
   };
 
   for (let i = 1; i < 10; i++) {
-    _json = { ..._json, wordsObj: [..._json.wordsObj, ...wordsObj] };
+    if(i===2) _json = { ..._json, wordsObj: [..._json.wordsObj, ...wordsObj2, ] };
+    else _json = { ..._json, wordsObj: [..._json.wordsObj, ...wordsObj, ] };
   }
 
   console.dir(_json);

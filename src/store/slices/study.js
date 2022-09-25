@@ -7,13 +7,13 @@ export const studySlice = createSlice({
   initialState: studyInitialState,
   reducers: {
     setAllCorpus(state, action) {
-      state.wordsObj = action.payload.wordsObj;
+      state.datasets = action.payload.datasets;
     },
     increaseStage(state, action) {
       state.stage++;
     },
     cleanAllCorpus(state, action) {
-      state.wordsObj = studySlice.getInitialState().wordsObj;
+      state.datasets = studySlice.getInitialState().datasets;
       state.stage = studySlice.getInitialState().stage;
       state.studyResult = studySlice.getInitialState().studyResult;
     },

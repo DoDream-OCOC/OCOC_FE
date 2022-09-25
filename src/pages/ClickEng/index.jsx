@@ -17,26 +17,29 @@ import { array } from 'prop-types';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const { korean, length, english } = useSelector(state => state.study.wordsObj[state.study.stage]);
+  const { korean, clause, english, words } = useSelector(state => state.study.datasets[state.study.stage]);
   const stage = useSelector(state => state.study.stage);
   let answerList = useSelector(state => state.study.studyResult.answerList[state.study.stage]);
 
   const [keywords, setKeywords] = useState(() => {
+    //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
     let _keywords = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < clause; i++) {
       let id = shortid.generate();
-      let text = english[i];
+      let text = words[i];
       _keywords.push({ id, text });
     }
     return _keywords;
-  });
+  }); //words 배열
   const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
+
+  answerList = newKeywords; //store에 답변 리스트 저장
 
   answerList = newKeywords; //store에 답변 리스트 저장
 
   // React.useEffect(()=>{
   //   setKeywords()
-  // },[english])
+  // },[words])
 
   //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
   // while (keywords.length + newKeywords.length < length) {

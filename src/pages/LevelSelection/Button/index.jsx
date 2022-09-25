@@ -9,7 +9,7 @@ export const LevelSelectionBtn = ({ title, isLoading = false, content, onClick }
   const [clicked, setClicked] = React.useState(false);
 
   const onClicked = () => {
-    onClick(title);
+    onClick((title === '초급' && 1) || (title === '중급' && 2) || (title === '고급' && 3));
     setClicked(true);
   };
 

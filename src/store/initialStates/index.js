@@ -1,10 +1,14 @@
 export const studyInitialState = {
-  wordsObj: [{
-    english: [],
-    korean: "",
-    length: 0,
-    words: "",
-  }],
+  dataSets: [
+    {
+      clause: 0,
+      createdAt: '',
+      english: '',
+      id: 0,
+      korean: '',
+      words: [],
+    },
+  ],
   stage: 0,
   studyResult: {
     answerList: [],
