@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import style from './index.module.css';
-import { ReactComponent as Logo } from '../../assets/fake/logo.svg';
+import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { ReactComponent as OCOCTitle } from '../../assets/OCOC/OCOC_text.svg';
 import { ReactComponent as Profile } from '../../assets/icons/icon_profile.svg';
 import { Button } from '../element';
