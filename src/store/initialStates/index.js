@@ -1,5 +1,5 @@
 export const studyInitialState = {
-  dataSets: [
+  datasets: [
     {
       clause: 0,
       createdAt: '',
@@ -12,5 +12,5 @@ export const studyInitialState = {
   results: [],
   studyId: 0,
   stage: 0,
-  correctAnswers: 0,
+  correctAnswerCount: 0,
 };

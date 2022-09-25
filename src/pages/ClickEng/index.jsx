@@ -35,8 +35,6 @@ function ClickEng() {
 
   answerList = newKeywords; //store에 답변 리스트 저장
 
-  answerList = newKeywords; //store에 답변 리스트 저장
-
   // React.useEffect(()=>{
   //   setKeywords()
   // },[words])
