@@ -8,7 +8,7 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
 
   (!level || !studyType) && res(ctx.delay(1000), ctx.status(400));
 
-  const dataSets = [
+  const datasets = [
     {
       clause: 11,
       createdAt: '생성날짜',
@@ -19,7 +19,7 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
     },
   ];
 
-  const dataSets2 = [
+  const datasets2 = [
     {
       clause: 11,
       createdAt: '생성날짜',
@@ -31,12 +31,12 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
   ];
 
   let _json = {
-    wordsObj: dataSets,
+    datasets: datasets,
   };
 
   for (let i = 1; i < 10; i++) {
-    if (i === 2) _json = { ..._json, dataSets: [..._json.dataSets, ...dataSets2] };
-    else _json = { ..._json, dataSets: [..._json.dataSets, ...dataSets] };
+    if (i === 2) _json = { ..._json, datasets: [..._json.datasets, ...datasets2] };
+    else _json = { ..._json, datasets: [..._json.datasets, ...datasets] };
   }
   return res(ctx.delay(1000), ctx.json(_json));
 });

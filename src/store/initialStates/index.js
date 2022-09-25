@@ -9,10 +9,8 @@ export const studyInitialState = {
       words: [],
     },
   ],
+  results: [],
   studyId: 0,
   stage: 0,
-  studyResult: {
-    answerList: [],
-    answer: 0,
-  },
+  correctAnswers: 0,
 };
