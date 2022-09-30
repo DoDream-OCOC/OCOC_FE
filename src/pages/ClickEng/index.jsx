@@ -14,12 +14,13 @@ import store from '../../store';
 import shortid from 'shortid';
 import { gradeStudy } from '../../utils/gradeStudy';
 import { array } from 'prop-types';
+import { useEffect } from 'react';
 
 function ClickEng() {
   const dispatch = useDispatch();
   const { korean, clause, english, words } = useSelector(state => state.study.datasets[state.study.stage]);
   const stage = useSelector(state => state.study.stage);
-  let answerList = useSelector(state => state.study.studyResult.answerList[state.study.stage]);
+  // let answerList = useSelector(state => state.study.studyResult.answerList[state.study.stage]);
 
   const [keywords, setKeywords] = useState(() => {
     //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
@@ -31,16 +32,14 @@ function ClickEng() {
     }
     return _keywords;
   }); //words 배열
-  const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
+  const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
 
-  answerList = newKeywords; //store에 답변 리스트 저장
+  // answerList = newKeywords; //store에 답변 리스트 저장
 
   // React.useEffect(()=>{
   //   setKeywords()
   // },[words])
 
-  //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
-  // while (keywords.length + newKeywords.length < length) {
   const location = useLocation();
 
   //영작 칸에 띄울 단어 배열
@@ -59,13 +58,15 @@ function ClickEng() {
   console.log(keywords);
   console.log(newKeywords);
   console.log(stage);
-  console.log(answerList);
+  //console.log(answerList);
 
   //스테이지 증가
   const onIncreaseStage = () => {
+    //newKeywords 비우기
+    newKeywords.splice(0, newKeywords.length);
     dispatch(studySlice.actions.increaseStage());
     dispatch(studySlice.actions.setStudyResult());
-
+    
     if (stage == 10) {
       //정답 확인 버튼 10번 눌렀을 때 gradeStudy 함수 호출
       gradeStudy();
