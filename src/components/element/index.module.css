@@ -50,7 +50,7 @@ span {
 }
 
 /* Button */
-#button {
+.button {
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   letter-spacing: 1px;
 

@@ -6,7 +6,7 @@ import { studySlice } from '../../store/slices/study';
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import style from './index.module.css';
-import { Text } from '../../components/element';
+import { Empty, Text } from '../../components/element';
 import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
@@ -14,59 +14,61 @@ import store from '../../store';
 import shortid from 'shortid';
 import { gradeStudy } from '../../utils/gradeStudy';
 import { array } from 'prop-types';
+import { useEffect } from 'react';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const {korean, length} = useSelector((state) => state.study.wordsObj[state.study.stage]);
-  let english = useSelector((state) => state.study.wordsObj[state.study.stage].english);
-  const stage = useSelector((state) => state.study.stage);
-  let answerList = useSelector((state) => state.study.studyResult.answerList[state.study.stage]);
+  const { korean, clause, english, words } = useSelector(state => state.study.datasets[state.study.stage]);
+  const stage = useSelector(state => state.study.stage);
+  // let answerList = useSelector(state => state.study.studyResult.answerList[state.study.stage]);
 
-  const [keywords, setKeywords] = useState([]); //english 배열
-  const [newKeywords, setNewKeywords] = useState([]); //answerList 배열
-
-  english = english.slice().sort(() => Math.random() - 0.5) //english 배열 무작위로 섞는 함수
-  answerList = newKeywords; //store에 답변 리스트 저장
-  
-  //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
-  while((keywords.length) + (newKeywords.length) < length){
-    for(let i = 0; i < length; i++) {
+  const [keywords, setKeywords] = useState(() => {
+    //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
+    let _keywords = [];
+    for (let i = 0; i < clause; i++) {
       let id = shortid.generate();
-      let text = english[i];
-      keywords.push({id, text});
+      let text = words[i];
+      _keywords.push({ id, text });
     }
-  }
+    return _keywords;
+  }); //words 배열
+  const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
+
+  // answerList = newKeywords; //store에 답변 리스트 저장
+
+  // React.useEffect(()=>{
+  //   setKeywords()
+  // },[words])
 
   const location = useLocation();
 
   //영작 칸에 띄울 단어 배열
-  const insertButton = (id) => {
-    setNewKeywords(newKeywords.concat
-      (keywords.filter((keyword) => keyword.id == id))
-    );
-    setKeywords(keywords.filter((keyword) => keyword.id !== id));
-  }
+  const insertButton = id => {
+    setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id == id)));
+    setKeywords(keywords.filter(keyword => keyword.id !== id));
+  };
 
   //영작 칸에서 클릭한 버튼의 배열 제거
-  const removeButton = (id) => {
-    setKeywords(keywords.concat
-      (newKeywords.filter((keyword) => keyword.id == id))
-    );
-    setNewKeywords(newKeywords.filter((keyword) => keyword.id !== id));
-  }
+  const removeButton = id => {
+    setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id == id)));
+    setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
+  };
 
   //콘솔창
   console.log(keywords);
   console.log(newKeywords);
   console.log(stage);
-  console.log(answerList);
+  //console.log(answerList);
 
   //스테이지 증가
   const onIncreaseStage = () => {
+    //newKeywords 비우기
+    newKeywords.splice(0, newKeywords.length);
     dispatch(studySlice.actions.increaseStage());
     dispatch(studySlice.actions.setStudyResult());
-
-    if(stage == 10){ //정답 확인 버튼 10번 눌렀을 때 gradeStudy 함수 호출
+    
+    if (stage == 10) {
+      //정답 확인 버튼 10번 눌렀을 때 gradeStudy 함수 호출
       gradeStudy();
     }
   };
@@ -114,7 +116,8 @@ function ClickEng() {
               </div>
             </div>
           </div>
-          <GradingButton style={{ marginBottom: '1rem' }} content="정답 확인하기" onClick={onIncreaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={onIncreaseStage} />
+          <Empty size="1rem" />
         </article>
       </MainContainer>
     </>
