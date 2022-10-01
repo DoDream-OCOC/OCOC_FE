@@ -5,6 +5,7 @@ import { studySlice } from '../store/slices/study';
  * Grade study
  * @param {string} userAnswer
  * @param {string} answer
+ * @param {string} studyId
  * @return isCorrect boolean
  */
 export const gradeStudy = (userAnswer, answer, studyId) => {
