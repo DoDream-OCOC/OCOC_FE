@@ -4,12 +4,12 @@ import style from './index.module.css';
 
 /**
  * Modal hook
- * @returns { Render, openModal, closeModal }
+ * @returns { Modal, openModal, closeModal }
  * ex)
- * const { Render, openModal } = useModal();
+ * const { Modal, openModal } = useModal();
  * return (
  *   ...
- *   <Render /> *Need
+ *   <Modal /> *Need
  *   <button style={{ marginTop: '500px' }} onClick={openModal} />
  *   ...
  * );
