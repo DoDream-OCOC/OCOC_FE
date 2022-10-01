@@ -17,19 +17,21 @@ import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';
 
+// [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { Modal, openModal } = useModal(); // [Error] 뭔가 이상
+
   // [Todo] useSelector를 하나로 줄이기
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
   const stage = useSelector(state => state.study.stage);
   const studyId = useSelector(state => state.study.studyId);
   const results = useSelector(state => state.study.results);
+
   const mutation = useMutation({
     mutationFn: data => study.sendStudyResult({ results, studyId }),
   });
-
-  const { Modal, openModal } = useModal(); // [Error] 뭔가 이상
 
   const [keywords, setKeywords] = useState([]); //words 배열
   const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
@@ -95,7 +97,10 @@ function ClickEng() {
   return (
     <>
       <NavBar />
-      <Modal />
+      {/* [Error] Modal 에러 */}
+      <Modal>
+        <div>hello</div>
+      </Modal>
       <MainContainer>
         <article>
           <div className={style.container}>
