@@ -3,6 +3,10 @@ import { useLocation } from 'react-router-dom';
 import useModal from '../../hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
+import { useMutation } from 'react-query';
+
+import { study } from '../../apis';
+import { gradeStudy } from '../../utils/gradeStudy';
 
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
@@ -12,13 +16,19 @@ import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';
-import { gradeStudy } from '../../utils/gradeStudy';
 
 function ClickEng() {
   const dispatch = useDispatch();
   const location = useLocation();
+  // [Todo] useSelector를 하나로 줄이기
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
   const stage = useSelector(state => state.study.stage);
+  const studyId = useSelector(state => state.study.studyId);
+  const results = useSelector(state => state.study.results);
+  const mutation = useMutation({
+    mutationFn: data => study.sendStudyResult({ results, studyId }),
+  });
+
   const { Modal, openModal } = useModal(); // [Error] 뭔가 이상
 
   const [keywords, setKeywords] = useState([]); //words 배열
@@ -60,6 +70,11 @@ function ClickEng() {
     console.log(isCorrect); // [Todo] 정답 틀림 UI 추가
     setNewKeywords([]);
     dispatch(studySlice.actions.increaseStage());
+  };
+
+  const onFinishStage = () => {
+    mutation.mutate();
+    openModal();
   };
 
   React.useLayoutEffect(() => {
@@ -106,7 +121,7 @@ function ClickEng() {
               </div>
             </div>
           </div>
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? openModal : onIncreaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
