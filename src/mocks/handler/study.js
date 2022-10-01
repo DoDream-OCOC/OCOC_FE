@@ -45,7 +45,7 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
 });
 
 export const sendStudyResultHandler = rest.post(`${BASE_URL}/${ROUTE}/result`, (req, res, ctx) => {
-  const { answerList, answer } = req.json();
+  const { answerList, answer } = req.json(); // [Todo] 수정 필요
 
   // [Todo] 작업 수행 추가하기
   console.dir(answerList);
