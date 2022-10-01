@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useModal from '../../hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 
@@ -10,17 +11,14 @@ import { Empty, Text } from '../../components/element';
 import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
-import store from '../../store';
 import shortid from 'shortid';
 import { gradeStudy } from '../../utils/gradeStudy';
-import { array } from 'prop-types';
-import { useEffect } from 'react';
 
 function ClickEng() {
   const dispatch = useDispatch();
-  const { korean, clause, english, words } = useSelector(state => state.study.datasets[state.study.stage]);
+  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
   const stage = useSelector(state => state.study.stage);
-  // let answerList = useSelector(state => state.study.studyResult.answerList[state.study.stage]);
+  const { Modal, openModal } = useModal(); // [Error] 뭔가 이상
 
   const [keywords, setKeywords] = useState(() => {
     //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
@@ -35,10 +33,6 @@ function ClickEng() {
   const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
 
   // answerList = newKeywords; //store에 답변 리스트 저장
-
-  // React.useEffect(()=>{
-  //   setKeywords()
-  // },[words])
 
   const location = useLocation();
 
@@ -55,28 +49,22 @@ function ClickEng() {
   };
 
   //콘솔창
-  console.log(keywords);
-  console.log(newKeywords);
-  console.log(stage);
-  //console.log(answerList);
+  // console.log(keywords);
+  // console.log(newKeywords);
+  // console.log(stage);
 
   //스테이지 증가
   const onIncreaseStage = () => {
-    //newKeywords 비우기
-    newKeywords.splice(0, newKeywords.length);
+    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
+    const isCorrect = gradeStudy(strNewKeywords, english, id);
+    console.log(isCorrect);
+    // [Todo] 정답 틀림 UI 추가
+    setNewKeywords([]);
     dispatch(studySlice.actions.increaseStage());
-    dispatch(studySlice.actions.setStudyResult());
-    
-    if (stage == 10) {
-      //정답 확인 버튼 10번 눌렀을 때 gradeStudy 함수 호출
-      gradeStudy();
-    }
   };
 
   //store에 stage 확인 콘솔 창
   //console.log(store.getState());
-
-  React.useLayoutEffect(() => {}, []);
 
   // [Todo] Hook으로 빼기
   const initialRender = React.useRef(true);
@@ -91,6 +79,7 @@ function ClickEng() {
   return (
     <>
       <NavBar />
+      <Modal />
       <MainContainer>
         <article>
           <div className={style.container}>
@@ -116,7 +105,7 @@ function ClickEng() {
               </div>
             </div>
           </div>
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={onIncreaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? openModal : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
