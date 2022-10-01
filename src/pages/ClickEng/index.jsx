@@ -16,12 +16,16 @@ import { gradeStudy } from '../../utils/gradeStudy';
 
 function ClickEng() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
   const stage = useSelector(state => state.study.stage);
   const { Modal, openModal } = useModal(); // [Error] 뭔가 이상
 
-  const [keywords, setKeywords] = useState(() => {
-    //shortid를 이용하여 id값을 랜덤으로 넣어서 배열을 새로 만듦
+  const [keywords, setKeywords] = useState([]); //words 배열
+  const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
+
+  // Create keywords's random id
+  const createKeywordsId = () => {
     let _keywords = [];
     for (let i = 0; i < clause; i++) {
       let id = shortid.generate();
@@ -29,22 +33,19 @@ function ClickEng() {
       _keywords.push({ id, text });
     }
     return _keywords;
-  }); //words 배열
-  const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
+  };
 
   // answerList = newKeywords; //store에 답변 리스트 저장
 
-  const location = useLocation();
-
   //영작 칸에 띄울 단어 배열
   const insertButton = id => {
-    setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id == id)));
+    setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id === id)));
     setKeywords(keywords.filter(keyword => keyword.id !== id));
   };
 
   //영작 칸에서 클릭한 버튼의 배열 제거
   const removeButton = id => {
-    setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id == id)));
+    setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id === id)));
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
 
@@ -53,18 +54,18 @@ function ClickEng() {
   // console.log(newKeywords);
   // console.log(stage);
 
-  //스테이지 증가
   const onIncreaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrect = gradeStudy(strNewKeywords, english, id);
-    console.log(isCorrect);
-    // [Todo] 정답 틀림 UI 추가
+    console.log(isCorrect); // [Todo] 정답 틀림 UI 추가
     setNewKeywords([]);
     dispatch(studySlice.actions.increaseStage());
   };
 
-  //store에 stage 확인 콘솔 창
-  //console.log(store.getState());
+  React.useLayoutEffect(() => {
+    setKeywords(() => createKeywordsId());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage]);
 
   // [Todo] Hook으로 빼기
   const initialRender = React.useRef(true);
@@ -83,7 +84,7 @@ function ClickEng() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar />
+            <ProgressBar value={stage} />
 
             <div className={style.question_container}>
               <div className={style.question_text}>
