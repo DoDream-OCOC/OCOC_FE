@@ -5,12 +5,15 @@ import { studySlice } from '../store/slices/study';
  * Grade study
  * @param {string} userAnswer
  * @param {string} answer
- * @return boolean
+ * @return isCorrect boolean
  */
 export const gradeStudy = (userAnswer, answer, studyId) => {
-  const isCorrect = userAnswer === answer;
   setStudyResultInLS(userAnswer, studyId);
-  return isCorrect;
+  return isCorrect(userAnswer, answer);
+};
+
+const isCorrect = (userAnswer, answer) => {
+  return userAnswer === answer;
 };
 
 /**
