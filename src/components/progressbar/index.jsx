@@ -2,7 +2,7 @@ import React from 'react';
 import style from './index.module.css';
 import { FaRegTimesCircle } from 'react-icons/fa';
 
-function ProgressBar(value) {
+function ProgressBar({ value }) {
   return (
     <>
       <nav className={style.progress_navbar}>
