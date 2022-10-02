@@ -23,11 +23,12 @@ function ClickEng() {
   const location = useLocation();
   const { Modal, openModal } = useModal();
 
-  // [Todo] useSelector를 하나로 줄이기
-  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
-  const stage = useSelector(state => state.study.stage);
-  const studyId = useSelector(state => state.study.studyId);
-  const results = useSelector(state => state.study.results);
+  const {
+    datasets: { korean, clause, english, words, id },
+    stage,
+    studyId,
+    results,
+  } = useSelector(state => state.study);
 
   const mutation = useMutation({
     mutationFn: data => study.sendStudyResult({ results, studyId }),
@@ -70,7 +71,6 @@ function ClickEng() {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrect = gradeStudy(strNewKeywords, english, id);
     console.log(isCorrect); // [Todo] 정답 틀림 UI 추가
-    console.log(stage);
     setNewKeywords([]);
     dispatch(studySlice.actions.increaseStage());
   };
