@@ -5,10 +5,16 @@ import { studySlice } from '../store/slices/study';
  * Grade study
  * @param {string} userAnswer
  * @param {string} answer
+ * @param {string} studyId
+ * @return isCorrect boolean
  */
-export const gradeStudy = (userAnswer, answer) => {
-  const isCorrect = userAnswer === answer;
-  setStudyResultInLS(userAnswer, answer, isCorrect);
+export const gradeStudy = (userAnswer, answer, studyId) => {
+  setStudyResultInLS(userAnswer, studyId);
+  return isCorrect(userAnswer, answer);
+};
+
+const isCorrect = (userAnswer, answer) => {
+  return userAnswer === answer;
 };
 
 /**
@@ -16,12 +22,13 @@ export const gradeStudy = (userAnswer, answer) => {
  * @param {string} userAnswer
  * @param {boolean} isCorrect
  */
-const setStudyResultInLS = (userAnswer, isCorrect) => {
+// [Todo] dispatch를 너무 다양한 곳에서 해주는 느낌이 나긴 함
+const setStudyResultInLS = (userAnswer, studyId) => {
   store.dispatch(
     studySlice.actions.setStudyResult({
-      answerList: {
-        resultSentence: userAnswer,
-        correct: isCorrect,
+      results: {
+        inputSentence: userAnswer,
+        datasetId: studyId,
       },
     }),
   );
