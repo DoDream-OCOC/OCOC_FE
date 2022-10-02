@@ -1,10 +1,10 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import style from './index.module.css';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 /**
  * Modal hook
- * @returns { Modal, openModal, closeModal }
  * ex)
  * const { Modal, openModal } = useModal();
  * return (
@@ -13,6 +13,7 @@ import style from './index.module.css';
  *   <button style={{ marginTop: '500px' }} onClick={openModal} />
  *   ...
  * );
+ * @returns Modal, openModal, closeModal
  */
 function useModal() {
   const [isModalOpened, setIsModalOpened] = React.useState(false);
@@ -32,8 +33,11 @@ function useModal() {
     const ModalComponent = () => {
       return (
         <div className={style.modalContainer}>
-          <div className={style.closeBtn} onClick={() => closeModal()} />
-          {children}
+          {/* [Todo] 모달 창은 가운데 디폴트로 보여주게 하기 */}
+          {/* [Todo] 모달 창 윤곽 및 패딩은 디폴트로 설정하기 */}
+          {/* [Todo] X버튼 UI 개선 */}
+          <AiOutlineCloseCircle className={style.closeBtn} onClick={() => closeModal()} />
+          <div className={style.children}>{children}</div>
         </div>
       );
     };
