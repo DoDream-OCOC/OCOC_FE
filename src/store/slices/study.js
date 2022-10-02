@@ -22,7 +22,6 @@ export const studySlice = createSlice({
     },
     setStudyResult(state, action) {
       state.results = [...state.results, action.payload.results];
-      console.log(state.results);
     },
     // 도중에 데이터가 날아갔을때는?
     // [Todo] studyResult.answerList.length에 따라서 progress bar랑 로그인 유도 페이지
