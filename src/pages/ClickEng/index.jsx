@@ -24,7 +24,7 @@ function ClickEng() {
   const { Modal, openModal } = useModal();
 
   // [Todo] useSelector를 하나로 줄이기
-  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
+  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const stage = useSelector(state => state.study.stage);
   const studyId = useSelector(state => state.study.studyId);
   const results = useSelector(state => state.study.results);
@@ -70,6 +70,7 @@ function ClickEng() {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrect = gradeStudy(strNewKeywords, english, id);
     console.log(isCorrect); // [Todo] 정답 틀림 UI 추가
+    console.log(stage);
     setNewKeywords([]);
     dispatch(studySlice.actions.increaseStage());
   };
@@ -97,7 +98,6 @@ function ClickEng() {
   return (
     <>
       <NavBar />
-      {/* [Error] Modal 에러 */}
       <Modal>
         <div>hello</div>
       </Modal>
