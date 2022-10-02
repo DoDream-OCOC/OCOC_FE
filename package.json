@@ -2,7 +2,7 @@
   "name": "ococ-fe",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://10.27.12.18:8080/",
+  "proxy": "http://server.ococ.kr",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
