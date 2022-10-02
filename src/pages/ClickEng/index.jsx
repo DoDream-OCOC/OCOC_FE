@@ -21,7 +21,7 @@ import shortid from 'shortid';
 function ClickEng() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { Modal, openModal } = useModal(); // [Error] 뭔가 이상
+  const { Modal, openModal } = useModal();
 
   // [Todo] useSelector를 하나로 줄이기
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
