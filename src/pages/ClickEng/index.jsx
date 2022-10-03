@@ -21,7 +21,7 @@ function ClickEng() {
   const location = useLocation();
   const { Modal, openModal } = useModal();
 
-  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
+  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage, studyId, results } = useSelector(state => state.study);
 
   const mutation = useMutation({
