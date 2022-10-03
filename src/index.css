@@ -12,6 +12,9 @@ body {
 }
 
 :root {
+  /* Break point */
+  --Break-Point: 48rem;
+
   /* Gray scale */
   --Gray-0: #ffffff;
   --Gray-1: #f9f9f9;
@@ -22,6 +25,7 @@ body {
 
   /* Theme */
   --Green: #2d9e1b;
+  --Green-2: #2c901c;
   --Red: #da3838;
 
   /* Background */

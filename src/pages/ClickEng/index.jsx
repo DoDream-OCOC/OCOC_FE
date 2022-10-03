@@ -1,101 +1,133 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import useModal from '../../hooks/useModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { studySlice } from '../../store/slices/study';
+import { useMutation } from 'react-query';
+
+import { study } from '../../apis';
+import { gradeStudy } from '../../utils/gradeStudy';
 
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import style from './index.module.css';
-import { Text } from '../../components/element';
+import { Empty, Text } from '../../components/element';
 import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
-import ButtonItem from './buttons/ButtonItem';
+import { GradingButton } from '../../components/element';
+import shortid from 'shortid';
 
-function ClickEng(){
-    //받아오는 단어 배열
-    const [keywords, setKeywords] = useState([ 
-        {
-          id: 1,
-          text: 'has',
-        },
-        {
-          id: 2,
-          text: 'determination',
-        },
-        {
-          id: 3,
-          text: 'to',
-        },
-        {
-          id: 4,
-          text: 'great',
-        },
-        {
-          id: 5,
-          text: 'she',
-        },
-        {
-          id: 6,
-          text: 'succeed',
-        },
-      ]);
-  
-      //영작 칸에 띄울 단어 배열
-      const [newKeywords, setNewKeywords] = useState([]);
-  
-      //영작 칸에 띄울 단어 배열
-      //filter를 통해 클릭한 컴포넌트의 id가 일치하는 keyword 값이 담긴 새로운 배열 반환
-      //concat을 통해 새로 만든 배열과 기존 newKeywords 배열 합치기
-      const insertButton =
-          (id) => {
-            setNewKeywords(newKeywords.concat
-              (keywords.filter((keyword) => keyword.id == id))
-            );
-            setKeywords(keywords.filter((keyword) => keyword.id !== id));
-          }
-      
-      //영작 칸에서 클릭한 버튼의 배열 제거
-      const removeButton =
-          (id) => {
-            setKeywords(keywords.concat
-              (newKeywords.filter((keyword) => keyword.id == id))
-            );
-            setNewKeywords(newKeywords.filter((keyword) => keyword.id !== id));
-          }
+// [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
+function ClickEng() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { Modal, openModal } = useModal();
 
-    return(
-        <>
-        <NavBar />
-        <MainContainer>
-            <article>
-                <div className={style.container}>
-                    
-                    <ProgressBar />
+  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
+  const { stage, studyId, results } = useSelector(state => state.study);
 
-                    <div className={style.question_container}>
-                        <div className={style.question_text}><Text size="H3" content={'다음 문장을 번역하세요.'} /></div>
-                        <Text size="S" content={'그녀는 성공에 대한 강한 결심을 갖고 있습니다.'} />
-                    </div>
+  const mutation = useMutation({
+    mutationFn: data => study.sendStudyResult({ results, studyId }),
+  });
 
-                    <div className={style.input_box_container}>
-                        <div className={style.input_box}>
-                            <Button 
-                                keywords={newKeywords} 
-                                onClick={removeButton} />
-                        </div>
-                        <div className={style.input_box}></div>
-                    </div>    
+  const [keywords, setKeywords] = useState([]); //words 배열
+  const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
 
-                    <div className={style.button_keyword_container}>
-                        <div className={style.button_default_container}>
-                            <Button 
-                            keywords={keywords}
-                            onClick={insertButton} />
-                        </div>
-                    </div>
+  // Create keywords's random id
+  const createKeywordsId = () => {
+    let _keywords = [];
+    for (let i = 0; i < clause; i++) {
+      let id = shortid.generate();
+      let text = words[i];
+      _keywords.push({ id, text });
+    }
+    return _keywords;
+  };
 
-                </div> 
-            </article>
-        </MainContainer>
-        </>
-    );
+  // answerList = newKeywords; //store에 답변 리스트 저장
+
+  //영작 칸에 띄울 단어 배열
+  const insertButton = id => {
+    setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id === id)));
+    setKeywords(keywords.filter(keyword => keyword.id !== id));
+  };
+
+  //영작 칸에서 클릭한 버튼의 배열 제거
+  const removeButton = id => {
+    setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id === id)));
+    setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
+  };
+
+  //콘솔창
+  // console.log(keywords);
+  // console.log(newKeywords);
+  // console.log(stage);
+
+  const onIncreaseStage = () => {
+    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
+    const isCorrect = gradeStudy(strNewKeywords, english, id);
+    console.log(isCorrect); // [Todo] 정답 틀림 UI 추가
+    setNewKeywords([]);
+    dispatch(studySlice.actions.increaseStage());
+  };
+
+  const onFinishStage = () => {
+    mutation.mutate();
+    openModal();
+  };
+
+  React.useLayoutEffect(() => {
+    setKeywords(() => createKeywordsId());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage]);
+
+  // [Todo] Hook으로 빼기
+  const initialRender = React.useRef(true);
+  React.useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      return () => dispatch(studySlice.actions.cleanAllCorpus());
+    }
+  }, [location, dispatch]);
+
+  return (
+    <>
+      <NavBar />
+      <Modal>
+        <div>hello</div>
+      </Modal>
+      <MainContainer>
+        <article>
+          <div className={style.container}>
+            <ProgressBar value={stage} />
+
+            <div className={style.question_container}>
+              <div className={style.question_text}>
+                <Text size="H4" content={'다음 문장을 번역하세요.'} />
+              </div>
+              <Text size="S" content={korean} />
+            </div>
+
+            <div className={style.input_box_container}>
+              <div className={style.input_box}>
+                <Button keywords={newKeywords} onClick={removeButton} />
+              </div>
+              <div className={style.input_box}></div>
+            </div>
+
+            <div className={style.button_keyword_container}>
+              <div className={style.button_default_container}>
+                <Button keywords={keywords} onClick={insertButton} />
+              </div>
+            </div>
+          </div>
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
+          <Empty size="1rem" />
+        </article>
+      </MainContainer>
+    </>
+  );
 }
 
 export default ClickEng;

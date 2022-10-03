@@ -1,17 +1,18 @@
 import ococ from './core';
+import store from '../store';
+import { studySlice } from '../store/slices/study';
 
 const ROUTE = 'study';
 
-// [Temp] studyType = 'click'
 export const sendStudyType = async (level, studyType = 'click') => {
   await ococ.post(`/${ROUTE}`, { level, studyType }).then(res => {
-    // [Todo] 로컬스토리지에 값들 저장
-    // 라우터 이동 추가 -> 다른 곳에서 수행하는 게 맞을 듯
+    // [Todo] store를 아예 빼주고 page마다 mutation부분을 빼주자
+    store.dispatch(studySlice.actions.setAllCorpus({ datasets: res.data.data.datasets, studyId: res.data.data.study.id }));
+    return res;
   });
 };
 
-export const sendStudyResult = async (answerList, answer) => {
-  await ococ.post(`/${ROUTE}/result`, { answerList, answer }).then(res => {
-    // [Todo] 단순 결과 제출 작업만 수행
-  });
+export const sendStudyResult = async (results, studyId) => {
+  console.log(results, studyId); // [Todo] 테스트 필요
+  await ococ.post(`/${ROUTE}/result`, { results, studyId }).then(res => {});
 };
