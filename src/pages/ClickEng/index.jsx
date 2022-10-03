@@ -23,12 +23,8 @@ function ClickEng() {
   const location = useLocation();
   const { Modal, openModal } = useModal();
 
-  const {
-    datasets: { korean, clause, english, words, id },
-    stage,
-    studyId,
-    results,
-  } = useSelector(state => state.study);
+  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
+  const { stage, studyId, results } = useSelector(state => state.study);
 
   const mutation = useMutation({
     mutationFn: data => study.sendStudyResult({ results, studyId }),

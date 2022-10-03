@@ -62,10 +62,3 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
     </button>
   );
 };
-
-// Types -> 적용이 안되네?
-Text.propTypes = {
-  size: PropTypes.oneOf(['H1', 'H2', 'H3', 'H4', 'H5', 'B1', 'B2', 'B3']),
-  color: PropTypes.oneOf(['Text-1, Text-2']),
-  content: PropTypes.string,
-};
