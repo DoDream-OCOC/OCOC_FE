@@ -8,6 +8,7 @@ import useScrollTo from '../../hooks/useScrollTo';
 
 function Home() {
   useScrollTo();
+  console.log(window.innerHeight);
   return (
     <>
       <Navbar />
