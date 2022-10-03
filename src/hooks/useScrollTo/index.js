@@ -3,7 +3,7 @@ import React from 'react';
  * Control scrollY when event scroll
  * @param {number} maxHeight page's max height
  */
-function useScrollY(maxHeight = 2400) {
+function useScrollTo(maxHeight = 2400) {
   let scrollCount = 0;
   const pageHeight = window.innerHeight;
   const maxCount = parseInt(maxHeight / pageHeight);
@@ -38,7 +38,7 @@ function useScrollY(maxHeight = 2400) {
 
     root.addEventListener('wheel', wheelHandler);
     return () => root.removeEventListener('wheel', wheelHandler);
-  }, []);
+  }, [scrollCount, maxCount, pageHeight]);
 }
 
-export default useScrollY;
+export default useScrollTo;

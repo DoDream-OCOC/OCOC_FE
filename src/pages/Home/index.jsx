@@ -4,10 +4,10 @@ import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import MainFooter from '../../components/footer/main';
 import { MainCard, FeatureCard } from './cards';
-import useScrollY from '../../hooks/useScrollY';
+import useScrollTo from '../../hooks/useScrollTo';
 
 function Home() {
-  useScrollY();
+  useScrollTo();
   return (
     <>
       <Navbar />
