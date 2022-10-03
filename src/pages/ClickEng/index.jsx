@@ -8,11 +8,9 @@ import { useMutation } from 'react-query';
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 
-import NavBar from '../../components/navbar';
-import MainContainer from '../../components/container/main';
+import { NavBar, ProgressBar, MainContainer } from '../../components';
 import style from './index.module.css';
 import { Empty, Text } from '../../components/element';
-import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';
@@ -23,7 +21,7 @@ function ClickEng() {
   const location = useLocation();
   const { Modal, openModal } = useModal();
 
-  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage]);
+  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage, studyId, results } = useSelector(state => state.study);
 
   const mutation = useMutation({
