@@ -39,7 +39,7 @@ export const Empty = ({ size }) => {
 export const Button = ({ isDisabled = false, isLoading = false, content, ...props }) => {
   const disabled = isDisabled || isLoading;
   return (
-    <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
+    <button className={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
       {!isLoading && content}
       {isLoading && <Loading />}
     </button>
@@ -56,7 +56,7 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
 export const GradingButton = ({ isDisabled = false, isGrading = false, content, ...props }) => {
   const disabled = isDisabled || isGrading;
   return (
-    <button id={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
+    <button className={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
       {!isGrading ? content : '채점중입니다'}
       {isGrading && <Loading />}
     </button>

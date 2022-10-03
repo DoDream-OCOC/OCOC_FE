@@ -3,35 +3,32 @@ import { studySlice } from '../store/slices/study';
 
 /**
  * Grade study
- * @param {string[]} questionArray
+ * @param {string} userAnswer
  * @param {string} answer
+ * @param {string} studyId
+ * @return isCorrect boolean
  */
-export const gradeStudy = (questionArray, answer) => {
-  const question = arrayToString(questionArray);
-  const isCorrect = question === answer;
-  setStudyResultInLS(question, answer, isCorrect);
+export const gradeStudy = (userAnswer, answer, studyId) => {
+  setStudyResultInLS(userAnswer, studyId);
+  return isCorrect(userAnswer, answer);
 };
 
-/**
- * Replace string array to string
- * @param {string[]} stringArray
- * @returns
- */
-const arrayToString = stringArray => {
-  return stringArray.join(' ');
+const isCorrect = (userAnswer, answer) => {
+  return userAnswer === answer;
 };
 
 /**
  * Set study's result in local storage
- * @param {string} question
+ * @param {string} userAnswer
  * @param {boolean} isCorrect
  */
-const setStudyResultInLS = (question, isCorrect) => {
+// [Todo] dispatch를 너무 다양한 곳에서 해주는 느낌이 나긴 함
+const setStudyResultInLS = (userAnswer, studyId) => {
   store.dispatch(
     studySlice.actions.setStudyResult({
-      answerList: {
-        resultSentence: question,
-        correct: isCorrect,
+      results: {
+        inputSentence: userAnswer,
+        datasetId: studyId,
       },
     }),
   );

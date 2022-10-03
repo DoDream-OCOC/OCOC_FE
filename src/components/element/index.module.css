@@ -36,6 +36,7 @@ span {
 .B1 {
   font-size: 1rem;
   font-weight: 400;
+  letter-spacing: 0;
 }
 
 .B2 {
@@ -49,7 +50,7 @@ span {
 }
 
 /* Button */
-#button {
+.button {
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   letter-spacing: 1px;
 
