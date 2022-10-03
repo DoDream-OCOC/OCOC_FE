@@ -4,8 +4,10 @@ import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import MainFooter from '../../components/footer/main';
 import { MainCard, FeatureCard } from './cards';
+import useScrollY from '../../hooks/useScrollY';
 
 function Home() {
+  useScrollY();
   return (
     <>
       <Navbar />

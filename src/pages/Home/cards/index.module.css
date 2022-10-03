@@ -2,14 +2,13 @@
   width: 100vw;
   padding: 0rem 1rem;
   max-width: 48rem;
-  margin-top:15rem;
+  margin-top: 15rem;
 }
 
-@media  screen  and (min-width:  768px) {
-  .FeatureTitle{
-  margin-top: 10rem;
+@media screen and (min-width: 768px) {
+  .FeatureTitle {
+    margin-top: 10rem;
   }
-  
 }
 
 /* [Temp] 일단 이름 box */
@@ -25,19 +24,17 @@
   width: 3px;
 }
 
-.video_wrapper{
+.video_wrapper {
   position: relative;
-  width:100vw;
+  width: 100vw;
   z-index: -10;
-  height:1080px;
-  overflow:hidden;
+  height: 1080px;
+  overflow: hidden;
 }
 
-.video_wrapper video{
+.video_wrapper video {
   position: absolute;
-  left:50%;
+  left: 50%;
   transform: translateX(-50%);
-  top:-4rem;
+  top: -4rem;
 }
-
-
