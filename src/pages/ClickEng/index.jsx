@@ -8,11 +8,9 @@ import { useMutation } from 'react-query';
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 
-import NavBar from '../../components/navbar';
-import MainContainer from '../../components/container/main';
+import { NavBar, ProgressBar, MainContainer } from '../../components';
 import style from './index.module.css';
 import { Empty, Text } from '../../components/element';
-import ProgressBar from '../../components/progressbar';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';

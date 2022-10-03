@@ -4,11 +4,9 @@ import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import MainFooter from '../../components/footer/main';
 import { MainCard, FeatureCard } from './cards';
-import useScrollTo from '../../hooks/useScrollTo';
+// import useScrollTo from '../../hooks/useScrollTo';
 
 function Home() {
-  useScrollTo();
-  console.log(window.innerHeight);
   return (
     <>
       <Navbar />
