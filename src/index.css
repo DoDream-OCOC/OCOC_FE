@@ -27,6 +27,7 @@ body {
   --Green: #2d9e1b;
   --Green-2: #2c901c;
   --Red: #da3838;
+  --Yellow: #ebda41;
 
   /* Background */
   --BG-1: var(--Gray-0);
