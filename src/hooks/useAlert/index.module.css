@@ -1,0 +1,25 @@
+.AlertContainer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 5rem;
+  margin: auto;
+
+  width: 80%;
+  max-width: 20rem;
+  height: 4rem;
+
+  border-radius: 15px;
+}
+
+.red {
+  background-color: var(--Red);
+}
+
+.yellow {
+  background-color: var(--Yellow);
+}
+
+.green {
+  background-color: var(--Green);
+}
