@@ -6,14 +6,19 @@
   margin: auto;
 
   width: 80%;
-  max-width: 20rem;
-  height: 4rem;
+  max-width: 30rem;
+  height: 5rem;
 
   border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 1.2rem;
 }
 
 .red {
   background-color: var(--Red);
+  /* 백그라운드만 opacity 안되나? */
 }
 
 .yellow {
@@ -21,5 +26,12 @@
 }
 
 .green {
-  background-color: var(--Green);
+  background-color: var(--Green-light);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 0.6rem;
 }

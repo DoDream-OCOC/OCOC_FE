@@ -8,7 +8,6 @@ import { Text } from '../../components/element';
 // [Todo] http status 오류 메세지를 담기
 function Fail() {
   const navigate = useNavigate();
-
   return (
     <>
       <NavBar />
