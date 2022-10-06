@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import useModal from '../../hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,8 +28,9 @@ function ClickEng() {
     mutationFn: data => study.sendStudyResult({ results, studyId }),
   });
 
-  const [keywords, setKeywords] = useState([]); //words 배열
-  const [newKeywords, setNewKeywords] = useState([]); //answerList에 넣을 배열
+  const [keywords, setKeywords] = React.useState([]); //words 배열
+  const [newKeywords, setNewKeywords] = React.useState([]); //answerList에 넣을 배열
+  const [isCorrect, setIsCorrect] = React.useState(null);
 
   // Create keywords's random id
   const createKeywordsId = () => {
@@ -61,17 +62,30 @@ function ClickEng() {
   // console.log(newKeywords);
   // console.log(stage);
 
+  // [Todo] 네이밍이 별로며, callback을 줘야되서 하는 일이 많음
+  const showGradedUI = (isCorrect, callback) => {
+    setIsCorrect(isCorrect);
+    setTimeout(() => callback(), 1500);
+  };
+
   const onIncreaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrect = gradeStudy(strNewKeywords, english, id);
-    console.log(isCorrect); // [Todo] 정답 틀림 UI 추가
-    setNewKeywords([]);
-    dispatch(studySlice.actions.increaseStage());
+
+    showGradedUI(isCorrect, () => {
+      setNewKeywords([]);
+      dispatch(studySlice.actions.increaseStage());
+    });
   };
 
   const onFinishStage = () => {
-    mutation.mutate();
-    openModal();
+    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
+    const isCorrect = gradeStudy(strNewKeywords, english, id);
+
+    showGradedUI(isCorrect, () => {
+      mutation.mutate();
+      openModal();
+    });
   };
 
   React.useLayoutEffect(() => {
@@ -109,7 +123,7 @@ function ClickEng() {
 
             <div className={style.input_box_container}>
               <div className={style.input_box}>
-                <Button keywords={newKeywords} onClick={removeButton} />
+                <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
               </div>
               <div className={style.input_box}></div>
             </div>
