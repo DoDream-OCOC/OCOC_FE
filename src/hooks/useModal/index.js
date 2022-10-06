@@ -23,10 +23,8 @@ function useModal() {
   const closeModal = () => setIsModalOpened(false);
 
   React.useEffect(() => {
-    if (document) {
-      const $modal = document.getElementById('root-modal');
-      ref.current = $modal;
-    }
+    const $modal = document.getElementById('root-modal');
+    ref.current = $modal;
   }, []);
 
   const Modal = ({ children }) => {
