@@ -14,6 +14,7 @@ import { Empty, Text } from '../../components/element';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';
+import QuestionContainer from '../../hooks/QuestionContainer';
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
@@ -112,28 +113,24 @@ function ClickEng() {
       <MainContainer>
         <article>
           <div className={style.container}>
+
             <ProgressBar value={stage} />
 
-            <div className={style.question_container}>
-              <div className={style.question_text}>
-                <Text size="H4" content={'다음 문장을 번역하세요.'} />
-              </div>
-              <Text size="S" content={korean} />
-            </div>
-
-            <div className={style.input_box_container}>
-              <div className={style.input_box}>
+            <div className={style.relative}>
+              <QuestionContainer content={korean} />
+              <div className={style.absolute}>
                 <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
-              </div>
-              <div className={style.input_box}></div>
-            </div>
+              </div> 
+            </div> 
 
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
                 <Button keywords={keywords} onClick={insertButton} />
               </div>
             </div>
+
           </div>
+
           <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
