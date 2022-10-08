@@ -14,7 +14,7 @@ import { Empty, Text } from '../../components/element';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';
-import QuestionContainer from '../../hooks/QuestionContainer';
+import QuestionContainer from '../../components/questionContainer';
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
