@@ -8,13 +8,12 @@ import { useMutation } from 'react-query';
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 
-import { NavBar, ProgressBar, MainContainer } from '../../components';
+import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import style from './index.module.css';
 import { Empty, Text } from '../../components/element';
 import Button from './buttons/Button';
 import { GradingButton } from '../../components/element';
 import shortid from 'shortid';
-import QuestionContainer from '../../components/questionContainer';
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
@@ -115,14 +114,13 @@ function ClickEng() {
           <div className={style.container}>
 
             <ProgressBar value={stage} />
-
             <div className={style.relative}>
-              <QuestionContainer content={korean} />
+             <QuestionContainer content={korean} />
               <div className={style.absolute}>
-                <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
+                  <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
               </div> 
-            </div> 
-
+            </div>   
+              
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
                 <Button keywords={keywords} onClick={insertButton} />

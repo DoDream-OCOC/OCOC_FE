@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import style from './index.module.css';
-import { Text } from '../element';
+import { Text } from '../../components/element';
 
 function QuestionContainer({ content }){
 
