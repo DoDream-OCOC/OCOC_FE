@@ -8,7 +8,6 @@ import style from './index.module.css';
 
 const ERROR = 'Error';
 const WARN = 'Warn';
-const SUCCESS = 'Success';
 
 function useAlert() {
   const [isAlertOpend, setIsAlertOpend] = React.useState(false);
