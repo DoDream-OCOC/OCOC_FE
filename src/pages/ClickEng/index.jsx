@@ -100,6 +100,7 @@ function ClickEng() {
   return (
     <>
       <NavBar />
+      {/* 모달 닫으면 초기화면으로 돌아가게 설정하기 */}
       <Modal>
         <div>hello</div>
       </Modal>
