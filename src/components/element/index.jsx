@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { ReactComponent as Loading } from '../../assets/loading/ellipsis.svg';
 
