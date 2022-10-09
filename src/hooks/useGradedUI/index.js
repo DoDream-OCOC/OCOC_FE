@@ -13,11 +13,12 @@ function useGradedUI() {
    * @param {Function} callback Function to call after timer ends
    */
   const showGradedUI = (isCorrectAnswer, callback) => {
-    setIsGrading(prev => true);
+    setIsGrading(true);
     setIsCorrectBtn(isCorrectAnswer);
     setTimeout(() => {
       callback();
-      setIsGrading(prev => false);
+      setIsCorrectBtn(null);
+      setIsGrading(false);
     }, 1500);
   };
 
