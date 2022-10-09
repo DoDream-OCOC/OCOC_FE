@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 import { useMutation } from 'react-query';
@@ -19,6 +20,7 @@ import shortid from 'shortid';
 function ClickEng() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const { Modal, openModal } = useModal();
   const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
 
@@ -101,9 +103,9 @@ function ClickEng() {
   return (
     <>
       <NavBar />
-      {/* 모달 닫으면 초기화면으로 돌아가게 설정하기 */}
       <Modal>
-        <ClickEngModal />
+        {/* [Temp] onLogin 일단 보류 */}
+        <ClickEngModal onBackToMain={() => navigate('/')} />
       </Modal>
       <MainContainer>
         <article>
