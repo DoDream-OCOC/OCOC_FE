@@ -15,8 +15,10 @@ function useGradedUI() {
   const showGradedUI = (isCorrectAnswer, callback) => {
     setIsGrading(prev => true);
     setIsCorrectBtn(isCorrectAnswer);
-    setTimeout(() => callback(), 1500);
-    setIsGrading(prev => false);
+    setTimeout(() => {
+      callback();
+      setIsGrading(prev => false);
+    }, 1500);
   };
 
   return [isCorrectBtn, isGrading, showGradedUI];

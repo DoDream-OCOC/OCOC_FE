@@ -1,9 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import useModal from '../../hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 import { useMutation } from 'react-query';
+import { useGradedUI, useModal } from '../../hooks';
 
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
@@ -20,6 +20,7 @@ function ClickEng() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { Modal, openModal } = useModal();
+  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
 
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage, studyId, results } = useSelector(state => state.study);
@@ -30,7 +31,6 @@ function ClickEng() {
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
   const [newKeywords, setNewKeywords] = React.useState([]); //answerList에 넣을 배열
-  const [isCorrect, setIsCorrect] = React.useState(null);
 
   // Create keywords's random id
   const createKeywordsId = () => {
@@ -62,17 +62,11 @@ function ClickEng() {
   // console.log(newKeywords);
   // console.log(stage);
 
-  // [Todo] 네이밍이 별로며, callback을 줘야되서 하는 일이 많음
-  const showGradedUI = (isCorrect, callback) => {
-    setIsCorrect(isCorrect);
-    setTimeout(() => callback(), 1500);
-  };
-
   const onIncreaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrect = gradeStudy(strNewKeywords, english, id);
+    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    showGradedUI(isCorrect, () => {
+    showGradedUI(isCorrectAnswer, () => {
       setNewKeywords([]);
       dispatch(studySlice.actions.increaseStage());
     });
@@ -80,9 +74,9 @@ function ClickEng() {
 
   const onFinishStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrect = gradeStudy(strNewKeywords, english, id);
+    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    showGradedUI(isCorrect, () => {
+    showGradedUI(isCorrectAnswer, () => {
       mutation.mutate();
       openModal();
     });
@@ -123,7 +117,7 @@ function ClickEng() {
 
             <div className={style.input_box_container}>
               <div className={style.input_box}>
-                <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
+                <Button isCorrect={isCorrectBtn} keywords={newKeywords} onClick={removeButton} />
               </div>
               <div className={style.input_box}></div>
             </div>
@@ -134,7 +128,7 @@ function ClickEng() {
               </div>
             </div>
           </div>
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
