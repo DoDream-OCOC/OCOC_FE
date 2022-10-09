@@ -11,7 +11,7 @@ import { gradeStudy } from '../../utils/gradeStudy';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import style from './index.module.css';
-import { Empty, Text, GradingButton } from '../../components/element';
+import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import { ClickEngModal } from './modal';
 import shortid from 'shortid';
