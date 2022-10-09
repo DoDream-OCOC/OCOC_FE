@@ -4,23 +4,13 @@
   padding: 0 1rem 0 1rem;
 }
 
-.question_container {
-  margin-bottom: 3.125rem;
+.relative {
+  position: relative;
 }
 
-.question_text {
-  text-align: left;
-  line-height: 3;
-}
-
-.input_box_container {
-  margin-bottom: 2.5rem;
-}
-
-.input_box {
-  height: 3.625rem;
-  border-bottom: 2px solid var(--Gray-3);
-  background-color: var(--BG-1);
+.absolute {
+  position: absolute;
+  top: 8.2rem;
 }
 
 .button_container {
@@ -50,4 +40,5 @@
   height: 6.25rem;
   background-color: var(--BG-2);
   border-radius: 0.625rem;
+  position: static;
 }

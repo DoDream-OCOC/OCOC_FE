@@ -3,5 +3,6 @@ import MainContainer from './container/main';
 // exclude footer
 import NavBar from './navbar';
 import ProgressBar from './progressbar';
+import QuestionContainer from './questionContainer';
 
-export { MainContainer, NavBar, ProgressBar };
+export { MainContainer, NavBar, ProgressBar, QuestionContainer };

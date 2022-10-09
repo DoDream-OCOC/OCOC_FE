@@ -9,7 +9,7 @@ import { useGradedUI, useModal } from '../../hooks';
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 
-import { NavBar, ProgressBar, MainContainer } from '../../components';
+import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import style from './index.module.css';
 import { Empty, Text, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
@@ -111,19 +111,11 @@ function ClickEng() {
         <article>
           <div className={style.container}>
             <ProgressBar value={stage} />
-
-            <div className={style.question_container}>
-              <div className={style.question_text}>
-                <Text size="H4" content={'다음 문장을 번역하세요.'} />
-              </div>
-              <Text size="S" content={korean} />
-            </div>
-
-            <div className={style.input_box_container}>
-              <div className={style.input_box}>
+            <div className={style.relative}>
+              <QuestionContainer content={korean} />
+              <div className={style.absolute}>
                 <Button isCorrect={isCorrectBtn} keywords={newKeywords} onClick={removeButton} />
               </div>
-              <div className={style.input_box}></div>
             </div>
 
             <div className={style.button_keyword_container}>
