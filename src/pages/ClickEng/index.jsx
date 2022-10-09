@@ -84,8 +84,8 @@ function ClickEng() {
 
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     openModal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
 
   // [Todo] Hook으로 빼기
