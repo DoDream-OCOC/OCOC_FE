@@ -8,7 +8,7 @@ import { useMutation } from 'react-query';
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 
-import { NavBar, ProgressBar, MainContainer } from '../../components';
+import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import style from './index.module.css';
 import { Empty, Text } from '../../components/element';
 import Button from './buttons/Button';
@@ -112,28 +112,23 @@ function ClickEng() {
       <MainContainer>
         <article>
           <div className={style.container}>
+
             <ProgressBar value={stage} />
-
-            <div className={style.question_container}>
-              <div className={style.question_text}>
-                <Text size="H4" content={'다음 문장을 번역하세요.'} />
-              </div>
-              <Text size="S" content={korean} />
-            </div>
-
-            <div className={style.input_box_container}>
-              <div className={style.input_box}>
-                <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
-              </div>
-              <div className={style.input_box}></div>
-            </div>
-
+            <div className={style.relative}>
+             <QuestionContainer content={korean} />
+              <div className={style.absolute}>
+                  <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
+              </div> 
+            </div>   
+              
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
                 <Button keywords={keywords} onClick={insertButton} />
               </div>
             </div>
+
           </div>
+
           <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
