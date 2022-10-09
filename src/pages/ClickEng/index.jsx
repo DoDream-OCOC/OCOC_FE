@@ -10,9 +10,9 @@ import { gradeStudy } from '../../utils/gradeStudy';
 
 import { NavBar, ProgressBar, MainContainer } from '../../components';
 import style from './index.module.css';
-import { Empty, Text } from '../../components/element';
+import { Empty, Text, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
-import { GradingButton } from '../../components/element';
+import { ClickEngModal } from './modal';
 import shortid from 'shortid';
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
@@ -85,6 +85,7 @@ function ClickEng() {
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    openModal();
   }, [stage]);
 
   // [Todo] Hook으로 빼기
@@ -102,7 +103,7 @@ function ClickEng() {
       <NavBar />
       {/* 모달 닫으면 초기화면으로 돌아가게 설정하기 */}
       <Modal>
-        <div>hello</div>
+        <ClickEngModal />
       </Modal>
       <MainContainer>
         <article>
