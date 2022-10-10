@@ -28,7 +28,7 @@ function ClickEng() {
   const { stage, studyId, results } = useSelector(state => state.study);
 
   const mutation = useMutation({
-    mutationFn: data => study.sendStudyResult({ results, studyId }),
+    mutationFn: data => study.sendStudyResult(results, studyId),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
