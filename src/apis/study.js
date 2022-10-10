@@ -13,6 +13,5 @@ export const sendStudyType = async (level, studyType = 'click') => {
 };
 
 export const sendStudyResult = async (results, studyId) => {
-  console.log(results, studyId); // [Todo] 테스트 필요
-  await ococ.post(`/${ROUTE}/result`, { results, studyId }).then(res => {});
+  await ococ.post(`/${ROUTE}/result`, { results, studyId });
 };

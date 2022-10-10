@@ -1,25 +1,28 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import useModal from '../../hooks/useModal';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 import { useMutation } from 'react-query';
+import { useGradedUI, useModal } from '../../hooks';
 
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import style from './index.module.css';
-import { Empty, Text } from '../../components/element';
+import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
-import { GradingButton } from '../../components/element';
+import { ClickEngModal } from './modal';
 import shortid from 'shortid';
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const { Modal, openModal } = useModal();
+  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
 
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage, studyId, results } = useSelector(state => state.study);
@@ -30,7 +33,6 @@ function ClickEng() {
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
   const [newKeywords, setNewKeywords] = React.useState([]); //answerList에 넣을 배열
-  const [isCorrect, setIsCorrect] = React.useState(null);
 
   // Create keywords's random id
   const createKeywordsId = () => {
@@ -62,17 +64,11 @@ function ClickEng() {
   // console.log(newKeywords);
   // console.log(stage);
 
-  // [Todo] 네이밍이 별로며, callback을 줘야되서 하는 일이 많음
-  const showGradedUI = (isCorrect, callback) => {
-    setIsCorrect(isCorrect);
-    setTimeout(() => callback(), 1500);
-  };
-
   const onIncreaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrect = gradeStudy(strNewKeywords, english, id);
+    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    showGradedUI(isCorrect, () => {
+    showGradedUI(isCorrectAnswer, () => {
       setNewKeywords([]);
       dispatch(studySlice.actions.increaseStage());
     });
@@ -80,9 +76,9 @@ function ClickEng() {
 
   const onFinishStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrect = gradeStudy(strNewKeywords, english, id);
+    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    showGradedUI(isCorrect, () => {
+    showGradedUI(isCorrectAnswer, () => {
       mutation.mutate();
       openModal();
     });
@@ -107,29 +103,27 @@ function ClickEng() {
     <>
       <NavBar />
       <Modal>
-        <div>hello</div>
+        {/* [Temp] onLogin 일단 보류 */}
+        <ClickEngModal onBackToMain={() => navigate('/')} />
       </Modal>
       <MainContainer>
         <article>
           <div className={style.container}>
-
             <ProgressBar value={stage} />
             <div className={style.relative}>
-             <QuestionContainer content={korean} />
+              <QuestionContainer content={korean} />
               <div className={style.absolute}>
-                  <Button isCorrect={isCorrect} keywords={newKeywords} onClick={removeButton} />
-              </div> 
-            </div>   
-              
+                <Button isCorrect={isCorrectBtn} keywords={newKeywords} onClick={removeButton} />
+              </div>
+            </div>
+
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
                 <Button keywords={keywords} onClick={insertButton} />
               </div>
             </div>
-
           </div>
-
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
       </MainContainer>

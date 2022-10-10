@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { ReactComponent as Loading } from '../../assets/loading/ellipsis.svg';
 
@@ -7,9 +6,9 @@ import style from './index.module.css';
 
 /**
  * Text component
- * @param {H1, H2, H3, H4, H5, B1, B2, B3} size text size
- * @param {Text-1, Text-2} color text's color
- * @param {string} content text's content
+ * @param {'H1'| 'H2' | 'H3' | 'H4' | 'H5' | 'B1' | 'B2' | 'B3'} size text size
+ * @prop {'Text-1' | 'Text-2'} color text's color
+ * @prop {string} content text's content
  * @returns Common text
  */
 export const Text = ({ size = 'B1', color = 'Text-2', content, ...props }) => {
