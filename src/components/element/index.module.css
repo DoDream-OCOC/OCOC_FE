@@ -49,13 +49,14 @@ span {
   font-weight: 400;
 }
 
+/* [Todo] Btn이 Input에도 중북으로 사용되는 거 고려하기 */
 /* Button */
 .button {
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   letter-spacing: 1px;
 
   max-width: 25rem;
-  width: 80vw;
+  width: 90vw;
   height: 3.5rem;
 
   border: 0px;
@@ -67,4 +68,14 @@ span {
   z-index: 2;
   color: var(--Gray-0);
   background-color: var(--Green);
+}
+
+/* Input */
+.input {
+  padding: 1rem;
+  color: var(--Text-2);
+  background-color: var(--Gray-2);
+}
+.input::placeholder {
+  color: var(--Gray-4);
 }

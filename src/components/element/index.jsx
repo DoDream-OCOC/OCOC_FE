@@ -21,7 +21,7 @@ export const Text = ({ size = 'B1', color = 'Text-2', content, ...props }) => {
 
 /**
  * Empty component
- * @param {rem} size Height size, must use 'rem'
+ * @prop {rem} size Height size, must use 'rem'
  * @returns Empty
  */
 export const Empty = ({ size }) => {
@@ -30,9 +30,9 @@ export const Empty = ({ size }) => {
 
 /**
  * Button component
- * @param {boolean} isDisabled
- * @param {boolean} isLoading
- * @param {string} content button's content
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isLoading
+ * @prop {string} content button's content
  * @returns Button
  */
 export const Button = ({ isDisabled = false, isLoading = false, content, ...props }) => {
@@ -47,9 +47,9 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
 
 /**
  * Graiding button component
- * @param {boolean} isDisabled
- * @param {boolean} isGrading
- * @param {string} content button's content
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isGrading
+ * @prop {string} content button's content
  * @returns Button
  */
 export const GradingButton = ({ isDisabled = false, isGrading = false, content, ...props }) => {
@@ -60,4 +60,8 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
       {isGrading && <Loading />}
     </button>
   );
+};
+
+export const Input = ({ placeholder, ...props }) => {
+  return <input placeholder={placeholder} className={`${style.button} ${style.input}`} />;
 };
