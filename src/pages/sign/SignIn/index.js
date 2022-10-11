@@ -8,7 +8,10 @@ function SignIn() {
     <>
       <NavBar />
       <MainContainer>
-        <article></article>
+        <article>
+          <Text size="H4" color="Text-2" content="로그인" />
+          {/* [Todo] Input 컴포넌트 만들기 */}
+        </article>
       </MainContainer>
     </>
   );
