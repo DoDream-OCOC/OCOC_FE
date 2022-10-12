@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 import NavBar from '../../../components/navbar';
 import MainContainer from '../../../components/container/main';
@@ -7,6 +8,7 @@ import { Text, Button, Empty, Input } from '../../../components/element';
 
 function SignIn() {
   const navigate = useNavigate();
+  const { register, handleSubmit } = useForm({ defaultValues: { email: '', password: '' } });
 
   return (
     <>

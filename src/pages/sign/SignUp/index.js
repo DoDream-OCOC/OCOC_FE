@@ -4,6 +4,7 @@ import MainContainer from '../../../components/container/main';
 import { Text, Button, Empty, Input } from '../../../components/element';
 
 function SignUp() {
+  // [Todo] 유효성 검사 추가
   return (
     <>
       <NavBar />
