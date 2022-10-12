@@ -62,6 +62,11 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
   );
 };
 
+/**
+ * Input component
+ * @prop {string} placeholder
+ * @returns Input
+ */
 export const Input = ({ placeholder, ...props }) => {
-  return <input placeholder={placeholder} className={`${style.button} ${style.input}`} />;
+  return <input placeholder={placeholder} className={`${style.button} ${style.input}`} {...props} />;
 };
