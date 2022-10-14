@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 import { useMutation } from 'react-query';
-import { useGradedUI, useModal } from '../../hooks';
+import { useGradedUI, useInitialRender, useModal, useStage } from '../../hooks';
 
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
@@ -23,6 +23,7 @@ function ClickEng() {
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
   const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
+  const initialRender = useInitialRender();
 
   const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage, studyId, results } = useSelector(state => state.study);
@@ -33,6 +34,7 @@ function ClickEng() {
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
   const [newKeywords, setNewKeywords] = React.useState([]); //answerList에 넣을 배열
+  //const {onIncreaseStage, onFinishStage} = useStage(newKeywords, english, id, setNewKeywords, results, studyId)
 
   // Create keywords's random id
   const createKeywordsId = () => {
@@ -64,6 +66,8 @@ function ClickEng() {
   // console.log(newKeywords);
   // console.log(stage);
 
+
+  // [Todo] Hook으로 빼기
   const onIncreaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
@@ -89,14 +93,9 @@ function ClickEng() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
 
-  // [Todo] Hook으로 빼기
-  const initialRender = React.useRef(true);
+  //useInitialRender
   React.useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-    } else {
-      return () => dispatch(studySlice.actions.cleanAllCorpus());
-    }
+    initialRender();
   }, [location, dispatch]);
 
   return (
