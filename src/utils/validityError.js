@@ -1,28 +1,25 @@
 import { isEmptyObject } from './object';
 
 /**
- * Check a error of only "one" validity
+ * Check all error of only "one" field
  * @param formstate
  * @param fieldName
- * @param ValidationName
  * @returns boolean
  */
-export const isValidityError = (formstate, fieldName, ValidationName) => {
-  const { dirtyFields, errors } = formstate;
-  return !dirtyFields[fieldName] || !!errors[fieldName]?.types?.[ValidationName];
+export const isVldError = (formstate, fieldName) => {
+  const { errors } = formstate;
+  return !!errors[fieldName];
 };
 
 // [Temp] inputAmount는 지금 일일이 input 개수를 구해서 넣어주어야 함
 /**
- * Check "all" error of form
+ * Check "all" error of a form
  * @param formstate
  * @param inputAmount
  * @returns boolean
  */
 export const isFormError = (formstate, inputAmount) => {
   const { dirtyFields, errors } = formstate;
-  console.log(dirtyFields);
-  console.log(errors);
 
   if (Object.keys(dirtyFields).length !== inputAmount) return true;
   else if (Object.keys(dirtyFields).length === inputAmount) {
