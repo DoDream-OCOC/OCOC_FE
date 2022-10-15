@@ -1,6 +1,5 @@
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
-
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
 import { isVldError } from '../../../utils/validityError';
 
