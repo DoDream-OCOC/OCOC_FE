@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
-import { isEngAndNum, isSpecialCharactors, isMinLength } from '../../../utils/validation';
+import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength } from '../../../utils/validation';
 
 export const useSignUp = () => {
   const mutaion = useMutation();
@@ -11,23 +11,10 @@ export const useSignUp = () => {
   });
 
   const reg = {
-    password: {
-      ...register('password', {
-        validate: {
-          isEngAndNum,
-          isSpecialCharactors,
-          isMinLength8: value => isMinLength(value, 8),
-        },
-      }),
-    },
-    confirmPassword: {
-      ...register('confirmPassword', {
-        validate: {
-          // [Todo] getValues 잘 작동 되나 확인 필요
-          isSame: value => value === getValues('password'),
-        },
-      }),
-    },
+    email: { ...register('email', { validate: { isEmail } }) },
+    password: { ...register('password', { validate: { isEngAndNum, isSpecialCharactors, isMinLength8: value => isMinLength(value, 8) } }) },
+    // [Todo] getValues 잘 작동 되나 확인 필요
+    confirmPassword: { ...register('confirmPassword', { validate: { isSame: value => value === getValues('password') } }) },
   };
 
   return { reg, onSubmit };

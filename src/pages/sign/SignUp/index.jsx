@@ -19,7 +19,7 @@ function SignUp() {
           <Text size="H4" color="Text-2" content="회원가입" />
           <Empty size="2.5rem" />
           <form id={SIGN_UP} onSubmit={onSubmit}>
-            <Input placeholder="Email" />
+            <Input isError={true} placeholder="Email" />
             <Empty size="2rem" />
             <Input {...reg.password} type="password" placeholder="비밀번호" />
             <Empty size="2rem" />
