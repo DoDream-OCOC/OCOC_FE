@@ -4,7 +4,7 @@ import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength } from '../../..
 
 export const useSignUp = () => {
   const mutaion = useMutation();
-  const { register, handleSubmit, getValues } = useForm({ mode: 'onChange', defaultValues: { password: '' } });
+  const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { password: '' } });
 
   const onSubmit = handleSubmit(async data => {
     mutaion.mutate();
