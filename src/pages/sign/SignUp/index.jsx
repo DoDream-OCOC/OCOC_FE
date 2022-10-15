@@ -8,10 +8,9 @@ import { Text, Button, Empty, Input } from '../../../components/element';
 const SIGN_UP = 'sign-up';
 
 function SignUp() {
-  const { reg, onSubmit, vldError, getValues } = useSignUp();
+  const { reg, onSubmit, vldError } = useSignUp();
 
   // [Todo] 유효성 검사에 따라 UI 처리 필요
-  React.useEffect(() => console.log('email:', getValues('email')), [vldError]);
 
   return (
     <>
