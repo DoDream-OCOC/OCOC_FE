@@ -38,15 +38,3 @@ export const isEmail = value => {
 export const isPattern = (value, regExp) => {
   return regExp.test(value);
 };
-
-/**
- * Check a error of only "one" validity
- * @param formstate
- * @param fieldName
- * @param ValidationName
- * @returns boolean
- */
-export const isValidityError = (formstate, fieldName, ValidationName) => {
-  const { dirtyFields, errors } = formstate;
-  return !dirtyFields[fieldName] || !!errors[fieldName]?.types?.[ValidationName];
-};
