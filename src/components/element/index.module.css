@@ -76,6 +76,11 @@ span {
   color: var(--Text-2);
   background-color: var(--Gray-2);
 }
+
 .input::placeholder {
   color: var(--Gray-4);
+}
+
+.inputError {
+  border: 2px var(--Red) solid;
 }

@@ -65,8 +65,9 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
 /**
  * Input component
  * @prop {string} placeholder
+ * @prop {boolean} isError
  * @returns Input
  */
-export const Input = ({ placeholder, ...props }) => {
-  return <input placeholder={placeholder} className={`${style.button} ${style.input}`} {...props} />;
+export const Input = ({ placeholder, isError = false, ...props }) => {
+  return <input placeholder={placeholder} className={`${style.button} ${style.input} ${isError && style.inputError}`} {...props} />;
 };
