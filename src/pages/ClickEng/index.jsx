@@ -4,97 +4,40 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 import { useMutation } from 'react-query';
-import { useGradedUI, useInitialRender, useModal, useStage } from '../../hooks';
-
-import { study } from '../../apis';
-import { gradeStudy } from '../../utils/gradeStudy';
+import { useKeywords, useStage, useInitialRender, useModal, useGradedUI } from '../../hooks';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
-import style from './index.module.css';
 import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
-import { ClickEngModal } from './modal';
-import shortid from 'shortid';
+import style from './index.module.css';
+
+
+//일단 분리는 해 놨는데 왜 안 돌아가는지 보자...
+//재사용할 수 있게 함수 변형하자
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
-  const dispatch = useDispatch();
+
   const location = useLocation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { Modal, openModal } = useModal();
-  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
+
+  const { korean } = useSelector(state => state.study.datasets[state.study.stage - 1]);
+  const { stage } = useSelector(state => state.study);
+  const { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId } = useKeywords();
+  const {insertButton, removeButton, onIncreaseStage, onFinishStage} = useStage();
   const initialRender = useInitialRender();
-
-  const { korean, clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
-  const { stage, studyId, results } = useSelector(state => state.study);
-
-  const mutation = useMutation({
-    mutationFn: data => study.sendStudyResult(results, studyId),
-  });
-
-  const [keywords, setKeywords] = React.useState([]); //words 배열
-  const [newKeywords, setNewKeywords] = React.useState([]); //answerList에 넣을 배열
-  //const {onIncreaseStage, onFinishStage} = useStage(newKeywords, english, id, setNewKeywords, results, studyId)
-
-  // Create keywords's random id
-  const createKeywordsId = () => {
-    let _keywords = [];
-    for (let i = 0; i < clause; i++) {
-      let id = shortid.generate();
-      let text = words[i];
-      _keywords.push({ id, text });
-    }
-    return _keywords;
-  };
-
-  // answerList = newKeywords; //store에 답변 리스트 저장
-
-  //영작 칸에 띄울 단어 배열
-  const insertButton = id => {
-    setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id === id)));
-    setKeywords(keywords.filter(keyword => keyword.id !== id));
-  };
-
-  //영작 칸에서 클릭한 버튼의 배열 제거
-  const removeButton = id => {
-    setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id === id)));
-    setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
-  };
-
-  //콘솔창
-  // console.log(keywords);
-  // console.log(newKeywords);
-  // console.log(stage);
-
-
-  // [Todo] Hook으로 빼기
-  const onIncreaseStage = () => {
-    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
-
-    showGradedUI(isCorrectAnswer, () => {
-      setNewKeywords([]);
-      dispatch(studySlice.actions.increaseStage());
-    });
-  };
-
-  const onFinishStage = () => {
-    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
-
-    showGradedUI(isCorrectAnswer, () => {
-      mutation.mutate();
-      openModal();
-    });
-  };
-
+  const {Modal, ClickEngModal} = useModal();
+  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
+  
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
 
-  //useInitialRender
+ 
   React.useEffect(() => {
+    //useInitialRender
     initialRender();
   }, [location, dispatch]);
 
