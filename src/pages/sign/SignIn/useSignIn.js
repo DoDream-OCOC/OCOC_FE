@@ -10,8 +10,8 @@ export const useSignIn = () => {
   const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });
 
   const reg = {
-    email: { ...register('email', { validate: { isEmail } }) },
-    password: { ...register('password', { validate: { isRequired } }) },
+    email: { ...register('email', { isEmail: val => isEmail(val) || '이메일 형식이 올바르지 않습니다.' }) },
+    password: { ...register('password', { validate: { isRequired: val => isRequired(val) || '비밀번호를 입력해야 합니다.' } }) },
   };
 
   const onSubmit = handleSubmit(async data => {
