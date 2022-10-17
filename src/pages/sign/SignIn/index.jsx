@@ -1,14 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useSignIn } from './useSignIn';
 
 import NavBar from '../../../components/navbar';
 import MainContainer from '../../../components/container/main';
 import { Text, Button, Empty, Input } from '../../../components/element';
 
+const SIGN_IN = 'sign-in';
+
 function SignIn() {
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm({ defaultValues: { email: '', password: '' } });
+  const { navigate, reg, onSubmit, vldError } = useSignIn();
 
   return (
     <>
@@ -17,13 +17,13 @@ function SignIn() {
         <article>
           <Text size="H4" color="Text-2" content="로그인" />
           <Empty size="2.5rem" />
-          <form>
-            <Input placeholder="Email" />
+          <form id={SIGN_IN} onSubmit={onSubmit}>
+            <Input {...reg.email} vldError={vldError.email} type="email" placeholder="Email" />
             <Empty size="1.5rem" />
-            <Input placeholder="비밀번호" />
+            <Input {...reg.password} vldError={vldError.password} type="password" placeholder="비밀번호" />
           </form>
           <Empty size="3rem" />
-          <Button content="로그인" />
+          <Button content="로그인" type="submit" form={SIGN_IN} />
           <Empty size="1.5rem" />
           <Button content="회원가입" onClick={() => navigate('/sign-up')} />
         </article>
