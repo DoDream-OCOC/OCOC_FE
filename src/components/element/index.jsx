@@ -7,7 +7,7 @@ import style from './index.module.css';
 /**
  * Text component
  * @param {'H1'| 'H2' | 'H3' | 'H4' | 'H5' | 'B1' | 'B2' | 'B3'} size text size
- * @prop {'Text-1' | 'Text-2'} color text's color
+ * @prop {'Text-1' | 'Text-2' | Red} color text's color
  * @prop {string} content text's content
  * @returns Common text
  */
@@ -71,9 +71,10 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
 export const Input = React.forwardRef(({ placeholder, vldError, ...props }, ref) => {
   const { isError, errMsg } = vldError;
   return (
-    <div>
+    <div className={style.flexCol}>
       <input ref={ref} placeholder={placeholder} className={`${style.button} ${style.input} ${isError && style.inputError}`} {...props} />
-      {isError && <div className="style.errMsg">{errMsg}</div>}
+      {/* Text 사용하지 말고 짜야될 듯 */}
+      {isError && <span className={`${style.inputErrMsg} ${style.B3}`}>{errMsg}</span>}
     </div>
   );
 });
