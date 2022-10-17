@@ -10,7 +10,7 @@ const SIGN_UP = 'sign-up';
 function SignUp() {
   const { reg, onSubmit, vldError, formState } = useSignUp();
 
-  // [Todo] 유효성 검사에 따라 UI 처리 필요
+  // [Todo] 유효성 검사에 따라 UI 처리 필요 -> input에 엘리먼트에서 처리하자
   React.useEffect(() => {
     console.log(formState.errors);
   }, [vldError]);
@@ -23,11 +23,11 @@ function SignUp() {
           <Text size="H4" color="Text-2" content="회원가입" />
           <Empty size="2.5rem" />
           <form id={SIGN_UP} onSubmit={onSubmit}>
-            <Input {...reg.email} isError={vldError.email} type="email" placeholder="Email" />
+            <Input {...reg.email} vldError={vldError.email} type="email" placeholder="Email" />
             <Empty size="2rem" />
-            <Input {...reg.password} isError={vldError.password} type="password" placeholder="비밀번호" />
+            <Input {...reg.password} vldError={vldError.password} type="password" placeholder="비밀번호" />
             <Empty size="2rem" />
-            <Input {...reg.confirmPassword} isError={vldError.confirmPassword} type="password" placeholder="비밀번호 재입력" />
+            <Input {...reg.confirmPassword} vldError={vldError.confirmPassword} type="password" placeholder="비밀번호 재입력" />
           </form>
           <Empty size="6rem" />
           <Button content="회원가입" type="submit" form={SIGN_UP} />

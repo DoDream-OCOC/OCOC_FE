@@ -25,10 +25,11 @@ export const useSignUp = () => {
     mutaion.mutate();
   });
 
+  // [Todo] 클래스로 만들까?
   const vldError = {
-    email: isVldError(formState, 'email'),
-    password: isVldError(formState, 'password'),
-    confirmPassword: isVldError(formState, 'confirmPassword'),
+    email: { isError: isVldError(formState, 'email'), errMsg: formState.errors?.email?.message },
+    password: { isError: isVldError(formState, 'password'), errMsg: formState.errors?.password?.message },
+    confirmPassword: { isError: isVldError(formState, 'confirmPassword'), errMsg: formState.errors?.confirmPassword?.message },
   };
 
   return { reg, onSubmit, vldError, formState };
