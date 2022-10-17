@@ -65,9 +65,15 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
 /**
  * Input component
  * @prop {string} placeholder
- * @prop {boolean} isError
+ * @prop {{isError:boolean; errMsg:string}} vldError
  * @returns Input
  */
-export const Input = React.forwardRef(({ placeholder, isError = false, ...props }, ref) => {
-  return <input ref={ref} placeholder={placeholder} className={`${style.button} ${style.input} ${isError && style.inputError}`} {...props} />;
+export const Input = React.forwardRef(({ placeholder, vldError, ...props }, ref) => {
+  const { isError, errMsg } = vldError;
+  return (
+    <div>
+      <input ref={ref} placeholder={placeholder} className={`${style.button} ${style.input} ${isError && style.inputError}`} {...props} />
+      {isError && <div className="style.errMsg">{errMsg}</div>}
+    </div>
+  );
 });
