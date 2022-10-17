@@ -18,9 +18,9 @@ function SignIn() {
           <Text size="H4" color="Text-2" content="로그인" />
           <Empty size="2.5rem" />
           <form id={SIGN_IN} onSubmit={onSubmit}>
-            <Input {...reg.email} isError={vldError.email} type="email" placeholder="Email" />
+            <Input {...reg.email} vldError={vldError.email} type="email" placeholder="Email" />
             <Empty size="1.5rem" />
-            <Input {...reg.password} isError={vldError.password} type="password" placeholder="비밀번호" />
+            <Input {...reg.password} vldError={vldError.password} type="password" placeholder="비밀번호" />
           </form>
           <Empty size="3rem" />
           <Button content="로그인" type="submit" form={SIGN_IN} />

@@ -8,12 +8,7 @@ import { Text, Button, Empty, Input } from '../../../components/element';
 const SIGN_UP = 'sign-up';
 
 function SignUp() {
-  const { reg, onSubmit, vldError, formState } = useSignUp();
-
-  // [Todo] 유효성 검사에 따라 UI 처리 필요 -> input에 엘리먼트에서 처리하자
-  React.useEffect(() => {
-    console.log(formState.errors);
-  }, [vldError]);
+  const { reg, onSubmit, vldError } = useSignUp();
 
   return (
     <>

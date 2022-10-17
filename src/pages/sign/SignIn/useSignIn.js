@@ -19,8 +19,8 @@ export const useSignIn = () => {
   });
 
   const vldError = {
-    email: isVldError(formState, 'email'),
-    password: isVldError(formState, 'password'),
+    email: { isError: isVldError(formState, 'email'), errMsg: formState.errors?.email?.message },
+    password: { isError: isVldError(formState, 'password'), errMsg: formState.errors?.password?.message },
   };
 
   return { navigate, reg, onSubmit, vldError };

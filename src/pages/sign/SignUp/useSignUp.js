@@ -32,5 +32,5 @@ export const useSignUp = () => {
     confirmPassword: { isError: isVldError(formState, 'confirmPassword'), errMsg: formState.errors?.confirmPassword?.message },
   };
 
-  return { reg, onSubmit, vldError, formState };
+  return { reg, onSubmit, vldError };
 };
