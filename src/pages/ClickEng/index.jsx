@@ -4,16 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices/study';
 import { useMutation } from 'react-query';
-import { useKeywords, useStage, useInitialRender, useModal, useGradedUI } from '../../hooks';
+import { useAlert, useGradedUI, useModal, useScrollTo, useInitialRender, useKeywords } from '../../hooks';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
 
-
-//일단 분리는 해 놨는데 왜 안 돌아가는지 보자...
-//재사용할 수 있게 함수 변형하자
 
 // [Error] keywords에 빈 요소가 들어가는 것같음 -> 빈 UI가 생성됨
 function ClickEng() {
@@ -24,17 +21,16 @@ function ClickEng() {
 
   const { korean } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage } = useSelector(state => state.study);
-  const { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId } = useKeywords();
-  const {insertButton, removeButton, onIncreaseStage, onFinishStage} = useStage();
+  const { keywords, newKeywords, setKeywords, createKeywordsId, 
+          insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn } = useKeywords();
   const initialRender = useInitialRender();
-  const {Modal, ClickEngModal} = useModal();
-  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
+  const { Modal, ClickEngModal } = useModal();
+  const [ isGrading, showGradedUI] = useGradedUI();
   
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
-
  
   React.useEffect(() => {
     //useInitialRender
