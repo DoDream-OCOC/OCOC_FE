@@ -10,6 +10,8 @@ function useInitialRender(){
         } else {
             return () => dispatch(studySlice.actions.cleanAllCorpus());
         }
+
+    return initialRender;    
 }
 
 export default useInitialRender;
