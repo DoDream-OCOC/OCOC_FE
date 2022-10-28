@@ -18,14 +18,18 @@ import styled from './index.module.css';
 
 function LevelSelection() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const mutation = useMutation({
-    mutationFn: data => study.postStudyType(data),
+    mutationFn: _data => {
+      // [Todo] 이거 정상 작동되는지 확인 필요
+      const data = study.postStudyType(_data).data.data;
+      dispatch(studySlice.actions.setAllCorpus({ datasets: data.datasets, studyId: data.study.id }));
+    },
     onSuccess: () => {
       dispatch(studySlice.actions.increaseStage());
       navigate('/click-eng');
     },
   });
-  const dispatch = useDispatch();
 
   const onClick = level => {
     // [Temp]  studyType = 'click'

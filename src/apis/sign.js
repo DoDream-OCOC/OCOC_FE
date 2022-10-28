@@ -1,6 +1,4 @@
 import ococ from './core';
-// import store from '../store';
-// import { studySlice } from '../store/slices/study';
 
 const ROUTE = 'sign';
 
