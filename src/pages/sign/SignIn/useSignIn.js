@@ -25,9 +25,7 @@ export const useSignIn = () => {
     password: { ...register('password', { validate: { isRequired: val => isRequired(val) || '비밀번호를 입력해야 합니다.' } }) },
   };
 
-  const onSubmit = handleSubmit(async data => {
-    mutaion.mutate();
-  });
+  const onSubmit = handleSubmit(async data => mutaion.mutate({ loginId: data.email, loginPassword: data.password }));
 
   const vldError = {
     email: { isError: isVldError(formState, 'email'), errMsg: formState.errors?.email?.message },
