@@ -9,6 +9,6 @@ export const postJoinData = async (id, email, password) => {
 };
 
 export const postLoginData = async (loginId, loginPassword) => {
-  // Header에서 넘겨주실 예정
+  // [Todo] Header에 받아서 localStorage에 담기
   await ococ.post(`/${ROUTE}/login`, { loginId, loginPassword }).then(res => console.log('sign in success'));
 };
