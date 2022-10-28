@@ -14,3 +14,8 @@ export const studyInitialState = {
   stage: 0,
   correctAnswerCount: 0,
 };
+
+export const signInitialState = {
+  X_AUTH_ACCESS_TOKEN: '',
+  X_AUTH_REFRESH_TOKEN: '',
+};

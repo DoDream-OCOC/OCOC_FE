@@ -1,20 +1,17 @@
 import ococ from '.';
-
-// [Temp]
-const TOKEN_EXPIRED = 499;
+import store from '../../store';
 
 ococ.interceptors.request.use(
   config => {
-    // [Temp] 토큰을 담아서 보내지 않을 때
+    // [Temp] 토큰을 담아서 보내지 않을 때 -> 비회원 로직
     if (config.url === '') {
       return config;
     } else {
       return {
         ...config,
         headers: {
-          // [Temp] 따로 전역관리 안하면 그냥 로컬에서/세션에서 가져옴
-          // [Todo] 비회원일경우 null로 주기
-          Authorization: !!localStorage.getItem('accessToken') ? `Bearer ${localStorage.getItem('accessToken')}` : null,
+          X_AUTH_ACCESS_TOKEN: store.getState().sign.X_AUTH_ACCESS_TOKEN || null,
+          X_AUTH_REFRESH_TOKEN: store.getState().sign.X_AUTH_REFRESH_TOKEN || null,
         },
       };
     }
@@ -34,10 +31,6 @@ ococ.interceptors.response.use(
     console.log('Status:', status);
     console.log('Authorization:', config.headers.authorization);
     console.log('msg:', data.message);
-
-    if (status === TOKEN_EXPIRED) {
-      // [Todo] 토큰 재발급 처리
-    }
 
     return Promise.reject(error);
   },
