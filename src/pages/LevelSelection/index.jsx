@@ -19,7 +19,7 @@ import styled from './index.module.css';
 function LevelSelection() {
   const navigate = useNavigate();
   const mutation = useMutation({
-    mutationFn: data => study.sendStudyType(data),
+    mutationFn: data => study.postStudyType(data),
     onSuccess: () => {
       dispatch(studySlice.actions.increaseStage());
       navigate('/click-eng');
