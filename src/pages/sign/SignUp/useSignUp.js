@@ -1,10 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
+import { sign } from '../../../apis';
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
 import { isVldError } from '../../../utils/validityError';
 
 export const useSignUp = () => {
-  const mutaion = useMutation();
+  const navigate = useNavigate();
+  const mutaion = useMutation({
+    // [Todo] 이메일, 패스워드만 보내는 중
+    mutationFn: data => sign.postJoinData(data),
+    onSuccess: () => navigate('/'),
+  });
   const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { email: '', password: '', confirmPassword: '' }, criteriaMode: 'all' });
 
   const reg = {
@@ -13,7 +20,7 @@ export const useSignUp = () => {
       validate: {
         isEngAndNum: val => isEngAndNum(val) || '영문자 조합이어야 합니다.',
         isSpecialCharactors: val => isSpecialCharactors(val) || '특수문자가 하나 이상 포함되어야 합니다.',
-        isMinLength13: val => isMinLength(val, 13) || '8글자 이상이어야 합니다.',
+        isMinLength8: val => isMinLength(val, 8) || '8글자 이상이어야 합니다.',
       },
     }),
     confirmPassword: register('confirmPassword', {
@@ -21,9 +28,7 @@ export const useSignUp = () => {
     }),
   };
 
-  const onSubmit = handleSubmit(async data => {
-    mutaion.mutate();
-  });
+  const onSubmit = handleSubmit(async data => mutaion.mutate(data));
 
   // [Todo] 클래스로 만들까?
   const vldError = {
