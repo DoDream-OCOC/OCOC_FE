@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { sign } from '../../../apis';
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
-import { isVldError } from '../../../utils/validityError';
+import { isVldErr } from '../../../utils/validityError';
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -31,11 +31,11 @@ export const useSignUp = () => {
   const onSubmit = handleSubmit(async data => mutaion.mutate(data));
 
   // [Todo] 클래스로 만들까?
-  const vldError = {
-    email: { isError: isVldError(formState, 'email'), errMsg: formState.errors?.email?.message },
-    password: { isError: isVldError(formState, 'password'), errMsg: formState.errors?.password?.message },
-    confirmPassword: { isError: isVldError(formState, 'confirmPassword'), errMsg: formState.errors?.confirmPassword?.message },
+  const vldErr = {
+    email: { isError: isVldErr(formState, 'email'), errMsg: formState.errors?.email?.message },
+    password: { isError: isVldErr(formState, 'password'), errMsg: formState.errors?.password?.message },
+    confirmPassword: { isError: isVldErr(formState, 'confirmPassword'), errMsg: formState.errors?.confirmPassword?.message },
   };
 
-  return { reg, onSubmit, vldError };
+  return { reg, onSubmit, vldErr };
 };

@@ -6,7 +6,7 @@ import { isEmptyObject } from './object';
  * @param fieldName
  * @returns boolean
  */
-export const isVldError = (formstate, fieldName) => {
+export const isVldErr = (formstate, fieldName) => {
   const { errors } = formstate;
   return !!errors[fieldName];
 };
@@ -27,4 +27,14 @@ export const isFormError = (formstate, inputAmount) => {
       if (dirtyFields[name] !== true) return true;
     }
   } else return !isEmptyObject(errors);
+};
+
+/**
+ * Create Vld
+ * @param {*} formState
+ * @param {*} strArr
+ * @returns vldError
+ */
+export const createVldErr = (formState, strArr) => {
+  return;
 };

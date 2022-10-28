@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { signSlice } from '../../../store/slices/sign';
 import { sign } from '../../../apis';
 import { isEmail, isRequired } from '../../../utils/validation';
-import { isVldError } from '../../../utils/validityError';
+import { isVldErr } from '../../../utils/validityError';
 
 export const useSignIn = () => {
   const navigate = useNavigate();
@@ -27,10 +27,10 @@ export const useSignIn = () => {
 
   const onSubmit = handleSubmit(async data => mutaion.mutate({ loginId: data.email, loginPassword: data.password }));
 
-  const vldError = {
-    email: { isError: isVldError(formState, 'email'), errMsg: formState.errors?.email?.message },
-    password: { isError: isVldError(formState, 'password'), errMsg: formState.errors?.password?.message },
+  const vldErr = {
+    email: { isError: isVldErr(formState, 'email'), errMsg: formState.errors?.email?.message },
+    password: { isError: isVldErr(formState, 'password'), errMsg: formState.errors?.password?.message },
   };
 
-  return { navigate, reg, onSubmit, vldError };
+  return { navigate, reg, onSubmit, vldErr };
 };

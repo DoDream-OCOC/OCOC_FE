@@ -65,11 +65,11 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
 /**
  * Input component
  * @prop {string} placeholder
- * @prop {{isError:boolean; errMsg:string}} vldError
+ * @prop {{isError:boolean; errMsg:string}} vldErr
  * @returns Input
  */
-export const Input = React.forwardRef(({ placeholder, vldError, ...props }, ref) => {
-  const { isError, errMsg } = vldError;
+export const Input = React.forwardRef(({ placeholder, vldErr, ...props }, ref) => {
+  const { isError, errMsg } = vldErr;
   return (
     <div className={style.flexCol}>
       <input ref={ref} placeholder={placeholder} className={`${style.button} ${style.input} ${isError && style.inputError}`} {...props} />
