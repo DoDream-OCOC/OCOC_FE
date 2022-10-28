@@ -5,7 +5,10 @@ import { useDispatch } from 'react-redux';
 import { signSlice } from '../../../store/slices/sign';
 import { sign } from '../../../apis';
 import { isEmail, isRequired } from '../../../utils/validation';
-import { isVldErr } from '../../../utils/validityError';
+import { createVldErr } from '../../../utils/validityError';
+
+const EMAIL = 'email';
+const PW = 'password';
 
 export const useSignIn = () => {
   const navigate = useNavigate();
@@ -21,16 +24,13 @@ export const useSignIn = () => {
   const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });
 
   const reg = {
-    email: { ...register('email', { isEmail: val => isEmail(val) || '이메일 형식이 올바르지 않습니다.' }) },
-    password: { ...register('password', { validate: { isRequired: val => isRequired(val) || '비밀번호를 입력해야 합니다.' } }) },
+    email: { ...register(EMAIL, { isEmail: val => isEmail(val) || '이메일 형식이 올바르지 않습니다.' }) },
+    password: { ...register(PW, { validate: { isRequired: val => isRequired(val) || '비밀번호를 입력해야 합니다.' } }) },
   };
 
   const onSubmit = handleSubmit(async data => mutaion.mutate({ loginId: data.email, loginPassword: data.password }));
 
-  const vldErr = {
-    email: { isError: isVldErr(formState, 'email'), errMsg: formState.errors?.email?.message },
-    password: { isError: isVldErr(formState, 'password'), errMsg: formState.errors?.password?.message },
-  };
+  const vldErr = createVldErr(formState, [EMAIL, PW]);
 
   return { navigate, reg, onSubmit, vldErr };
 };

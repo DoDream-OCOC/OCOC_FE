@@ -3,7 +3,11 @@ import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { sign } from '../../../apis';
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
-import { isVldErr } from '../../../utils/validityError';
+import { createVldErr } from '../../../utils/validityError';
+
+const EMAIL = 'email';
+const PW = 'password';
+const CPW = 'confirmPassword';
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -15,15 +19,15 @@ export const useSignUp = () => {
   const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { email: '', password: '', confirmPassword: '' }, criteriaMode: 'all' });
 
   const reg = {
-    email: register('email', { validate: { isEmail: val => isEmail(val) || '이메일 형식이 올바르지 않습니다.' } }),
-    password: register('password', {
+    email: register(EMAIL, { validate: { isEmail: val => isEmail(val) || '이메일 형식이 올바르지 않습니다.' } }),
+    password: register(PW, {
       validate: {
         isEngAndNum: val => isEngAndNum(val) || '영문자 조합이어야 합니다.',
         isSpecialCharactors: val => isSpecialCharactors(val) || '특수문자가 하나 이상 포함되어야 합니다.',
         isMinLength8: val => isMinLength(val, 8) || '8글자 이상이어야 합니다.',
       },
     }),
-    confirmPassword: register('confirmPassword', {
+    confirmPassword: register(CPW, {
       validate: { isRequired: val => isRequired(val) || '비밀번호를 재입력해야 합니다.', isSame: val => val === getValues('password') || '비밀번호와 일치하지 않습니다.' },
     }),
   };
@@ -31,11 +35,7 @@ export const useSignUp = () => {
   const onSubmit = handleSubmit(async data => mutaion.mutate(data));
 
   // [Todo] 클래스로 만들까?
-  const vldErr = {
-    email: { isError: isVldErr(formState, 'email'), errMsg: formState.errors?.email?.message },
-    password: { isError: isVldErr(formState, 'password'), errMsg: formState.errors?.password?.message },
-    confirmPassword: { isError: isVldErr(formState, 'confirmPassword'), errMsg: formState.errors?.confirmPassword?.message },
-  };
+  const vldErr = createVldErr(formState, [EMAIL, PW, CPW]);
 
   return { reg, onSubmit, vldErr };
 };

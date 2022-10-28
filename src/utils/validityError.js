@@ -30,11 +30,18 @@ export const isFormError = (formstate, inputAmount) => {
 };
 
 /**
- * Create Vld
- * @param {*} formState
- * @param {*} strArr
+ * Create VldErr
+ * @param {FormState} formState
+ * @param {string[]} strArr
  * @returns vldError
  */
 export const createVldErr = (formState, strArr) => {
-  return;
+  const vldErr = {};
+  for (const fieldName of strArr) {
+    vldErr[fieldName] = {
+      isError: isVldErr(formState, fieldName),
+      errMsg: formState.errors?.[fieldName]?.message,
+    };
+  }
+  return vldErr;
 };
