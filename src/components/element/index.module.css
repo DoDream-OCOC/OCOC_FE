@@ -5,6 +5,12 @@ span {
   letter-spacing: 1.5px;
 }
 
+.flexCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Font-size */
 /* [Todo] 자간 추가 */
 
@@ -76,6 +82,20 @@ span {
   color: var(--Text-2);
   background-color: var(--Gray-2);
 }
+
 .input::placeholder {
   color: var(--Gray-4);
+}
+
+.inputError {
+  border: 2px var(--Red) solid;
+  outline: 0px;
+}
+
+.inputErrMsg {
+  position: absolute;
+  top: 3.5rem;
+  right: 0px;
+
+  color: var(--Red);
 }

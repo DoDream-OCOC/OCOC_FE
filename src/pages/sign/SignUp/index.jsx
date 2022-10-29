@@ -1,10 +1,15 @@
 import React from 'react';
+import { useSignUp } from './useSignUp';
+
 import NavBar from '../../../components/navbar';
 import MainContainer from '../../../components/container/main';
 import { Text, Button, Empty, Input } from '../../../components/element';
 
+const SIGN_UP = 'sign-up';
+
 function SignUp() {
-  // [Todo] 유효성 검사 추가
+  const { reg, onSubmit, vldErr } = useSignUp();
+
   return (
     <>
       <NavBar />
@@ -12,15 +17,15 @@ function SignUp() {
         <article>
           <Text size="H4" color="Text-2" content="회원가입" />
           <Empty size="2.5rem" />
-          <form>
-            <Input placeholder="Email" />
+          <form id={SIGN_UP} onSubmit={onSubmit}>
+            <Input {...reg.email} vldErr={vldErr.email} type="email" placeholder="Email" />
             <Empty size="2rem" />
-            <Input placeholder="비밀번호" />
+            <Input {...reg.password} vldErr={vldErr.password} type="password" placeholder="비밀번호" />
             <Empty size="2rem" />
-            <Input placeholder="비밀번호 재입력" />
+            <Input {...reg.confirmPassword} vldErr={vldErr.confirmPassword} type="password" placeholder="비밀번호 재입력" />
           </form>
           <Empty size="6rem" />
-          <Button content="회원가입" />
+          <Button content="회원가입" type="submit" form={SIGN_UP} />
         </article>
       </MainContainer>
     </>
