@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useGradedUI, useModal } from '../../hooks';
-import { studySlice } from '../../store/slices/study';
+import { gameSlice } from '../../store/slices';
 
-import { study } from '../../apis';
+import { question } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
@@ -17,9 +17,10 @@ function useKeywords() {
   const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
   const { clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { studyId, results } = useSelector(state => state.study);
+  const level = useSelector(); // [Todo] level 가져오는 로직 구현 필요합니다
 
   const mutation = useMutation({
-    mutationFn: data => study.sendStudyResult(results, studyId),
+    mutationFn: () => question.getQuestion(studyId, level),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -55,7 +56,7 @@ function useKeywords() {
 
     showGradedUI(isCorrectAnswer, () => {
       setNewKeywords([]);
-      dispatch(studySlice.actions.increaseStage());
+      dispatch(gameSlice.actions.increaseStage());
     });
 
     return isCorrectBtn;

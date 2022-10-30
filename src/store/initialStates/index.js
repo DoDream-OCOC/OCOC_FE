@@ -1,4 +1,4 @@
-export const studyInitialState = {
+export const gameInitialState = {
   datasets: [
     {
       clause: 0,

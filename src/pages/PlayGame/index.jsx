@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { studySlice } from '../../store/slices';
+import { gameSlice } from '../../store/slices';
 import { useGradedUI, useKeywords } from '../../hooks';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
@@ -27,7 +27,7 @@ function PlayGame() {
     if (initialRender.current) {
       initialRender.current = false;
     } else {
-      return () => dispatch(studySlice.actions.cleanAllCorpus());
+      return () => dispatch(gameSlice.actions.cleanAllCorpus());
     }
   }, [location, dispatch]);
 
