@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices';
-import { useGradedUI, useInitialRender, useKeywords } from '../../hooks';
+import { useGradedUI, useKeywords } from '../../hooks';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
