@@ -29,4 +29,3 @@ export const LevelSelectionBtn = ({ title, isLoading = false, content, onClick, 
     </div>
   );
 };
-

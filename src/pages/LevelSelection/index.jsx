@@ -20,10 +20,8 @@ function LevelSelection() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const mutation = useMutation({
-    mutationFn: _data => {
-      // [Todo] 이거 정상 작동되는지 확인 필요
-      study.postStudyType(_data).then(res => {
-        console.log(res.data.data);
+    mutationFn: async _data => {
+      await study.postStudyType(_data).then(res => {
         const data = res.data.data;
         dispatch(studySlice.actions.setAllCorpus({ datasets: data.datasets, studyId: data.study.id }));
       });
