@@ -3,8 +3,8 @@ import ococ from './core';
 const ROUTE = 'study';
 
 /**
- * response studyId
+ * @response studyId
  */
 export const postStudy = async () => {
-  await ococ.post(`/${ROUTE}`);
+  return await ococ.post(`/${ROUTE}`);
 };
