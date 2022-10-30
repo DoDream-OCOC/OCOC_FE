@@ -22,8 +22,11 @@ function LevelSelection() {
   const mutation = useMutation({
     mutationFn: _data => {
       // [Todo] 이거 정상 작동되는지 확인 필요
-      const data = study.postStudyType(_data).data.data;
-      dispatch(studySlice.actions.setAllCorpus({ datasets: data.datasets, studyId: data.study.id }));
+      study.postStudyType(_data).then(res => {
+        console.log(res.data.data);
+        const data = res.data.data;
+        dispatch(studySlice.actions.setAllCorpus({ datasets: data.datasets, studyId: data.study.id }));
+      });
     },
     onSuccess: () => {
       dispatch(studySlice.actions.increaseStage());

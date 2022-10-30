@@ -3,7 +3,7 @@ import ococ from './core';
 const ROUTE = 'study';
 
 export const postStudyType = async (level, studyType = 'click') => {
-  await ococ.post(`/${ROUTE}`, { level, studyType });
+  return await ococ.post(`/${ROUTE}`, { level, studyType });
 };
 
 export const sendStudyResult = async (results, studyId) => {
