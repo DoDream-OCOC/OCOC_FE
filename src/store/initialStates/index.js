@@ -1,12 +1,13 @@
 export const gameInitialState = {
   datasets: [
     {
-      clause: 0,
-      createdAt: '',
-      english: '',
       id: 0,
+      questionType: '',
+      clause: 0,
+      english: '',
       korean: '',
       words: [],
+      blankIndex: 0,
     },
   ],
   results: [],
