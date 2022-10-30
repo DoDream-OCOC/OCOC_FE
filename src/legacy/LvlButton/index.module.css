@@ -1,0 +1,52 @@
+.outer {
+  max-width: 25rem;
+  width: 80vw;
+  height: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 20px;
+  background-color: var(--Gray-2);
+
+  margin: 1rem 0px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+
+  width: 90%;
+}
+
+#circle {
+  margin-right: 1rem;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 48rem) {
+  .outer {
+    width: 14rem;
+    height: 9rem;
+
+    margin: 0rem 1rem;
+  }
+
+  .inner {
+    flex-direction: column;
+  }
+
+  #circle {
+    margin-right: 0rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .text {
+    align-items: center;
+  }
+}
