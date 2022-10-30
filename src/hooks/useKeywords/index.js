@@ -8,10 +8,9 @@ import { studySlice } from '../../store/slices/study';
 import { study } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 import shortid from 'shortid';
-import { ClickEngModal } from '../../pages/ClickEng/modal';
+import { PlayGameModal } from './modal';
 
-function useKeywords(){
-
+function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal, closeModal } = useModal();
@@ -38,13 +37,13 @@ function useKeywords(){
   };
 
   //영작 칸에 띄울 단어 배열
-  const insertButton = (id) => {
+  const insertButton = id => {
     setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id === id)));
     setKeywords(keywords.filter(keyword => keyword.id !== id));
   };
 
   //영작 칸에서 클릭한 버튼의 배열 제거
-  const removeButton = (id) => {
+  const removeButton = id => {
     setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id === id)));
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
@@ -75,17 +74,17 @@ function useKeywords(){
 
   //모달 창 띄우기
   const ShowModal = () => {
-    return(
+    return (
       <>
-         <Modal>
-          { /*[Temp] onLogin 일단 보류*/ }
-          <ClickEngModal onBackToMain={() => navigate('/')} />
+        <Modal>
+          {/*[Temp] onLogin 일단 보류*/}
+          <PlayGameModal onBackToMain={() => navigate('/')} />
         </Modal>
       </>
     );
   };
-  
-  return {keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal};
+
+  return { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal };
 }
 
 export default useKeywords;

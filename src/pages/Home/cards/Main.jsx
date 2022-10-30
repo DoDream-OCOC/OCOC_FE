@@ -22,7 +22,8 @@ export const MainCard = () => {
       <Empty size="1rem" />
       <OCOCTitle style={{ width: '9.43rem', height: '2.563rem', fill: 'var(--Green)', ZIndex: '3' }} />
       <Empty size="4.9rem" />
-      <Button onClick={() => navigate('/lvl-slc')} content="시작하기" />
+      {/* [Todo] 비회원일 경우, 다른 페이지로 이동 */}
+      <Button onClick={() => navigate('/play-game')} content="시작하기" />
       <Empty size="6rem" />
     </article>
   );

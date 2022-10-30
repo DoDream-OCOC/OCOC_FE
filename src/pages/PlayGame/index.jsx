@@ -9,7 +9,7 @@ import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
 
-function ClickEng() {
+function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
   const [isGrading, showGradedUI] = useGradedUI();
@@ -59,4 +59,4 @@ function ClickEng() {
   );
 }
 
-export default ClickEng;
+export default PlayGame;
