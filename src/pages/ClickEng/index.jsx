@@ -1,31 +1,34 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGradedUI,  useInitialRender, useKeywords } from '../../hooks';
+import { studySlice } from '../../store/slices';
+import { useGradedUI, useInitialRender, useKeywords } from '../../hooks';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
 
-
 function ClickEng() {
-
   const location = useLocation();
   const dispatch = useDispatch();
-  const [ isGrading, showGradedUI ] = useGradedUI();
+  const [isGrading, showGradedUI] = useGradedUI();
   const { korean } = useSelector(state => state.study.datasets[state.study.stage - 1]);
   const { stage } = useSelector(state => state.study);
-  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal} = useKeywords();
-  const initialRender = useInitialRender();
-  
+  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal } = useKeywords();
+
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
- 
+
+  const initialRender = React.useRef(true);
   React.useEffect(() => {
-    initialRender();
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      return () => dispatch(studySlice.actions.cleanAllCorpus());
+    }
   }, [location, dispatch]);
 
   return (
