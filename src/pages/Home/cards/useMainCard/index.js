@@ -6,7 +6,7 @@ import { study, question } from '../../../../apis/index';
 
 export const useMainCard = () => {
   const navigate = useNavigate();
-  const studyId = useSelector(state => state.study.studyId);
+  const studyId = useSelector(state => state.game.studyId);
   const dispatch = useDispatch();
   const mutation = useMutation({
     mutationFn: async () => {
