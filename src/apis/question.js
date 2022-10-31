@@ -9,5 +9,5 @@ const ROUTE = 'question';
  * @response { id, questionType, korean, english, clause, words, blankIndex }
  */
 export const getQuestion = async (studyId, level) => {
-  return await ococ.post(`/${ROUTE}/${studyId}?level=${level}`);
+  return await ococ.get(`/${ROUTE}/${studyId}?level=${level}`);
 };

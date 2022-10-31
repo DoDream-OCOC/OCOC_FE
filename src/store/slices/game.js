@@ -11,8 +11,7 @@ export const gameSlice = createSlice({
       state.studyId = action.payload.studyId;
     },
     setAllCorpus(state, action) {
-      state.datasets = action.payload.datasets;
-      state.studyId = action.payload.studyId;
+      state.datasets = action.payload.data;
     },
     increaseStage(state, action) {
       state.stage++;
