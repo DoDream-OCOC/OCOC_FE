@@ -10,10 +10,11 @@ export const gameInitialState = {
       blankIndex: 0,
     },
   ],
-  results: [],
+  results: { score: 0, avrSpeed: 0, stage: 0 },
   studyId: 0,
   stage: 0,
   correctAnswerCount: 0,
+  life: 0,
 };
 
 export const signInitialState = {

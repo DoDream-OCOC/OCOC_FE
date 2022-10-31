@@ -1,5 +1,5 @@
 import React from 'react';
 
-function timer() {}
+function TimerUI() {}
 
-export default timer;
+export default TimerUI;

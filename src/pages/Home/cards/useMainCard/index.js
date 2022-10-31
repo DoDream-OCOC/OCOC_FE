@@ -15,7 +15,7 @@ export const useMainCard = () => {
         await question.getQuestion(res.data.data.studyId, 1).then(res => dispatch(gameSlice.actions.setAllCorpus(res.data)));
       });
     },
-    // onSuccess: () => navigate('/play-game'),
+    onSuccess: () => navigate('/play-game'),
     // [Todo] alert 붙여주기
     onError: err => console.log(err),
   });
