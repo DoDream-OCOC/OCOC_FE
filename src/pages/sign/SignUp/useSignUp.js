@@ -34,7 +34,6 @@ export const useSignUp = () => {
 
   const onSubmit = handleSubmit(async data => mutaion.mutate(data));
 
-  // [Todo] 클래스로 만들까?
   const vldErr = createVldErr(formState, [EMAIL, PW, CPW]);
 
   return { reg, onSubmit, vldErr };
