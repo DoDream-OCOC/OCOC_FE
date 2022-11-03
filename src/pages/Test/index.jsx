@@ -8,7 +8,7 @@ import useTimerUI from '../../hooks/timer/useTimerUI';
 
 function Test() {
   const navigate = useNavigate();
-  const { TimerUI } = useTimerUI();
+  const { TimerUI, timeRes, stop } = useTimerUI({ level: 1 });
   return (
     <>
       <NavBar />
@@ -18,7 +18,10 @@ function Test() {
           <div onClick={() => navigate('/')}>
             <Text size="B1" content="홈페이지로 돌아가기" />
           </div>
-          <TimerUI level={1} />
+          <TimerUI />
+          <button onClick={stop}>time stop!</button>
+          <div>소요시간 : {timeRes.elapsedT}</div>
+          <div>가산점 : {String(timeRes.isBonus)}</div>
         </article>
       </MainContainer>
     </>
