@@ -4,11 +4,21 @@ import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 
 import { Text } from '../../components/element';
-import useTimerUI from '../../hooks/timer/useTimerUI';
+import { useTimerUI, useGradedUI } from '../../hooks';
+import PointEarnedUI from '../../hooks/useGradedUI/PointEarnedUI';
 
 function Test() {
   const navigate = useNavigate();
-  const { TimerUI, timeRes, stop } = useTimerUI({ level: 1 });
+  const {
+    TimerUI,
+    timeRes: { elapsedT, pointEarned },
+    stop,
+  } = useTimerUI({ level: 1 });
+  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
+  const 시간아멈춰라 = () => {
+    stop();
+    showGradedUI(true, () => {});
+  };
   return (
     <>
       <NavBar />
@@ -19,9 +29,10 @@ function Test() {
             <Text size="B1" content="홈페이지로 돌아가기" />
           </div>
           <TimerUI />
-          <button onClick={stop}>time stop!</button>
-          <div>소요시간 : {timeRes.elapsedT}</div>
-          <div>가산점 : {String(timeRes.isBonus)}</div>
+          <button onClick={시간아멈춰라}>time stop!</button>
+          <div>소요시간 : {elapsedT}</div>
+          <div>얻은 점수 : {pointEarned}</div>
+          <PointEarnedUI isGrading={isGrading} isCrtAns={isCorrectBtn} pointEarned={pointEarned} />
         </article>
       </MainContainer>
     </>

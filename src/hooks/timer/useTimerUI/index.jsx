@@ -20,7 +20,7 @@ const useTimerUI = ({ level = 1 }) => {
   else if (level === 3) timeLimit = 15000;
   const [timeRes, setTimeRes] = React.useState({
     elapsedT: 0,
-    isBonus: false,
+    pointEarned: 0,
   });
   const { time, isNoTime, isDone, stop } = useTimer(timeLimit);
   const TimerUI = () => {
@@ -37,9 +37,9 @@ const useTimerUI = ({ level = 1 }) => {
     if (isDone)
       setTimeRes({
         elapsedT: timeLimit - time,
-        isBonus: !isNoTime,
+        pointEarned: level * 10 + (!isNoTime ? 5 : 0),
       });
-  }, [isDone, isNoTime, time, timeLimit]);
+  }, [isDone, isNoTime, time, timeLimit, level]);
 
   return { TimerUI, timeRes, stop };
 };
