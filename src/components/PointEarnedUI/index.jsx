@@ -8,7 +8,7 @@ function PointEarnedUI({ isGrading, isCrtAns, pointEarned }) {
     isGrading && (
       <div id={styled.pointEarnedUI} className={isCrtAns ? styled.green : styled.red}>
         <Text size="H3" color="Text-2" content={isCrtAns ? '맞았습니다!' : '틀렸습니다!'} />
-        <Text size="H2" color="Text-2" content={`+${pointEarned}`} />
+        {isCrtAns && <Text size="H2" color="Text-2" content={`+${pointEarned}`} />}
       </div>
     )
   );
