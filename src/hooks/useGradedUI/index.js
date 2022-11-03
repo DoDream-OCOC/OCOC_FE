@@ -4,6 +4,7 @@ import React from 'react';
  * @returns isCorrectBtn, isGrading, showGradedUI
  */
 function useGradedUI() {
+  // 시간 다 되면 틀리는 로직 구현
   // [Todo] 네이밍이 별로임
   const [isCorrectBtn, setIsCorrectBtn] = React.useState(null);
   const [isGrading, setIsGrading] = React.useState(false);

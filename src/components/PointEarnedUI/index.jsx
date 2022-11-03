@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from '../element';
 import styled from './index.module.css';
 
-// 시간 다 되면 틀렸습니다
+// [Todo] 시간 다 되면 틀렸습니다
 function PointEarnedUI({ isGrading, isCrtAns, pointEarned }) {
   return (
     isGrading && (
