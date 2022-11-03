@@ -6,6 +6,7 @@ import Fail from './pages/Fail';
 import PlayGame from './pages/PlayGame';
 import SignIn from './pages/sign/SignIn';
 import SignUp from './pages/sign/SignUp';
+import Test from './pages/Test';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="*" element={<Fail />} />
+            {process.env.NODE_ENV === 'development' && <Route path="/test" element={<Test />} />}
           </Routes>
         </Router>
       </div>
