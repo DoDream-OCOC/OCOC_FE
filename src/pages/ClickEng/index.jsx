@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { studySlice } from '../../store/slices';
 import { useGradedUI, useKeywords } from '../../hooks';
 
-import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
+import { NavBar, ProgressBar1, MainContainer, QuestionContainer } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
@@ -38,7 +38,7 @@ function ClickEng() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar value={stage} />
+            <ProgressBar1 value={(stage - 1) * 10} />
             <div className={style.relative}>
               <QuestionContainer content={korean} />
               <div className={style.absolute}>
