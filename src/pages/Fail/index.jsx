@@ -4,6 +4,7 @@ import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 
 import { Text } from '../../components/element';
+import { TimerUI } from '../../components';
 
 // [Todo] http status 오류 메세지를 담기
 function Fail() {
@@ -17,6 +18,7 @@ function Fail() {
           <div onClick={() => navigate('/')}>
             <Text size="B1" content="홈페이지로 돌아가기" />
           </div>
+          <TimerUI level={1} />
         </article>
       </MainContainer>
     </>
