@@ -5,7 +5,7 @@ import MainContainer from '../../components/container/main';
 
 import { Text } from '../../components/element';
 import { useTimerUI, useGradedUI } from '../../hooks';
-import PointEarnedUI from '../../hooks/useGradedUI/PointEarnedUI';
+import PointEarnedUI from '../../components/PointEarnedUI';
 
 function Test() {
   const navigate = useNavigate();

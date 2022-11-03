@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '../../../components/element';
+import { Text } from '../element';
 import styled from './index.module.css';
 
 // 시간 다 되면 틀렸습니다
