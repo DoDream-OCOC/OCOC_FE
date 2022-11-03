@@ -4,10 +4,11 @@ import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 
 import { Text } from '../../components/element';
-import { TimerUI } from '../../components';
+import useTimerUI from '../../hooks/timer/useTimerUI';
 
 function Test() {
   const navigate = useNavigate();
+  const { TimerUI } = useTimerUI();
   return (
     <>
       <NavBar />

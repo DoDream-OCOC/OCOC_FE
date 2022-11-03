@@ -2,14 +2,14 @@ import React from 'react';
 
 /**
  * Timer hook
- * @param { 6 | 10 | 15 } timeLimit stage1 : 6초 / stage2 : 10초 /  stage3 : 15초
+ * @param { 6000 | 10000 | 15000 } timeLimit stage1 : 6초 / stage2 : 10초 /  stage3 : 15초
  * @returns time, stop
  * Review1 : useState와 useEffect를 깊게 공부해볼 필요가 있다 정말
  * Review2 : useEffect에서 변경된 상태를 처리하려면, useRef가 필요함
  */
 function useTimer(timeLimit) {
   const timer = React.useRef(null);
-  const timeRef = React.useRef(timeLimit * 1000);
+  const timeRef = React.useRef(timeLimit);
   const [time, setTime] = React.useState(timeRef.current);
   const [isNoTime, setIsNoTime] = React.useState(false);
   const [isDone, setIsDone] = React.useState(false);
@@ -24,7 +24,7 @@ function useTimer(timeLimit) {
   }, [time]);
 
   React.useEffect(() => {
-    if (timeRef.current <= (timeLimit * 1000) / 2) setIsNoTime(true);
+    if (timeRef.current <= timeLimit / 2) setIsNoTime(true);
   }, [time, timeLimit]);
 
   React.useEffect(() => {
