@@ -27,15 +27,19 @@
 .video_wrapper {
   background: linear-gradient(#d2fffc, white);
   position: relative;
-  width: 100vw;
+  width: 1920px;
   z-index: -10;
-  height: 1080px;
+  height: 100vh;
   overflow: hidden;
 }
 
-.video_wrapper video {
+.video_wrapper svg {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 1920px;
   top: -4rem;
+}
+
+.text_wrapper {
+  max-width: 20rem;
+  width: 90vw;
 }
