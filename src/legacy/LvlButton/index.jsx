@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text } from '../../../components/element';
+import { Text } from '../../components/element';
 
 import { ReactComponent as Loading } from '../../../assets/loading/ellipsis.svg';
 import style from './index.module.css';

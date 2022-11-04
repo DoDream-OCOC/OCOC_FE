@@ -6,19 +6,16 @@ import { ProgressBar, Step } from 'react-step-progress-bar';
 
 //<button className={style.progress_icon}><FaRegTimesCircle /></button>
 
-function ProgressBar1({ value }) {
+function ProgressBar({ value }) {
   return (
     <>
-      <div className={style.progress_navbar}>
-        <ProgressBar percent={value} filledBackground="#2d9e1b" height="0.5rem">
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-        </ProgressBar>
-      </div>
+      <nav className={style.progress_navbar}>
+        <button className={style.progress_icon}>
+          <FaRegTimesCircle />
+        </button>
+
+        <progress className={style.progress} value={value} max="10"></progress>
+      </nav>
     </>
   );
 }

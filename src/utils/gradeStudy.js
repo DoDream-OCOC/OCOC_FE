@@ -1,5 +1,5 @@
 import store from '../store';
-import { studySlice } from '../store/slices/study';
+import { gameSlice } from '../store/slices';
 
 /**
  * Grade study
@@ -25,7 +25,7 @@ const isCorrect = (userAnswer, answer) => {
 // [Todo] dispatch를 너무 다양한 곳에서 해주는 느낌이 나긴 함
 const setStudyResultInLS = (userAnswer, datasetId) => {
   store.dispatch(
-    studySlice.actions.setStudyResult({
+    gameSlice.actions.setStudyResult({
       results: {
         inputSentence: userAnswer,
         datasetId: datasetId,

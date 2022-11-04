@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Button, Empty } from '../../../components/element';
 
-export const ClickEngModal = ({ onLogIn, onBackToMain }) => {
+export const PlayGameModal = ({ onLogIn, onBackToMain }) => {
   return (
     <article>
       <Text color="Text-1" content="지금은 비회원으로 학습중입니다..." />

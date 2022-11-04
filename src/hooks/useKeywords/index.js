@@ -3,24 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useGradedUI, useModal } from '../../hooks';
-import { studySlice } from '../../store/slices/study';
+import { gameSlice } from '../../store/slices';
 
-import { study } from '../../apis';
+import { question } from '../../apis';
 import { gradeStudy } from '../../utils/gradeStudy';
 import shortid from 'shortid';
-import { ClickEngModal } from '../../pages/ClickEng/modal';
+import { PlayGameModal } from './modal';
 
-function useKeywords(){
-
+function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal, closeModal } = useModal();
   const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
-  const { clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
-  const { studyId, results } = useSelector(state => state.study);
+  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { studyId, results } = useSelector(state => state.game);
+  //const level = useSelector(); // [Todo] level 가져오는 로직 구현 필요합니다
 
   const mutation = useMutation({
-    mutationFn: data => study.sendStudyResult(results, studyId),
+    mutationFn: () => question.getQuestion(studyId),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -38,13 +38,13 @@ function useKeywords(){
   };
 
   //영작 칸에 띄울 단어 배열
-  const insertButton = (id) => {
+  const insertButton = id => {
     setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id === id)));
     setKeywords(keywords.filter(keyword => keyword.id !== id));
   };
 
   //영작 칸에서 클릭한 버튼의 배열 제거
-  const removeButton = (id) => {
+  const removeButton = id => {
     setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id === id)));
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
@@ -56,7 +56,7 @@ function useKeywords(){
 
     showGradedUI(isCorrectAnswer, () => {
       setNewKeywords([]);
-      dispatch(studySlice.actions.increaseStage());
+      dispatch(gameSlice.actions.increaseStage());
     });
 
     return isCorrectBtn;
@@ -75,17 +75,17 @@ function useKeywords(){
 
   //모달 창 띄우기
   const ShowModal = () => {
-    return(
+    return (
       <>
-         <Modal>
-          { /*[Temp] onLogin 일단 보류*/ }
-          <ClickEngModal onBackToMain={() => navigate('/')} />
+        <Modal>
+          {/*[Temp] onLogin 일단 보류*/}
+          <PlayGameModal onBackToMain={() => navigate('/')} />
         </Modal>
       </>
     );
   };
-  
-  return {keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal};
+
+  return { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal };
 }
 
 export default useKeywords;

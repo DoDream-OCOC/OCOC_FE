@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Pages
 import Home from './pages/Home';
 import Fail from './pages/Fail';
-import LevelSelection from './pages/LevelSelection';
-import ClickEng from './pages/ClickEng';
+import PlayGame from './pages/PlayGame';
 import SignIn from './pages/sign/SignIn';
 import SignUp from './pages/sign/SignUp';
 
@@ -15,8 +14,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/lvl-slc" element={<LevelSelection />} />
-            <Route path="/click-eng" element={<ClickEng />} />
+            <Route path="/play-game" element={<PlayGame />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="*" element={<Fail />} />
