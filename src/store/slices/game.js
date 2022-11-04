@@ -25,7 +25,8 @@ export const gameSlice = createSlice({
       state.correctAnswerCount = gameSlice.getInitialState().correctAnswerCount;
     },
     setStudyResult(state, action) {
-      state.results = [...state.results, action.payload.results];
+      state.results = {};
+      // results에 ...score, ...avrSpeed, ...stage 받아와서 추가 해야합니다
     },
     // 도중에 데이터가 날아갔을때는?
     // [Todo] studyResult.answerList.length에 따라서 progress bar랑 로그인 유도 페이지
