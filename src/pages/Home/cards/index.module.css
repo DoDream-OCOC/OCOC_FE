@@ -27,10 +27,10 @@
 .video_wrapper {
   background: linear-gradient(#d2fffc, white);
   position: relative;
-  width: 1920px;
+  width: 100vw;
   z-index: -10;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .video_wrapper svg {

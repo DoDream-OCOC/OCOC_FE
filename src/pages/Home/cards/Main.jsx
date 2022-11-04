@@ -6,19 +6,11 @@ import { ReactComponent as OCOCTitle } from '../../../assets/OCOC/OCOC_text.svg'
 import { Turtle } from './turtle';
 import style from './index.module.css';
 
-import Lottie from 'lottie-react';
-import cloud_bg from '../../../assets/OCOC/Cloud_background.json';
-
 export const MainCard = () => {
   const navigate = useNavigate();
   return (
     <article>
       <Empty size="1rem" />
-      <div style={{ position: 'absolute', x: '400px' }}>
-        <div className={style.video_wrapper}>
-          <Lottie animationData={cloud_bg} />
-        </div>
-      </div>
       <Empty size="1rem" />
       <div className={style.text_wrapper}>
         <Text size="H4" color="black" content="영어 순서 맞추기 게임," />

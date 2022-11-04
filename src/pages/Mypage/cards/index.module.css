@@ -1,0 +1,15 @@
+.profile_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video_wrapper {
+  background: linear-gradient(#d2fffc, white);
+  position: relative;
+  width: 100vw;
+  z-index: -10;
+  height: 100vh;
+  overflow-x: hidden;
+}

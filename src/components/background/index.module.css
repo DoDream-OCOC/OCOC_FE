@@ -1,0 +1,10 @@
+.background_wrapper {
+  position: absolute;
+  z-index: -10;
+  left: -0%;
+  width: 100vw;
+  height: 100vh;
+  background: aqua;
+  background: linear-gradient(#d2fffc, white);
+  display: flex;
+}
