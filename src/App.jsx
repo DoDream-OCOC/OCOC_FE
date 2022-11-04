@@ -7,11 +7,14 @@ import LevelSelection from './pages/LevelSelection';
 import ClickEng from './pages/ClickEng';
 import SignIn from './pages/sign/SignIn';
 import SignUp from './pages/sign/SignUp';
+import MyPage from './pages/Mypage';
+import Background from './components/background';
 
 function App() {
   return (
     <>
       <div className="App">
+        <Background />
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -19,6 +22,7 @@ function App() {
             <Route path="/click-eng" element={<ClickEng />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/my-page" element={<MyPage />} />
             <Route path="*" element={<Fail />} />
           </Routes>
         </Router>
