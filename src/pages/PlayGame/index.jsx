@@ -38,7 +38,7 @@ function PlayGame() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar1 value={(stage - 1) * 10} />
+            <ProgressBar1 value={stage * 10} />
             <div className={style.relative}>
               <QuestionContainer content={korean} />
               <div className={style.absolute}>
