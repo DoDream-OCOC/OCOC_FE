@@ -25,6 +25,7 @@
 }
 
 .video_wrapper {
+  background: linear-gradient(#d2fffc, white);
   position: relative;
   width: 100vw;
   z-index: -10;
