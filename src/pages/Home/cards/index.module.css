@@ -40,6 +40,11 @@
 }
 
 .text_wrapper {
-  max-width: 20rem;
+  max-width: 25rem;
   width: 90vw;
+}
+
+.Turtle {
+  width: 10rem;
+  margin-right: 15rem;
 }
