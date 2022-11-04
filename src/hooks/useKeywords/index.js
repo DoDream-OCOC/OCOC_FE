@@ -15,12 +15,12 @@ function useKeywords() {
   const navigate = useNavigate();
   const { Modal, openModal, closeModal } = useModal();
   const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
-  const { clause, english, words, id } = useSelector(state => state.study.datasets[state.study.stage - 1]);
-  const { studyId, results } = useSelector(state => state.study);
-  const level = useSelector(); // [Todo] level 가져오는 로직 구현 필요합니다
+  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { studyId, results } = useSelector(state => state.game);
+  //const level = useSelector(); // [Todo] level 가져오는 로직 구현 필요합니다
 
   const mutation = useMutation({
-    mutationFn: () => question.getQuestion(studyId, level),
+    mutationFn: () => question.getQuestion(studyId),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열

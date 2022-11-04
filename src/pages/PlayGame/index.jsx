@@ -13,7 +13,7 @@ function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
   const [isGrading, showGradedUI] = useGradedUI();
-  const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
+  const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
   const { stage } = useSelector(state => state.game);
   const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal } = useKeywords();
 
