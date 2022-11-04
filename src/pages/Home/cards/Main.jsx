@@ -25,7 +25,3 @@ export const MainCard = () => {
     </article>
   );
 };
-
-{
-  /* <video src={header_video} autoPlay muted loop preload="auto"></video> */
-}
