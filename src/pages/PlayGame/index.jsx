@@ -8,6 +8,7 @@ import { NavBar, ProgressBar1, MainContainer, QuestionContainer } from '../../co
 import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
+import { ReactComponent as Life } from '../../assets/icons/life.svg';
 
 function PlayGame() {
   const location = useLocation();
@@ -45,6 +46,13 @@ function PlayGame() {
                 <Button isCorrect={isCorrectBtn} keywords={newKeywords} onClick={removeButton} />
               </div>
             </div>
+
+            <div className={style.life_container}>
+              <Life className={style.life} width="23" height="23" />
+              <Life className={style.life} width="23" height="23" />
+              <Life className={style.life} width="23" height="23" />
+            </div>
+
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
                 <Button keywords={keywords} onClick={insertButton} />
