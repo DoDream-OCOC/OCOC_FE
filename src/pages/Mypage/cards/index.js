@@ -1,3 +1,4 @@
 import { Profile } from './Profie';
 import { ProgressStatus } from './ProgessStatus';
-export { Profile, ProgressStatus };
+import { Ranking } from './Ranking';
+export { Profile, ProgressStatus, Ranking };

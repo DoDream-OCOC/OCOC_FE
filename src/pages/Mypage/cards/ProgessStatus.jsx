@@ -4,8 +4,12 @@ import style from './index.module.css';
 
 export const ProgressStatus = () => {
   return (
-    <div>
-      <h1>progessbar 들어가는 곳</h1>
-    </div>
+    <section
+      style={{
+        backgroundColor: 'red',
+      }}>
+      <Empty size="5rem" />
+      <div>----------프로그레스바----------</div>
+    </section>
   );
 };
