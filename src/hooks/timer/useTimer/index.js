@@ -12,6 +12,7 @@ function useTimer(timeLimit) {
   const timeRef = React.useRef(timeLimit);
   const [time, setTime] = React.useState(timeRef.current);
   const [isNoTime, setIsNoTime] = React.useState(false);
+  const [isTimeOut, setIsTimeOut] = React.useState(false);
   const [isDone, setIsDone] = React.useState(false);
 
   const stop = async () => {
@@ -20,7 +21,10 @@ function useTimer(timeLimit) {
   };
 
   React.useEffect(() => {
-    if (timeRef.current <= 0) stop();
+    if (timeRef.current <= 0) {
+      stop();
+      setIsTimeOut(true);
+    }
   }, [time]);
 
   React.useEffect(() => {
@@ -35,7 +39,7 @@ function useTimer(timeLimit) {
     return () => clearInterval(timer.current);
   }, []);
 
-  return { time, isNoTime, isDone, stop };
+  return { time, isNoTime, isTimeOut, isDone, stop };
 }
 
 export default useTimer;

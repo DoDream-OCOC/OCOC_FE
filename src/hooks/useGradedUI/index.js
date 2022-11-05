@@ -7,8 +7,7 @@ import { PointEarnedUI as PEUI } from '../../components/PointEarnedUI';
  * @returns isCrtAns, isGrading, stageRes, showGradedUI, TimerUI, PointEarnedUI
  */
 function useGradedUI({ level }) {
-  const { TimerUI, stop, timeResRef } = useTimerUI({ level });
-  // 시간 다 되면 틀리는 로직 구현
+  const { TimerUI, stop, timeResRef, isTimeOut } = useTimerUI({ level });
   const [isCrtAns, setIsCrtAns] = React.useState(null);
   const [isGrading, setIsGrading] = React.useState(false);
   const [stageRes, setStageRes] = React.useState({
@@ -35,6 +34,11 @@ function useGradedUI({ level }) {
   };
 
   const PointEarnedUI = () => <PEUI isGrading={isGrading} isCrtAns={isCrtAns} pointEarned={stageRes.pointEarned} />;
+  // 시간 다 되면 틀리는 로직 구현 + 콜백 어떻게 넣을까
+  React.useEffect(() => {
+    if (isTimeOut) gradeGame(false, () => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimeOut]);
 
   return { isCrtAns, isGrading, stageRes, gradeGame, TimerUI, PointEarnedUI };
 }

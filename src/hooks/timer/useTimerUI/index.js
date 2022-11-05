@@ -22,9 +22,9 @@ const useTimerUI = ({ level = 1 }) => {
   else if (level === 3) timeLimit = 15000;
   const timeResRef = React.useRef({
     elapsedT: 0,
-    isBonus: 0,
+    isBonus: false,
   });
-  const { time, isNoTime, isDone, stop } = useTimer(timeLimit);
+  const { time, isNoTime, isTimeOut, isDone, stop } = useTimer(timeLimit);
   const TimerUI = () => {
     return (
       <div id={styled.timerContainer}>
@@ -44,7 +44,7 @@ const useTimerUI = ({ level = 1 }) => {
     }
   }, [isDone, isNoTime, time, timeLimit]);
 
-  return { TimerUI, stop, timeResRef };
+  return { TimerUI, stop, timeResRef, isTimeOut };
 };
 
 export default useTimerUI;
