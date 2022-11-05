@@ -14,10 +14,9 @@ function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal, closeModal } = useModal();
-  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
-  const { studyId, results } = useSelector(state => state.game);
-  //const level = useSelector(); // [Todo] level 가져오는 로직 구현 필요합니다
+  const { studyId, results, stage } = useSelector(state => state.game);
+  const { isCrtAns, isGrading, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
 
   const mutation = useMutation({
     mutationFn: () => question.getQuestion(studyId),
@@ -54,12 +53,12 @@ function useKeywords() {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    showGradedUI(isCorrectAnswer, () => {
+    gradeGame(isCorrectAnswer, () => {
       setNewKeywords([]);
       dispatch(gameSlice.actions.increaseStage());
     });
 
-    return isCorrectBtn;
+    return isCrtAns;
   };
 
   //stage 10 되면 Modal 실행되게 하기
@@ -67,7 +66,7 @@ function useKeywords() {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    showGradedUI(isCorrectAnswer, () => {
+    gradeGame(isCorrectAnswer, () => {
       mutation.mutate();
       openModal();
     });
@@ -85,7 +84,7 @@ function useKeywords() {
     );
   };
 
-  return { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal };
+  return { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal };
 }
 
 export default useKeywords;
