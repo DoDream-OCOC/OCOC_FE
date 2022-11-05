@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMainCard } from './useMainCard';
 
 import { Text, Empty, Button } from '../../../components/element';
 import { ReactComponent as OCOCTitle } from '../../../assets/OCOC/OCOC_text.svg';
@@ -7,7 +7,8 @@ import { Turtle } from './turtle';
 import style from './index.module.css';
 
 export const MainCard = () => {
-  const navigate = useNavigate();
+  const { letsPlayGame } = useMainCard();
+
   return (
     <article>
       <Empty size="1rem" />
@@ -20,7 +21,7 @@ export const MainCard = () => {
 
       <Empty size="15rem" />
       <Turtle />
-      <Button onClick={() => navigate('')} content="시작하기" />
+      <Button onClick={() => letsPlayGame()} content="시작하기" />
       <Empty size="6rem" />
     </article>
   );
