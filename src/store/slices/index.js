@@ -1,4 +1,4 @@
-import { studySlice } from './study';
+import { gameSlice } from './game';
 import { signSlice } from './sign';
 
-export { studySlice, signSlice };
+export { gameSlice, signSlice };

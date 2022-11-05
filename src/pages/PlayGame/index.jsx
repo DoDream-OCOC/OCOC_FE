@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { studySlice } from '../../store/slices';
+import { gameSlice } from '../../store/slices';
 import { useGradedUI, useKeywords } from '../../hooks';
 
 import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
@@ -9,12 +9,12 @@ import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
 
-function ClickEng() {
+function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
   const [isGrading, showGradedUI] = useGradedUI();
-  const { korean } = useSelector(state => state.study.datasets[state.study.stage - 1]);
-  const { stage } = useSelector(state => state.study);
+  const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { stage } = useSelector(state => state.game);
   const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal } = useKeywords();
 
   React.useLayoutEffect(() => {
@@ -27,7 +27,7 @@ function ClickEng() {
     if (initialRender.current) {
       initialRender.current = false;
     } else {
-      return () => dispatch(studySlice.actions.cleanAllCorpus());
+      return () => dispatch(gameSlice.actions.cleanAllCorpus());
     }
   }, [location, dispatch]);
 
@@ -59,4 +59,4 @@ function ClickEng() {
   );
 }
 
-export default ClickEng;
+export default PlayGame;

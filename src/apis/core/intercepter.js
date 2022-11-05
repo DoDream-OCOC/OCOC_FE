@@ -10,8 +10,8 @@ ococ.interceptors.request.use(
       return {
         ...config,
         headers: {
-          X_AUTH_ACCESS_TOKEN: store.getState().sign.X_AUTH_ACCESS_TOKEN || null,
-          X_AUTH_REFRESH_TOKEN: store.getState().sign.X_AUTH_REFRESH_TOKEN || null,
+          X_AUTH_ACCESS_TOKEN: 'Bearer ' + store.getState().sign.X_AUTH_ACCESS_TOKEN || null,
+          X_AUTH_REFRESH_TOKEN: 'Bearer ' + store.getState().sign.X_AUTH_REFRESH_TOKEN || null,
         },
       };
     }
