@@ -14,7 +14,7 @@ function useTimer(timeLimit) {
   const [isNoTime, setIsNoTime] = React.useState(false);
   const [isDone, setIsDone] = React.useState(false);
 
-  const stop = () => {
+  const stop = async () => {
     clearInterval(timer.current);
     setIsDone(true);
   };

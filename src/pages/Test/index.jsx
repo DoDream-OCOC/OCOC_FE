@@ -3,21 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 
-import { Text } from '../../components/element';
-import { useTimerUI, useGradedUI } from '../../hooks';
-import PointEarnedUI from '../../components/PointEarnedUI';
+import { Text, Empty } from '../../components/element';
+import { useGradedUI } from '../../hooks';
 
 function Test() {
   const navigate = useNavigate();
-  const {
-    TimerUI,
-    timeRes: { elapsedT, pointEarned },
-    stop,
-  } = useTimerUI({ level: 1 });
-  const [isCorrectBtn, isGrading, showGradedUI] = useGradedUI();
-  const 시간아멈춰라 = () => {
-    stop();
-    showGradedUI(true, () => {});
+  const { stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: 1 });
+  const 시간아멈춰라 = isCrt => {
+    gradeGame(isCrt, () => {});
   };
   return (
     <>
@@ -28,11 +21,21 @@ function Test() {
           <div onClick={() => navigate('/')}>
             <Text size="B1" content="홈페이지로 돌아가기" />
           </div>
+          <Empty size="1rem" />
           <TimerUI />
-          <button onClick={시간아멈춰라}>time stop!</button>
-          <div>소요시간 : {elapsedT}</div>
-          <div>얻은 점수 : {pointEarned}</div>
-          <PointEarnedUI isGrading={isGrading} isCrtAns={isCorrectBtn} pointEarned={pointEarned} />
+          <Empty size="1rem" />
+          <div style={{ display: 'flex' }}>
+            <button onClick={() => 시간아멈춰라(true)} style={{ marginRight: '1rem' }}>
+              정답을 맞춘 경우!
+            </button>
+            <button onClick={() => 시간아멈춰라(false)}>정답을 틀린 경우!</button>
+          </div>
+          <Empty size="1rem" />
+          <div>
+            소요시간 : {stageRes.elapsedT} &nbsp; 얻은 점수 : {stageRes.pointEarned}
+          </div>
+          <div></div>
+          <PointEarnedUI />
         </article>
       </MainContainer>
     </>
