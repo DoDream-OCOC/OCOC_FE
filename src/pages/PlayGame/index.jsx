@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { gameSlice } from '../../store/slices';
-import { useGradedUI, useKeywords } from '../../hooks';
+import { useKeywords } from '../../hooks';
 
 import { NavBar, ProgressBar1, MainContainer, QuestionContainer } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
@@ -13,10 +13,10 @@ import { ReactComponent as Life } from '../../assets/icons/life.svg';
 function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const [isGrading, showGradedUI] = useGradedUI();
   const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
   const { stage } = useSelector(state => state.game);
-  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isCorrectBtn, ShowModal } = useKeywords();
+  const { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal } =
+    useKeywords();
 
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
@@ -40,10 +40,11 @@ function PlayGame() {
         <article>
           <div className={style.container}>
             <ProgressBar1 value={stage * 10} />
+            <TimerUI />
             <div className={style.relative}>
               <QuestionContainer content={korean} />
               <div className={style.absolute}>
-                <Button isCorrect={isCorrectBtn} keywords={newKeywords} onClick={removeButton} />
+                <Button isCorrect={isCrtAns} keywords={newKeywords} onClick={removeButton} />
               </div>
             </div>
 
@@ -59,6 +60,7 @@ function PlayGame() {
               </div>
             </div>
           </div>
+          <PointEarnedUI />
           <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
