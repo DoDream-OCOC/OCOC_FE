@@ -70,6 +70,8 @@ function useKeywords() {
       mutation.mutate();
       openModal();
     });
+
+    return isCorrectAnswer;
   };
 
   //모달 창 띄우기
