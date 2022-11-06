@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { useGradedUI, useModal } from '../../hooks';
+import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
 
 import { question } from '../../apis';
@@ -17,6 +17,7 @@ function useKeywords() {
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
   const { studyId, results, stage } = useSelector(state => state.game);
   const { isCrtAns, isGrading, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
+  const { LifeState } = useLife();
 
   const mutation = useMutation({
     mutationFn: () => question.getQuestion(studyId),
@@ -53,6 +54,10 @@ function useKeywords() {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
+    if (!isCorrectAnswer) {
+      dispatch(gameSlice.actions.isNotCrtAnswer());
+    }
+
     gradeGame(isCorrectAnswer, () => {
       setNewKeywords([]);
       dispatch(gameSlice.actions.increaseStage());
@@ -86,7 +91,23 @@ function useKeywords() {
     );
   };
 
-  return { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal };
+  return {
+    keywords,
+    newKeywords,
+    setKeywords,
+    setNewKeywords,
+    createKeywordsId,
+    insertButton,
+    removeButton,
+    onIncreaseStage,
+    onFinishStage,
+    isGrading,
+    isCrtAns,
+    TimerUI,
+    PointEarnedUI,
+    ShowModal,
+    LifeState,
+  };
 }
 
 export default useKeywords;
