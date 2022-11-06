@@ -10,7 +10,7 @@ function ProgressBar1({ value }) {
   return (
     <>
       <div className={style.progress_navbar}>
-        <ProgressBar percent={value} filledBackground="#2d9e1b" height="0.5rem">
+        <ProgressBar percent={value} unfilledBackground="var(--Gray-3)" filledBackground="var(--Green)" height="0.5rem">
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
