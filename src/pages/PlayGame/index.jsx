@@ -54,7 +54,7 @@ function PlayGame() {
             </div>
           </div>
           <PointEarnedUI />
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={stage >= 10 ? onFinishStage : onIncreaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={stage >= 9 ? onFinishStage : onIncreaseStage} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
