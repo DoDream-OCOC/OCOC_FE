@@ -1,20 +1,26 @@
 import React from 'react';
 import style from './index.module.css';
 import { FaRegTimesCircle } from 'react-icons/fa';
+import 'react-step-progress-bar/styles.css';
+import { ProgressBar, Step } from 'react-step-progress-bar';
 
-// [Todo] 새로운 UI로 바꾸어야 함
-function ProgressBar({ value, max = 10 }) {
+//<button className={style.progress_icon}><FaRegTimesCircle /></button>
+
+function ProgressBar1({ value }) {
   return (
     <>
-      <nav className={style.progress_navbar}>
-        <button className={style.progress_icon}>
-          <FaRegTimesCircle />
-        </button>
-
-        <progress className={style.progress} value={value} max={max}></progress>
-      </nav>
+      <div className={style.progress_navbar}>
+        <ProgressBar percent={value} unfilledBackground="var(--Gray-3)" filledBackground="var(--Green)" height="0.5rem">
+          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
+          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
+          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
+          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
+          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
+          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
+        </ProgressBar>
+      </div>
     </>
   );
 }
 
-export default ProgressBar;
+export default ProgressBar1;

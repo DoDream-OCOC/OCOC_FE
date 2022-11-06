@@ -17,6 +17,9 @@ export const gameSlice = createSlice({
     increaseStage(state, action) {
       state.stage++;
     },
+    isNotCrtAnswer(state, action) {
+      state.life--;
+    },
     cleanAllCorpus(state, action) {
       state.datasets = gameSlice.getInitialState().datasets;
       state.results = gameSlice.getInitialState().results;

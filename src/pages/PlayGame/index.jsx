@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gameSlice } from '../../store/slices';
 import { useKeywords } from '../../hooks';
 
-import { NavBar, ProgressBar, MainContainer, QuestionContainer } from '../../components';
+import { NavBar, ProgressBar1, MainContainer, QuestionContainer } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import Button from './buttons/Button';
 import style from './index.module.css';
@@ -14,7 +14,8 @@ function PlayGame() {
   const dispatch = useDispatch();
   const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
   const { stage } = useSelector(state => state.game);
-  const { keywords, newKeywords, setKeywords, setNewKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal } =
+
+  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onIncreaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
     useKeywords();
 
   React.useLayoutEffect(() => {
@@ -38,7 +39,7 @@ function PlayGame() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar value={stage} />
+            <ProgressBar1 value={stage * 10} />
             <TimerUI />
             <div className={style.relative}>
               <QuestionContainer content={korean} />
@@ -46,6 +47,7 @@ function PlayGame() {
                 <Button isCorrect={isCrtAns} keywords={newKeywords} onClick={removeButton} />
               </div>
             </div>
+            <LifeState />
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
                 <Button keywords={keywords} onClick={insertButton} />
