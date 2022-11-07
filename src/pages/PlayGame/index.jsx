@@ -50,7 +50,7 @@ function PlayGame() {
             <LifeState />
             <div className={style.button_keyword_container}>
               <div className={style.button_default_container}>
-                <Button keywords={keywords} onClick={insertButton} />
+                <Button isCorrect={isCrtAns} keywords={keywords} onClick={insertButton} />
               </div>
             </div>
           </div>

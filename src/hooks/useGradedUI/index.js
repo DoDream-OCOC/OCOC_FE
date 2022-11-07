@@ -27,7 +27,7 @@ function useGradedUI({ level }) {
     setIsGrading(true);
     setIsCrtAns(_isCorrectAnswer);
     setStageRes({ elapsedT: timeResRef.current.elapsedT, pointEarned: _isCorrectAnswer ? level * 10 + (timeResRef.current.isBonus ? 5 : 0) : 0 });
-    setTimeout(async () => {
+    setTimeout(() => {
       callback();
       setIsCrtAns(null);
       setIsGrading(false);

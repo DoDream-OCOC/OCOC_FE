@@ -13,7 +13,7 @@ import { PlayGameModal } from './modal';
 function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { Modal, openModal, closeModal } = useModal();
+  const { Modal, openModal } = useModal();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
   const { studyId, stage } = useSelector(state => state.game);
   const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
@@ -52,6 +52,7 @@ function useKeywords() {
   //스테이지 증가
   const increaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
+    // [Todo] gradeStudy도 useGradedUI에 넣기
     const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
     if (!isCorrectAnswer) {
