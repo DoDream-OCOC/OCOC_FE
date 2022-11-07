@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { ReactComponent as Loading } from '../../assets/loading/ellipsis.svg';
 
@@ -7,9 +6,9 @@ import style from './index.module.css';
 
 /**
  * Text component
- * @param {H1, H2, H3, H4, H5, B1, B2, B3} size text size
- * @param {Text-1, Text-2} color text's color
- * @param {string} content text's content
+ * @param {'H1'| 'H2' | 'H3' | 'H4' | 'H5' | 'B1' | 'B2' | 'B3'} size text size
+ * @prop {'Text-1' | 'Text-2' | Red} color text's color
+ * @prop {string} content text's content
  * @returns Common text
  */
 export const Text = ({ size = 'B1', color = 'Text-2', content, ...props }) => {
@@ -22,7 +21,7 @@ export const Text = ({ size = 'B1', color = 'Text-2', content, ...props }) => {
 
 /**
  * Empty component
- * @param {rem} size Height size, must use 'rem'
+ * @prop {rem} size Height size, must use 'rem'
  * @returns Empty
  */
 export const Empty = ({ size }) => {
@@ -31,9 +30,9 @@ export const Empty = ({ size }) => {
 
 /**
  * Button component
- * @param {boolean} isDisabled
- * @param {boolean} isLoading
- * @param {string} content button's content
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isLoading
+ * @prop {string} content button's content
  * @returns Button
  */
 export const Button = ({ isDisabled = false, isLoading = false, content, ...props }) => {
@@ -48,9 +47,9 @@ export const Button = ({ isDisabled = false, isLoading = false, content, ...prop
 
 /**
  * Graiding button component
- * @param {boolean} isDisabled
- * @param {boolean} isGrading
- * @param {string} content button's content
+ * @prop {boolean} isDisabled
+ * @prop {boolean} isGrading
+ * @prop {string} content button's content
  * @returns Button
  */
 export const GradingButton = ({ isDisabled = false, isGrading = false, content, ...props }) => {
@@ -62,3 +61,20 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
     </button>
   );
 };
+
+/**
+ * Input component
+ * @prop {string} placeholder
+ * @prop {{isError:boolean; errMsg:string}} vldErr
+ * @returns Input
+ */
+export const Input = React.forwardRef(({ placeholder, vldErr, ...props }, ref) => {
+  const { isError, errMsg } = vldErr;
+  return (
+    <div className={style.flexCol}>
+      <input ref={ref} placeholder={placeholder} className={`${style.button} ${style.input} ${isError && style.inputError}`} {...props} />
+      {/* Text 사용하지 말고 짜야될 듯 */}
+      {isError && <span className={`${style.inputErrMsg} ${style.B3}`}>{errMsg}</span>}
+    </div>
+  );
+});

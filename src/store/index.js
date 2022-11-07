@@ -4,17 +4,18 @@ import storage from 'redux-persist/lib/storage';
 import { useDispatch, useSelector } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import { studySlice } from './slices/study';
+import { gameSlice, signSlice } from './slices';
+
+const rootReducer = combineReducers({
+  game: gameSlice.reducer,
+  sign: signSlice.reducer,
+});
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['study'],
+  whitelist: ['game', 'sign'],
 };
-
-const rootReducer = combineReducers({
-  study: studySlice.reducer,
-});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

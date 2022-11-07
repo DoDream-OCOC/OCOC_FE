@@ -1,0 +1,38 @@
+.AlertContainer {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 5rem;
+  margin: auto;
+
+  width: 80%;
+  max-width: 30rem;
+  height: 5rem;
+
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 1.2rem;
+}
+
+.red {
+  background-color: var(--Red);
+  /* 백그라운드만 opacity 안되나? */
+}
+
+.yellow {
+  background-color: var(--Yellow);
+}
+
+.green {
+  background-color: var(--Green-light);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 0.6rem;
+}

@@ -25,6 +25,9 @@ function NavBar() {
     }
   };
 
+  // [Todo] Token유무
+  const isSigned = false;
+
   window.addEventListener('scroll', changeColor);
 
   return (
@@ -41,7 +44,8 @@ function NavBar() {
                 APP
               </Button>
             </div>
-            <Profile />
+            {/* [Temp] 일단 로그인 창으로만 이동 */}
+            <Profile onClick={isSigned ? '' : () => navigate('/sign-in')} />
           </div>
         </div>
       </div>

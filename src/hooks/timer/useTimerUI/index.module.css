@@ -1,0 +1,33 @@
+#timerContainer {
+  max-width: 20rem;
+  width: 90vw;
+}
+
+#timer {
+  letter-spacing: 1px;
+  text-overflow: clip;
+
+  height: 2rem;
+
+  border: 0px;
+  border-radius: 10px;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  padding-left: 0.8rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+
+  color: var(--Gray-0);
+}
+
+.green {
+  background-color: var(--Green-2);
+}
+
+.red {
+  background-color: var(--Red);
+}

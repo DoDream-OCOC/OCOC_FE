@@ -6,7 +6,7 @@ const ROUTE = 'study';
 export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req, res, ctx) => {
   const { level, studyType } = await req.json();
 
-  (!level || !studyType) && res(ctx.delay(1000), ctx.status(400));
+  (!level || !studyType) && res(ctx.delay(1500), ctx.status(400));
 
   const datasets = [
     {
@@ -41,7 +41,7 @@ export const sendStudyTypeHandler = rest.post(`${BASE_URL}/${ROUTE}`, async (req
     if (i === 2) _json.data = { ..._json.data, datasets: [..._json.data.datasets, ...datasets2] };
     else _json.data = { ..._json.data, datasets: [..._json.data.datasets, ...datasets] };
   }
-  return res(ctx.delay(1000), ctx.json(_json));
+  return res(ctx.delay(1500), ctx.json(_json));
 });
 
 export const sendStudyResultHandler = rest.post(`${BASE_URL}/${ROUTE}/result`, (req, res, ctx) => {
