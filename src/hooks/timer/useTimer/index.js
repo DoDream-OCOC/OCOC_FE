@@ -14,11 +14,15 @@ function useTimer(timeLimit) {
   const [isNoTime, setIsNoTime] = React.useState(false);
   const [isTimeOut, setIsTimeOut] = React.useState(false);
   const [isDone, setIsDone] = React.useState(false);
+  const [isReStart, setIsReStart] = React.useState(false);
 
   const stop = async () => {
+    timer.current = null;
     clearInterval(timer.current);
     setIsDone(true);
   };
+
+  const reStart = async () => setIsReStart(true);
 
   React.useEffect(() => {
     if (timeRef.current <= 0) {
@@ -36,10 +40,34 @@ function useTimer(timeLimit) {
       timeRef.current -= 50;
       setTime(timeRef.current); // [Temp] 일단 -1초
     }, 50);
-    return () => clearInterval(timer.current);
+    return () => {
+      timer.current = null;
+      clearInterval(timer.current);
+    };
   }, []);
 
-  return { time, isNoTime, isTimeOut, isDone, stop };
+  React.useEffect(() => {
+    if (isReStart) {
+      // [Error] 타이머가 다시 안돌아가네?
+      timeRef.current = timeLimit;
+      setTime(timeLimit);
+      setIsNoTime(false);
+      setIsTimeOut(false);
+      setIsDone(false);
+      setIsReStart(false);
+      timer.current = setInterval(() => {
+        timeRef.current -= 50;
+        setTime(timeRef.current); // [Temp] 일단 -1초
+      }, 50);
+      console.log('re');
+    }
+    return () => {
+      timer.current = null;
+      clearInterval(timer.current);
+    };
+  }, [isReStart, timeLimit]);
+
+  return { time, isNoTime, isTimeOut, isDone, stop, reStart };
 }
 
 export default useTimer;
