@@ -24,7 +24,7 @@ const useTimerUI = ({ level = 1 }) => {
     elapsedT: 0,
     isBonus: false,
   });
-  const { time, isNoTime, isTimeOut, isDone, stop } = useTimer(timeLimit);
+  const { time, isNoTime, isTimeOut, isDone, stop, reStart } = useTimer(timeLimit);
   const TimerUI = () => {
     return (
       <div id={styled.timerContainer}>
@@ -44,7 +44,7 @@ const useTimerUI = ({ level = 1 }) => {
     }
   }, [isDone, isNoTime, time, timeLimit]);
 
-  return { TimerUI, stop, timeResRef, isTimeOut };
+  return { TimerUI, stop, reStart, timeResRef, isTimeOut };
 };
 
 export default useTimerUI;

@@ -27,9 +27,13 @@ export const gameSlice = createSlice({
       state.stage = gameSlice.getInitialState().stage;
       state.correctAnswerCount = gameSlice.getInitialState().correctAnswerCount;
     },
+    // [!] 정답일 때만 기록
     setStudyResult(state, action) {
-      state.results = {};
-      // results에 ...score, ...avrSpeed, ...stage 받아와서 추가 해야합니다
+      const { score, avrSpeed, crtAnsCnt } = state.results;
+      const { elapsedT, poinrEarned, isCrtAns } = action.payload;
+      if (!isCrtAns) return;
+      const _avrSpeed = parseInt((avrSpeed * crtAnsCnt + elapsedT) / (crtAnsCnt + 1));
+      state.results = { score: score + poinrEarned, avrSpeed: _avrSpeed, crtAnsCnt: crtAnsCnt + 1 };
     },
     // 도중에 데이터가 날아갔을때는?
     // [Todo] studyResult.answerList.length에 따라서 progress bar랑 로그인 유도 페이지
