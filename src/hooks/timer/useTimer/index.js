@@ -7,7 +7,7 @@ import React from 'react';
  * Review1 : useState와 useEffect를 깊게 공부해볼 필요가 있다 정말
  * Review2 : useEffect에서 변경된 상태를 처리하려면, useRef가 필요함
  * Review3 : 브라우저에서 다른 탭으로 이동하면 타이머가 멈춤 -> 해결 필요
- * Review4 : 클린업 함수가 돌아가는 로직이 어떻게 될까
+ * Review4 : 렌더링마다 고유의 state와 effect가 있다
  */
 function useTimer(timeLimit) {
   const timer = React.useRef(null);
