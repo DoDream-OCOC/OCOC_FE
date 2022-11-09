@@ -57,7 +57,7 @@ function useKeywords() {
       setNewKeywords([]);
       if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
-      dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
+      dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, pointEarned: stageRes.pointEarned, isCrtAns }));
     });
   };
 

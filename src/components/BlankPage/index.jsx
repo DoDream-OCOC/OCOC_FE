@@ -10,7 +10,7 @@ import style from './index.module.css';
 function BlankPage() {
   const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage } = useSelector(state => state.game);
-  const { keywords, newKeywords, insertButton, removeButton, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } = useKeywords();
+  const { isCrtAns, TimerUI, LifeState } = useKeywords();
 
   return (
     <>
