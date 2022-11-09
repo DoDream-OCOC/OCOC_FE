@@ -6,6 +6,7 @@ import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
 
 import { question } from '../../apis';
+import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
 
@@ -54,8 +55,8 @@ function useKeywords() {
 
     gradeGame({ strNewKeywords, english, id }, () => {
       setNewKeywords([]);
-      // 10, 20일 경우 처리하기
-      // if ((stage + 1) % 10 === 0) ㄴㄴㄴ;
+      // [Todo] stage 상태 처리가 너무 안 이쁨
+      if ((stage + 1) % 10 === 0) setQuestions(studyId, parseInt((stage + 2) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
       dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
     });
