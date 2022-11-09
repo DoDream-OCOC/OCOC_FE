@@ -1,18 +1,8 @@
 .question_container {
-    margin-bottom: 3.125rem;
-  }
-  
-  .question_text {
-    text-align: left;
-    line-height: 3;
-  }
+  margin-bottom: 3.125rem;
+}
 
-  .input_box_container {
-    margin-bottom: 2.5rem;
-  }
-  
-  .input_box {
-    height: 3.625rem;
-    border-bottom: 2px solid var(--Gray-3);
-    background-color: var(--BG-1);
-  }
+.question_text {
+  text-align: left;
+  line-height: 3;
+}
