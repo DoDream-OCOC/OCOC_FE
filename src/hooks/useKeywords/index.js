@@ -5,7 +5,6 @@ import { useMutation } from 'react-query';
 import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
 
-import { question } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
@@ -66,6 +65,9 @@ function useKeywords() {
   const handleGameOver = () => {
     mutation.mutate();
     openModal();
+    console.log(stageRes);
+    // [Todo] 그다음에 싹 다 멈춰야 됨
+    // [Error] 소요시간 에러
   };
 
   //모달 창 띄우기

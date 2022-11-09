@@ -15,7 +15,13 @@ function PlayGame() {
   const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
 
-  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onNextStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } = useKeywords();
+  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onNextStage, handleGameOver, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
+    useKeywords();
+
+  React.useLayoutEffect(() => {
+    if (life <= 0) handleGameOver();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [life]);
 
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
