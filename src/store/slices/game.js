@@ -10,9 +10,12 @@ export const gameSlice = createSlice({
     setStudyId(state, action) {
       state.studyId = action.payload.studyId;
     },
-    setAllCorpus(state, action) {
+    setInitCorpus(state, action) {
       state.datasets = action.payload.data;
       state.life = 3;
+    },
+    setExtraCorpus(state, action) {
+      state.datasets = [...state.datasets, ...action.payload.data];
     },
     increaseStage(state, action) {
       state.stage++;
