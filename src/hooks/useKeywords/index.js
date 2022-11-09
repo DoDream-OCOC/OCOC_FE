@@ -49,7 +49,7 @@ function useKeywords() {
   };
 
   //스테이지 증가
-  const increaseStage = () => {
+  const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
 
     gradeGame({ strNewKeywords, english, id }, () => {
@@ -60,7 +60,7 @@ function useKeywords() {
   };
 
   // [Todo] stage10에서 버튼 클릭시? 아니면 미리 받을까?
-  const onNextvl = () => {};
+  const onNextLvl = () => {};
 
   // 마지막 stage또는 라이프가 전부 소멸됬을 경우
   const onFinishStage = () => {
@@ -87,7 +87,7 @@ function useKeywords() {
   };
 
   React.useEffect(() => {
-    if (isTimeOut) increaseStage();
+    if (isTimeOut) onNextStage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeOut]);
 
@@ -99,7 +99,7 @@ function useKeywords() {
     createKeywordsId,
     insertButton,
     removeButton,
-    increaseStage,
+    onNextStage,
     onFinishStage,
     isGrading,
     isCrtAns,
