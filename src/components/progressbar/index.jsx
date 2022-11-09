@@ -15,8 +15,6 @@ function ProgressBar1({ value }) {
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
-          <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
         </ProgressBar>
       </div>
     </>
