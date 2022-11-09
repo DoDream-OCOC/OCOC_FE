@@ -14,9 +14,9 @@ function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
-  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { studyId, stage } = useSelector(state => state.game);
-  const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt((stage + 1) / 10) + 1 });
+  const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
 
   const mutation = useMutation({
@@ -55,8 +55,7 @@ function useKeywords() {
 
     gradeGame({ strNewKeywords, english, id }, () => {
       setNewKeywords([]);
-      // [Todo] stage 상태 처리가 너무 안 이쁨
-      if ((stage + 1) % 10 === 0) setQuestions(studyId, parseInt((stage + 2) / 10) + 1);
+      if (stage % 10 === 0) setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
       dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
     });

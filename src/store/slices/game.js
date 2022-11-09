@@ -13,6 +13,7 @@ export const gameSlice = createSlice({
     setInitCorpus(state, action) {
       state.datasets = action.payload.data;
       state.life = 3;
+      state.stage++;
     },
     setExtraCorpus(state, action) {
       state.datasets = [...state.datasets, ...action.payload.data];
