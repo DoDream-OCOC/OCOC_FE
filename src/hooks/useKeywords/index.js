@@ -5,7 +5,7 @@ import { useMutation } from 'react-query';
 import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
 
-import { question } from '../../apis';
+import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
 
@@ -13,13 +13,14 @@ function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
-  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { studyId, stage } = useSelector(state => state.game);
   const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
 
   const mutation = useMutation({
-    mutationFn: () => question.getQuestion(studyId),
+    // [Todo] 결과 모달에 들어갈 정보 요청
+    mutationFn: () => {},
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -49,29 +50,24 @@ function useKeywords() {
   };
 
   //스테이지 증가
-  const increaseStage = () => {
+  const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
 
-    gradeGame({ strNewKeywords, english, id }, () => {
+    gradeGame({ strNewKeywords, english, id }, async () => {
       setNewKeywords([]);
+      if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
       dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
     });
   };
 
-  // [Todo] stage10에서 버튼 클릭시? 아니면 미리 받을까?
-  const onNextvl = () => {};
-
   // 마지막 stage또는 라이프가 전부 소멸됬을 경우
-  const onFinishStage = () => {
-    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-
-    gradeGame({ strNewKeywords, english, id }, () => {
-      mutation.mutate();
-      openModal();
-    });
-
-    return;
+  const handleGameOver = () => {
+    mutation.mutate();
+    openModal();
+    console.log(stageRes);
+    // [Todo] 그다음에 싹 다 멈춰야 됨
+    // [Error] 소요시간 에러
   };
 
   //모달 창 띄우기
@@ -87,7 +83,7 @@ function useKeywords() {
   };
 
   React.useEffect(() => {
-    if (isTimeOut) increaseStage();
+    if (isTimeOut) onNextStage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeOut]);
 
@@ -99,8 +95,8 @@ function useKeywords() {
     createKeywordsId,
     insertButton,
     removeButton,
-    increaseStage,
-    onFinishStage,
+    onNextStage,
+    handleGameOver,
     isGrading,
     isCrtAns,
     TimerUI,

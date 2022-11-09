@@ -12,11 +12,16 @@ import style from './index.module.css';
 function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
 
-  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, increaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
+  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onNextStage, handleGameOver, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
     useKeywords();
+
+  React.useLayoutEffect(() => {
+    if (life <= 0 || stage === 31) handleGameOver();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [life]);
 
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
@@ -39,7 +44,7 @@ function PlayGame() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar1 value={stage * 10} />
+            <ProgressBar1 value={(stage - 1) * 10} />
             <TimerUI />
             <div className={style.relative}>
               <QuestionContainer content={korean} />
@@ -55,7 +60,7 @@ function PlayGame() {
             </div>
           </div>
           <PointEarnedUI />
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life && increaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life >= 1 ? onNextStage : null} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
