@@ -20,7 +20,8 @@ function useKeywords() {
   const { LifeState } = useLife();
 
   const mutation = useMutation({
-    mutationFn: () => question.getQuestion(studyId),
+    // [Todo] 결과 모달에 들어갈 정보 요청
+    mutationFn: () => {},
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -53,27 +54,18 @@ function useKeywords() {
   const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
 
-    gradeGame({ strNewKeywords, english, id }, () => {
+    gradeGame({ strNewKeywords, english, id }, async () => {
       setNewKeywords([]);
-      if (stage % 10 === 0) setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
+      if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
       dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
     });
   };
 
-  // [Todo] stage10에서 버튼 클릭시? 아니면 미리 받을까?
-  const onNextLvl = () => {};
-
   // 마지막 stage또는 라이프가 전부 소멸됬을 경우
-  const onFinishStage = () => {
-    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-
-    gradeGame({ strNewKeywords, english, id }, () => {
-      mutation.mutate();
-      openModal();
-    });
-
-    return;
+  const handleGameOver = () => {
+    mutation.mutate();
+    openModal();
   };
 
   //모달 창 띄우기
@@ -102,7 +94,7 @@ function useKeywords() {
     insertButton,
     removeButton,
     onNextStage,
-    onFinishStage,
+    handleGameOver,
     isGrading,
     isCrtAns,
     TimerUI,

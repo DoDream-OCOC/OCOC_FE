@@ -15,8 +15,7 @@ function PlayGame() {
   const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
 
-  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onNextStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
-    useKeywords();
+  const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onNextStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } = useKeywords();
 
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
@@ -55,7 +54,7 @@ function PlayGame() {
             </div>
           </div>
           <PointEarnedUI />
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life && onNextStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life >= 1 ? onNextStage : null} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
