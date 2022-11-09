@@ -2,17 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useMutation } from 'react-query';
 import { gameSlice } from '../../../../store/slices';
-import { study, question } from '../../../../apis/index';
+import { study } from '../../../../apis/index';
+import { setQuestions } from '../../../../utils/setQuestions';
 
+// [Todo] 버튼을 눌렀을 때 요청하는 로직이 맞을까? 페이지 접근시 요청하는 로직이 맞을까?
 export const useMainCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const mutation = useMutation({
     mutationFn: async () => {
-      // [Todo] 잘 되는지 확인 필요
       await study.postStudy().then(async res => {
         dispatch(gameSlice.actions.setStudyId(res.data.data));
-        await question.getQuestion(res.data.data.studyId, 1).then(res => dispatch(gameSlice.actions.setAllCorpus(res.data)));
+        await setQuestions(res.data.data.studyId, 1);
       });
     },
     onSuccess: () => navigate('/play-game'),

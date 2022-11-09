@@ -15,7 +15,7 @@ function useKeywords() {
   const { Modal, openModal } = useModal();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
   const { studyId, stage } = useSelector(state => state.game);
-  const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
+  const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt((stage + 1) / 10) + 1 });
   const { LifeState } = useLife();
 
   const mutation = useMutation({
@@ -54,6 +54,8 @@ function useKeywords() {
 
     gradeGame({ strNewKeywords, english, id }, () => {
       setNewKeywords([]);
+      // 10, 20일 경우 처리하기
+      // if ((stage + 1) % 10 === 0) ㄴㄴㄴ;
       dispatch(gameSlice.actions.increaseStage());
       dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
     });
