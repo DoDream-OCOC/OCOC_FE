@@ -12,7 +12,7 @@ import style from './index.module.css';
 function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
+  const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
 
   const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, onNextStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
@@ -39,7 +39,7 @@ function PlayGame() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar1 value={stage * 10} />
+            <ProgressBar1 value={(stage - 1) * 10} />
             <TimerUI />
             <div className={style.relative}>
               <QuestionContainer content={korean} />
