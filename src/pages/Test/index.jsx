@@ -30,25 +30,21 @@ function Test() {
   }, [time]);
 
   React.useEffect(() => {
-    console.log('timer start. ID :', timerRef.current);
+    // 초기 인터벌ID할당
     timerRef.current = setInterval(() => {
       setTime(prev => prev - 500);
     }, 500);
+    // 초기 인터벌ID할당 당시의 timerRef.current를 제거해줌
     return () => clearInterval(timerRef.current);
   }, []);
 
   React.useEffect(() => {
     if (isReStart) {
-      console.log('timer Restart');
       setIsReStart(false);
-      // 딱 여기만 실행이 안됨
+      // 새로운 인터벌ID를 할당
       timerRef.current = setInterval(() => {
         setTime(prev => prev - 500);
       }, 500);
-      // 이 경우는 돌아감
-      // setInterval(() => {
-      //   setTime(prev => prev - 500);
-      // }, 500);
       console.log('restart ID : ', timerRef.current);
     }
     // [해결] 클린업 함수를 지워주니까 됐음 -> 클린 업 함수가 언제 돌아가는 걸까

@@ -1,4 +1,5 @@
 import React from 'react';
+import { gradeStudy } from '../../utils/gradeStudy';
 import useTimerUI from '../timer/useTimerUI';
 import { PointEarnedUI as PEUI } from '../../components/PointEarnedUI';
 /**
@@ -17,16 +18,16 @@ function useGradedUI({ level }) {
   });
 
   /**
-   * [Todo] 여기서 채점도 진행하면 좋을 듯
    * Grade Game and show UI
    * @param {boolean} _isCorrectAnswer
    * @param {Function} callback Function to call after timer ends
    */
-  const gradeGame = async (_isCorrectAnswer, callback) => {
+  const gradeGame = async ({ strNewKeywords, english, id }, callback) => {
+    const _res = await gradeStudy(strNewKeywords, english, id);
     await stop();
     setIsGrading(true);
-    setIsCrtAns(_isCorrectAnswer);
-    setStageRes({ elapsedT: timeResRef.current.elapsedT, pointEarned: _isCorrectAnswer ? level * 10 + (timeResRef.current.isBonus ? 5 : 0) : 0 });
+    setIsCrtAns(_res);
+    setStageRes({ elapsedT: timeResRef.current.elapsedT, pointEarned: _res ? level * 10 + (timeResRef.current.isBonus ? 5 : 0) : 0 });
     setTimeout(() => {
       callback();
       setIsCrtAns(null);

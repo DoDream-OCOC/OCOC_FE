@@ -6,7 +6,6 @@ import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
 
 import { question } from '../../apis';
-import { gradeStudy } from '../../utils/gradeStudy';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
 
@@ -52,33 +51,27 @@ function useKeywords() {
   //스테이지 증가
   const increaseStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    // [Todo] gradeStudy도 useGradedUI에 넣기
-    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    if (!isCorrectAnswer) {
-      dispatch(gameSlice.actions.isNotCrtAnswer());
-    }
-
-    gradeGame(isCorrectAnswer, () => {
+    gradeGame({ strNewKeywords, english, id }, () => {
       setNewKeywords([]);
       dispatch(gameSlice.actions.increaseStage());
       dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
     });
-
-    return isCrtAns;
   };
 
-  //stage 10 되면 Modal 실행되게 하기
+  // [Todo] stage10에서 버튼 클릭시? 아니면 미리 받을까?
+  const onNextvl = () => {};
+
+  // 마지막 stage또는 라이프가 전부 소멸됬을 경우
   const onFinishStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    gradeGame(isCorrectAnswer, () => {
+    gradeGame({ strNewKeywords, english, id }, () => {
       mutation.mutate();
       openModal();
     });
 
-    return isCorrectAnswer;
+    return;
   };
 
   //모달 창 띄우기

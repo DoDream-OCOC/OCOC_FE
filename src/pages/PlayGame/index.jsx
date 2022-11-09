@@ -13,7 +13,7 @@ function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { korean } = useSelector(state => state.game.datasets[state.game.stage]);
-  const { stage } = useSelector(state => state.game);
+  const { stage, life } = useSelector(state => state.game);
 
   const { keywords, newKeywords, setKeywords, createKeywordsId, insertButton, removeButton, increaseStage, onFinishStage, isGrading, isCrtAns, TimerUI, PointEarnedUI, ShowModal, LifeState } =
     useKeywords();
@@ -55,7 +55,7 @@ function PlayGame() {
             </div>
           </div>
           <PointEarnedUI />
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={stage >= 9 ? onFinishStage : increaseStage} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life && increaseStage} />
           <Empty size="1rem" />
         </article>
       </MainContainer>
