@@ -19,7 +19,7 @@ function PlayGame() {
     useKeywords();
 
   React.useLayoutEffect(() => {
-    if (life <= 0) handleGameOver();
+    if (life <= 0 || stage === 31) handleGameOver();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [life]);
 
