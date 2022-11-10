@@ -36,7 +36,9 @@ function BlankPage({ LifeState }) {
   return (
     <>
       <QuestionContainer content={korean} />
-      <Text size="M" content={sentence} />
+      <div className={style.sentence}>
+        <Text size="M" content={sentence} />
+      </div>
       <LifeState />
     </>
   );
