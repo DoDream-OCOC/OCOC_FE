@@ -6,10 +6,10 @@ import { ProgressBar1, QuestionContainer, ButtonContainer } from '../../componen
 import Button from './buttons/Button';
 import style from './index.module.css';
 
-function ClickPage() {
+function ClickPage({ keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState }) {
   const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage } = useSelector(state => state.game);
-  const { keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState } = useKeywords();
+  //const { keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState } = useKeywords();
 
   React.useLayoutEffect(() => {
     setKeywords(() => createKeywordsId());
