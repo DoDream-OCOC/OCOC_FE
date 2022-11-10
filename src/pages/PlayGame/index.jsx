@@ -11,7 +11,8 @@ function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { stage, life } = useSelector(state => state.game);
-  const { keywords, onNextStage, handleGameOver, isGrading, PointEarnedUI, ShowModal } = useKeywords();
+  const { keywords, onNextStage, handleGameOver, isGrading, PointEarnedUI, ShowModal, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState } =
+    useKeywords();
 
   React.useLayoutEffect(() => {
     if (life <= 0 || stage === 31) handleGameOver();
@@ -33,7 +34,17 @@ function PlayGame() {
       <ShowModal />
       <MainContainer>
         <article>
-          <BlankPage />
+          <ClickPage
+            keywords={keywords}
+            setKeywords={setKeywords}
+            newKeywords={newKeywords}
+            createKeywordsId={createKeywordsId}
+            insertButton={insertButton}
+            removeButton={removeButton}
+            isCrtAns={isCrtAns}
+            TimerUI={TimerUI}
+            LifeState={LifeState}
+          />
           <PointEarnedUI />
           <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life >= 1 ? onNextStage : null} />
           <Empty size="1rem" />
