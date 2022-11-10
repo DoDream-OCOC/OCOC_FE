@@ -30,8 +30,8 @@ function PlayGame() {
     }
   }, [location, dispatch]);
 
-  //console.log(stage);
-  //console.log(questionType);
+  console.log(stage);
+  console.log(questionType);
 
   return (
     <>
@@ -40,9 +40,9 @@ function PlayGame() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar1 value={(stage - 1) * 10} />
+            <ProgressBar1 value={(stage - 1) * 3.3} />
             <TimerUI />
-            <BlankPage
+            <ClickPage
               keywords={keywords}
               setKeywords={setKeywords}
               newKeywords={newKeywords}

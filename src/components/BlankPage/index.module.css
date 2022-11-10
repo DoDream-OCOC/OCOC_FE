@@ -13,32 +13,6 @@
   top: 8.2rem;
 }
 
-.button_container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  background-color: var(--BG-2);
-  border-radius: 0.625rem;
-}
-
-.button_default_container {
-  position: relative;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--BG-2);
-  width: 100%;
-  border-radius: 0.625rem;
-  padding: 0 2vw;
-}
-
-.button_keyword_container {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 6.25rem;
-  background-color: var(--BG-2);
-  border-radius: 0.625rem;
-  position: static;
+.sentence {
+  margin-bottom: 2rem;
 }
