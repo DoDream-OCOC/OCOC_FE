@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gameSlice } from '../../store/slices';
 import { useKeywords } from '../../hooks';
 
-import { NavBar, MainContainer, ProgressBar1, Page } from '../../components';
+import { NavBar, MainContainer, ProgressBar1, Page, BlankPage } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import style from './index.module.css';
 
@@ -13,8 +13,26 @@ function PlayGame() {
   const dispatch = useDispatch();
   const { questionType } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
-  const { keywords, onNextStage, handleGameOver, isGrading, PointEarnedUI, ShowModal, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState } =
-    useKeywords();
+  const {
+    keywords,
+    onNextStage,
+    handleGameOver,
+    isGrading,
+    PointEarnedUI,
+    ShowModal,
+    setKeywords,
+    newKeywords,
+    createKeywordsId,
+    insertButton,
+    removeButton,
+    isCrtAns,
+    TimerUI,
+    LifeState,
+    sentences,
+    setSentences,
+    engSplit,
+    createSentence,
+  } = useKeywords();
 
   React.useLayoutEffect(() => {
     if (life <= 0 || stage === 31) handleGameOver();
@@ -42,7 +60,7 @@ function PlayGame() {
           <div className={style.container}>
             <ProgressBar1 value={(stage - 1) * (10 / 3)} />
             <TimerUI />
-            <Page
+            <BlankPage
               keywords={keywords}
               setKeywords={setKeywords}
               newKeywords={newKeywords}
@@ -51,6 +69,10 @@ function PlayGame() {
               removeButton={removeButton}
               isCrtAns={isCrtAns}
               LifeState={LifeState}
+              sentences={sentences}
+              setSentences={setSentences}
+              engSplit={engSplit}
+              createSentence={createSentence}
             />
           </div>
           <PointEarnedUI />

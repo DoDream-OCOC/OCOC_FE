@@ -4,39 +4,24 @@ import { Text, Empty } from '../../components/element';
 
 import { QuestionContainer } from '..';
 import style from './index.module.css';
+import Sentence from './sentences/Sentence';
 
-function BlankPage({ LifeState }) {
+function BlankPage({ LifeState, sentences, setSentences, engSplit, createSentence }) {
   const { korean, english, blankIndex, clause } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage } = useSelector(state => state.game);
-  const [sentence, setSentence] = React.useState();
-  const engSplit = english.split(' '); //english 띄어쓰기 기준으로 나눈 배열
 
-  //sentence에 빈칸 뚫기
-  const createSentence = () => {
-    let _sentence = '';
-    for (let i = 0; i < clause; i++) {
-      if (i === blankIndex) {
-        _sentence += ' _______ ';
-      } else {
-        _sentence += engSplit[i] + ' ';
-      }
-    }
-    return _sentence;
-  };
-
-  //sentence useState에 넣기
   React.useLayoutEffect(() => {
-    setSentence(() => createSentence());
+    setSentences(() => createSentence());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
 
-  console.log(sentence);
+  //console.log(sentences);
 
   return (
     <>
       <QuestionContainer content={korean} />
-      <div className={style.sentence}>
-        <Text size="M" content={sentence} />
+      <div>
+        <Sentence sentences={sentences} />
       </div>
       <LifeState />
     </>
