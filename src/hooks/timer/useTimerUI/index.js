@@ -17,8 +17,8 @@ import styled from './index.module.css';
  */
 const useTimerUI = ({ level = 1 }) => {
   let timeLimit;
-  if (level === 1) timeLimit = 6000;
-  else if (level === 2) timeLimit = 10000;
+  if (level === 1) timeLimit = 25000;
+  else if (level === 2) timeLimit = 50000;
   else if (level === 3) timeLimit = 15000;
   const timeResRef = React.useRef({
     elapsedT: 0,
