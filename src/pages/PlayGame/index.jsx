@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gameSlice } from '../../store/slices';
 import { useKeywords } from '../../hooks';
 
-import { NavBar, MainContainer, ProgressBar1, ClickPage, BlankPage } from '../../components';
+import { NavBar, MainContainer, ProgressBar1, Page } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import style from './index.module.css';
 
 function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { korean, english, questionType } = useSelector(state => state.game.datasets[state.game.stage - 1]);
+  const { questionType } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
   const { keywords, onNextStage, handleGameOver, isGrading, PointEarnedUI, ShowModal, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState } =
     useKeywords();
@@ -30,8 +30,8 @@ function PlayGame() {
     }
   }, [location, dispatch]);
 
-  console.log(stage);
-  console.log(questionType);
+  //console.log(stage);
+  //console.log(questionType);
 
   return (
     <>
@@ -42,7 +42,7 @@ function PlayGame() {
           <div className={style.container}>
             <ProgressBar1 value={(stage - 1) * (10 / 3)} />
             <TimerUI />
-            <ClickPage
+            <Page
               keywords={keywords}
               setKeywords={setKeywords}
               newKeywords={newKeywords}
@@ -50,12 +50,11 @@ function PlayGame() {
               insertButton={insertButton}
               removeButton={removeButton}
               isCrtAns={isCrtAns}
-              TimerUI={TimerUI}
               LifeState={LifeState}
             />
           </div>
           <PointEarnedUI />
-          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life >= 1 ? onNextStage : null} />
+          <GradingButton content="정답 확인하기" isDisabled={keywords.length > 0 || isGrading} onClick={life >= 0 ? onNextStage : null} />
           <Empty size="1rem" />
         </article>
       </MainContainer>

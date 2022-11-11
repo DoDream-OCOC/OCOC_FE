@@ -5,5 +5,6 @@ import QuestionContainer from './questionContainer';
 import ButtonContainer from './buttonContainer';
 import BlankPage from './BlankPage';
 import ClickPage from './ClickPage';
+import Page from './page';
 
-export { MainContainer, NavBar, ProgressBar1, QuestionContainer, ButtonContainer, BlankPage, ClickPage };
+export { MainContainer, NavBar, ProgressBar1, QuestionContainer, ButtonContainer, BlankPage, ClickPage, Page };

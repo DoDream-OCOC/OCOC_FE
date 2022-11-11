@@ -15,8 +15,7 @@ function BlankPage({ LifeState }) {
   const createSentence = () => {
     let _sentence = '';
     for (let i = 0; i < clause; i++) {
-      //임시로 해놨는데 i === blankIndex으로 수정
-      if (i === blankIndex + 2) {
+      if (i === blankIndex) {
         _sentence += ' _______ ';
       } else {
         _sentence += engSplit[i] + ' ';
