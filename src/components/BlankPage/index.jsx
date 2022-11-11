@@ -6,16 +6,14 @@ import { QuestionContainer } from '..';
 import style from './index.module.css';
 import Sentence from './sentences/Sentence';
 
-function BlankPage({ LifeState, sentences, setSentences, engSplit, createSentence }) {
-  const { korean, english, blankIndex, clause } = useSelector(state => state.game.datasets[state.game.stage - 1]);
+function BlankPage({ LifeState, sentences, setSentences, createSentence }) {
+  const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage } = useSelector(state => state.game);
 
   React.useLayoutEffect(() => {
     setSentences(() => createSentence());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
-
-  //console.log(sentences);
 
   return (
     <>
