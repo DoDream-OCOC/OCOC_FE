@@ -40,7 +40,7 @@ function PlayGame() {
       <MainContainer>
         <article>
           <div className={style.container}>
-            <ProgressBar1 value={(stage - 1) * 3.3} />
+            <ProgressBar1 value={(stage - 1) * (10 / 3)} />
             <TimerUI />
             <ClickPage
               keywords={keywords}
