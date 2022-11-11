@@ -48,9 +48,6 @@ function PlayGame() {
     }
   }, [location, dispatch]);
 
-  //console.log(stage);
-  //console.log(questionType);
-
   return (
     <>
       <NavBar />
@@ -60,7 +57,7 @@ function PlayGame() {
           <div className={style.container}>
             <ProgressBar1 value={(stage - 1) * (10 / 3)} />
             <TimerUI />
-            <BlankPage
+            <Page
               keywords={keywords}
               setKeywords={setKeywords}
               newKeywords={newKeywords}
