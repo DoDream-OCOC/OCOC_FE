@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+  margin: auto;
+  padding: 0 1rem 0 1rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  top: 8.2rem;
+}
+
+.sentence {
+  margin-bottom: 2rem;
+}

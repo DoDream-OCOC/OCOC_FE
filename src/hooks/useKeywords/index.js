@@ -49,6 +49,20 @@ function useKeywords() {
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
 
+  //빈칸 영작
+  const [sentences, setSentences] = React.useState();
+  const engSplit = english.split(' '); //english 띄어쓰기 기준으로 나눈 배열
+
+  const createSentence = () => {
+    let _sentence = [];
+    for (let i = 0; i < clause; i++) {
+      let id = i;
+      let text = engSplit[i];
+      _sentence.push({ id, text });
+    }
+    return _sentence;
+  };
+
   //스테이지 증가
   const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
@@ -57,7 +71,7 @@ function useKeywords() {
       setNewKeywords([]);
       if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
-      dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, poinrEarned: stageRes.pointEarned, isCrtAns }));
+      dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, pointEarned: stageRes.pointEarned, isCrtAns }));
     });
   };
 
@@ -103,6 +117,10 @@ function useKeywords() {
     PointEarnedUI,
     ShowModal,
     LifeState,
+    sentences,
+    setSentences,
+    engSplit,
+    createSentence,
   };
 }
 
