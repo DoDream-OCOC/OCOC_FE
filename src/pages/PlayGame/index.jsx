@@ -41,11 +41,8 @@ function PlayGame() {
 
   const initialRender = React.useRef(true);
   React.useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-    } else {
-      return () => dispatch(gameSlice.actions.cleanAllCorpus());
-    }
+    if (initialRender.current) initialRender.current = false;
+    else return () => dispatch(gameSlice.actions.cleanAllCorpus());
   }, [location, dispatch]);
 
   return (

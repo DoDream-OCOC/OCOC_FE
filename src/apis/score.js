@@ -10,5 +10,5 @@ const ROUTE = 'score';
  * @response { bestScore, diffValue, newRecord, score, topPercent }
  */
 export const postScore = async (score, avrSpeed, studyId) => {
-  return await ococ.post(`/${ROUTE}/`, { score, avrSpeed, studyId });
+  return await ococ.post(`/${ROUTE}/`, { score, speed: avrSpeed, studyId }).then(res => res.data.data);
 };

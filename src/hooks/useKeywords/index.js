@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
-// import { score } from '../../apis';
+import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
@@ -14,13 +14,30 @@ function useKeywords() {
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
-  const { studyId, stage } = useSelector(state => state.game);
+  const { studyId, stage, results } = useSelector(state => state.game);
   const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
+  const [resState, setResState] = React.useState({
+    bestScore: 0,
+    diffValue: 0,
+    newRecord: true,
+    score: 0,
+    speed: 0,
+    topPercent: 0,
+  });
 
   const mutation = useMutation({
-    // [Todo] 결과 모달에 들어갈 정보 요청
-    mutationFn: () => {},
+    mutationFn: async ({ tScore, avrSpeed, studyId }) =>
+      await score.postScore(tScore, avrSpeed, studyId).then(res =>
+        setResState({
+          bestScore: res.bestScore,
+          diffValue: res.diffValue,
+          newRecord: res.newRecord,
+          score: res.score,
+          speed: res.speed,
+          topPercent: res.topPercent,
+        }),
+      ),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -76,14 +93,15 @@ function useKeywords() {
 
   // 마지막 stage또는 라이프가 전부 소멸됬을 경우
   const handleGameOver = () => {
-    mutation.mutate();
+    mutation.mutate({ tScore: results.score, avrSpeed: results.avrSpeed, studyId });
     stop();
     openModal();
-    // [Todo] 그다음에 싹 다 멈춰야 됨
   };
 
   //모달 창 띄우기
   const ShowModal = () => {
+    // [Todo] resState 사용해서 모달 state 띄워주기
+    console.log(resState);
     return (
       <>
         <Modal>
