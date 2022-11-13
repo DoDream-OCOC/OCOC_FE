@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
-
+// import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
@@ -15,7 +15,7 @@ function useKeywords() {
   const { Modal, openModal } = useModal();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { studyId, stage } = useSelector(state => state.game);
-  const { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
+  const { isCrtAns, isGrading, isTimeOut, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
 
   const mutation = useMutation({
@@ -71,7 +71,6 @@ function useKeywords() {
       setNewKeywords([]);
       if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
       dispatch(gameSlice.actions.increaseStage());
-      dispatch(gameSlice.actions.setStudyResult({ elapsedT: stageRes.elapsedT, pointEarned: stageRes.pointEarned, isCrtAns }));
     });
   };
 
@@ -79,7 +78,6 @@ function useKeywords() {
   const handleGameOver = () => {
     mutation.mutate();
     openModal();
-    console.log(stageRes);
     // [Todo] 그다음에 싹 다 멈춰야 됨
     // [Error] 소요시간 에러
   };

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { gameSlice } from '../../store/slices';
 import { gradeStudy } from '../../utils/gradeStudy';
 import useTimerUI from '../timer/useTimerUI';
 import { PointEarnedUI as PEUI } from '../../components/PointEarnedUI';
@@ -9,13 +11,10 @@ import { PointEarnedUI as PEUI } from '../../components/PointEarnedUI';
  * @returns isCrtAns, isGrading, stageRes, showGradedUI, TimerUI, PointEarnedUI
  */
 function useGradedUI({ level }) {
+  const dispatch = useDispatch();
   const { TimerUI, stop, reStart, timeResRef, isTimeOut } = useTimerUI({ level });
   const [isCrtAns, setIsCrtAns] = React.useState(null);
   const [isGrading, setIsGrading] = React.useState(false);
-  const [stageRes, setStageRes] = React.useState({
-    elapsedT: 0,
-    pointEarned: 0,
-  });
 
   /**
    * Grade Game and show UI
@@ -23,11 +22,14 @@ function useGradedUI({ level }) {
    * @param {Function} callback Function to call after timer ends
    */
   const gradeGame = async ({ strNewKeywords, english, id }, callback) => {
-    const _res = await gradeStudy(strNewKeywords, english, id);
+    const isCorrect = await gradeStudy(strNewKeywords, english, id);
     await stop();
     setIsGrading(true);
-    setIsCrtAns(_res);
-    setStageRes({ elapsedT: timeResRef.current.elapsedT, pointEarned: _res ? level * 10 + (timeResRef.current.isBonus ? 5 : 0) : 0 });
+    setIsCrtAns(isCorrect);
+    // [Error] stageRes를 갱신해주는 로직이 한타임 느림
+    // 그냥 여기서 patch를 할까?
+    console.log(timeResRef.current.elapsedT);
+    isCorrect && dispatch(gameSlice.actions.setStudyResult({ elapsedT: timeResRef.current.elapsedT, pointEarned: level * 10 + (timeResRef.current.isBonus ? 5 : 0), isCrtAns }));
     setTimeout(() => {
       callback();
       setIsCrtAns(null);
@@ -36,9 +38,9 @@ function useGradedUI({ level }) {
     }, 1500);
   };
 
-  const PointEarnedUI = () => <PEUI isGrading={isGrading} isCrtAns={isCrtAns} pointEarned={stageRes.pointEarned} />;
+  const PointEarnedUI = () => <PEUI isGrading={isGrading} isCrtAns={isCrtAns} />;
 
-  return { isCrtAns, isGrading, isTimeOut, stageRes, gradeGame, TimerUI, PointEarnedUI };
+  return { isCrtAns, isGrading, isTimeOut, gradeGame, TimerUI, PointEarnedUI };
 }
 
 export default useGradedUI;
