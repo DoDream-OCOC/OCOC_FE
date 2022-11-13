@@ -11,15 +11,14 @@ export const MainCard = () => {
 
   return (
     <article>
-      <Empty size="1rem" />
-      <Empty size="1rem" />
+      <Empty size="3rem" />
       <div className={style.text_wrapper}>
         <Text size="H4" color="black" content="영어 순서 맞추기 게임," />
         <Empty size="0.6rem" />
         <OCOCTitle style={{ width: '9.43rem', height: '2.563rem', fill: 'var(--Green)', ZIndex: '3' }} />
       </div>
 
-      <Empty size="15rem" />
+      <Empty size="10rem" />
       <Turtle />
       <Button onClick={() => letsPlayGame()} content="시작하기" />
       <Empty size="6rem" />
