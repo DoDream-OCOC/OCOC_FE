@@ -35,7 +35,10 @@ function Test() {
       setTime(prev => prev - 500);
     }, 500);
     // 초기 인터벌ID할당 당시의 timerRef.current를 제거해줌
-    return () => clearInterval(timerRef.current);
+    return () => {
+      console.log('clear ID : ', timerRef.current);
+      clearInterval(timerRef.current);
+    };
   }, []);
 
   React.useEffect(() => {
@@ -47,8 +50,11 @@ function Test() {
       }, 500);
       console.log('restart ID : ', timerRef.current);
     }
-    // [해결] 클린업 함수를 지워주니까 됐음 -> 클린 업 함수가 언제 돌아가는 걸까
-    // return () => clearInterval(timerRef.current);
+    // [해결] 클린업 함수를 지워주니까 됐음 -> 이펙트가 업데이트가 될 때 이 전 이펙트의 클린업이 실행됨
+    return () => {
+      console.log('Reclear ID : ', timerRef.current);
+      clearInterval(timerRef.current);
+    };
   }, [isReStart]);
 
   React.useEffect(() => console.log(time), [time]);
