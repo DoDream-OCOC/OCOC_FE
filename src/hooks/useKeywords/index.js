@@ -14,7 +14,7 @@ function useKeywords() {
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
-  const { studyId, stage } = useSelector(state => state.game);
+  const { studyId, stage, results } = useSelector(state => state.game);
   const { isCrtAns, isGrading, isTimeOut, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
 
@@ -78,8 +78,8 @@ function useKeywords() {
   const handleGameOver = () => {
     mutation.mutate();
     openModal();
+    console.log(results);
     // [Todo] 그다음에 싹 다 멈춰야 됨
-    // [Error] 소요시간 에러
   };
 
   //모달 창 띄우기

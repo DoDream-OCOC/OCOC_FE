@@ -28,8 +28,7 @@ function useGradedUI({ level }) {
     setIsCrtAns(isCorrect);
     // [Error] stageRes를 갱신해주는 로직이 한타임 느림
     // 그냥 여기서 patch를 할까?
-    console.log(timeResRef.current.elapsedT);
-    isCorrect && dispatch(gameSlice.actions.setStudyResult({ elapsedT: timeResRef.current.elapsedT, pointEarned: level * 10 + (timeResRef.current.isBonus ? 5 : 0), isCrtAns }));
+    isCorrect && dispatch(gameSlice.actions.setStudyResult({ elapsedT: timeResRef.current.elapsedT, pointEarned: level * 10 + (timeResRef.current.isBonus ? 5 : 0), isCrtAns: isCorrect }));
     setTimeout(() => {
       callback();
       setIsCrtAns(null);
