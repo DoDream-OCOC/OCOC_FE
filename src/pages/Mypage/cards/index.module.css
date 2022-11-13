@@ -40,3 +40,23 @@
   display: flex;
   flex-direction: column;
 }
+
+.title_wrapper {
+  width: 90vw;
+  padding: 1rem;
+  max-width: 25rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: var(--Green);
+}
+
+.title_wrapper_other {
+  width: 90vw;
+  padding: 1rem;
+  max-width: 25rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: var(--Gray-3);
+}

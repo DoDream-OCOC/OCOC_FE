@@ -7,7 +7,7 @@ import style from './index.module.css';
 /**
  * Text component
  * @param {'H1'| 'H2' | 'H3' | 'H4' | 'H5' | 'B1' | 'B2' | 'B3'} size text size
- * @prop {'Text-1' | 'Text-2' | Red} color text's color
+ * @prop {'Text-1' | 'Text-2' | 'Text-3' | Red} color text's color
  * @prop {string} content text's content
  * @returns Common text
  */

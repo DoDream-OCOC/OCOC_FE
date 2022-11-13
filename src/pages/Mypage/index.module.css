@@ -1,1 +1,7 @@
-
+.title_wrapper {
+  width: 100vw;
+  display: flex;
+  align-content: space-between;
+  border-radius: 20px;
+  background-color: '--Gray-4';
+}
