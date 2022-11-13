@@ -18,26 +18,25 @@ export const gameSlice = createSlice({
     setExtraCorpus(state, action) {
       state.datasets = [...state.datasets, ...action.payload.data];
     },
-    increaseStage(state, action) {
+    increaseStage(state, _) {
       state.stage++;
     },
-    isNotCrtAnswer(state, action) {
+    isNotCrtAnswer(state, _) {
       state.life--;
     },
-    cleanAllCorpus(state, action) {
+    cleanAllCorpus(state, _) {
       state.datasets = gameSlice.getInitialState().datasets;
       state.results = gameSlice.getInitialState().results;
       state.studyId = gameSlice.getInitialState().studyId;
       state.stage = gameSlice.getInitialState().stage;
       state.correctAnswerCount = gameSlice.getInitialState().correctAnswerCount;
     },
-    // [!] 정답일 때만 기록
     setStudyResult(state, action) {
       const { score, avrSpeed, crtAnsCnt } = state.results;
-      const { elapsedT, poinrEarned, isCrtAns } = action.payload;
+      const { elapsedT, pointEarned, isCrtAns } = action.payload;
       if (!isCrtAns) return;
       const _avrSpeed = parseInt((avrSpeed * crtAnsCnt + elapsedT) / (crtAnsCnt + 1));
-      state.results = { score: score + poinrEarned, avrSpeed: _avrSpeed, crtAnsCnt: crtAnsCnt + 1 };
+      state.results = { score: score + pointEarned, avrSpeed: _avrSpeed, crtAnsCnt: crtAnsCnt + 1 };
     },
     // 도중에 데이터가 날아갔을때는?
     // [Todo] studyResult.answerList.length에 따라서 progress bar랑 로그인 유도 페이지

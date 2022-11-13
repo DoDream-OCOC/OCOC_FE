@@ -3,55 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 
+import { score } from '../../apis';
 import { Text, Empty, Button } from '../../components/element';
 
 function Test() {
   // [Todo] 브라우저 탭 돌리면 멈추는 거 해결하기
   const navigate = useNavigate();
-  const timerRef = React.useRef();
-  const [time, setTime] = React.useState(10000);
-  const [isReStart, setIsReStart] = React.useState(false);
 
-  const stop = () => {
-    clearInterval(timerRef.current);
-    console.log('stop ID : ', timerRef.current);
+  const testPost = async () => {
+    const res = await score.postScore(30, 3000, 1290);
+    console.log(res);
   };
-
-  const restart = () => {
-    setTime(10000);
-    setIsReStart(true);
-  };
-
-  React.useEffect(() => {
-    if (time <= 0) {
-      clearInterval(timerRef.current);
-      console.log('time out');
-    }
-  }, [time]);
-
-  React.useEffect(() => {
-    // 초기 인터벌ID할당
-    timerRef.current = setInterval(() => {
-      setTime(prev => prev - 500);
-    }, 500);
-    // 초기 인터벌ID할당 당시의 timerRef.current를 제거해줌
-    return () => clearInterval(timerRef.current);
-  }, []);
-
-  React.useEffect(() => {
-    if (isReStart) {
-      setIsReStart(false);
-      // 새로운 인터벌ID를 할당
-      timerRef.current = setInterval(() => {
-        setTime(prev => prev - 500);
-      }, 500);
-      console.log('restart ID : ', timerRef.current);
-    }
-    // [해결] 클린업 함수를 지워주니까 됐음 -> 클린 업 함수가 언제 돌아가는 걸까
-    // return () => clearInterval(timerRef.current);
-  }, [isReStart]);
-
-  React.useEffect(() => console.log(time), [time]);
 
   return (
     <>
@@ -62,10 +24,7 @@ function Test() {
           <div onClick={() => navigate('/')}>
             <Text size="B1" content="홈페이지로 돌아가기" />
           </div>
-          <Empty size="1rem" />
-          <Button onClick={stop} content="멈춰!" />
-          <Empty size="1rem" />
-          <Button onClick={restart} content="재시작" />
+          <Button onClick={testPost} content="postScore" />
         </article>
       </MainContainer>
     </>
