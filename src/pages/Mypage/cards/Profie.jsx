@@ -7,7 +7,7 @@ export const Profile = () => {
     <section>
       <div className={style.profile_wrapper}>
         <div className={style.name_wrapper}>
-          <Text size="H4" color="black" content="dali1174@,,," />
+          <Text size="H4" color="black" content="홍길동" />
           <Text size="B3" color="black" content=" 획득 업적 > " />
         </div>
         <div className={style.record_wrapper}>
