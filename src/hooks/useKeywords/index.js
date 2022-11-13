@@ -14,8 +14,8 @@ function useKeywords() {
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
   const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
-  const { studyId, stage, results } = useSelector(state => state.game);
-  const { isCrtAns, isGrading, isTimeOut, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
+  const { studyId, stage } = useSelector(state => state.game);
+  const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
 
   const mutation = useMutation({
@@ -77,8 +77,8 @@ function useKeywords() {
   // 마지막 stage또는 라이프가 전부 소멸됬을 경우
   const handleGameOver = () => {
     mutation.mutate();
+    stop();
     openModal();
-    console.log(results);
     // [Todo] 그다음에 싹 다 멈춰야 됨
   };
 

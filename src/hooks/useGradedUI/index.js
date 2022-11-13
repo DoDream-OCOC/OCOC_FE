@@ -37,7 +37,7 @@ function useGradedUI({ level }) {
 
   const PointEarnedUI = () => <PEUI isGrading={isGrading} isCrtAns={isCrtAns} />;
 
-  return { isCrtAns, isGrading, isTimeOut, gradeGame, TimerUI, PointEarnedUI };
+  return { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI };
 }
 
 export default useGradedUI;
