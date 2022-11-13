@@ -10,7 +10,7 @@ export const gameInitialState = {
       blankIndex: 0,
     },
   ],
-  results: { score: 0, avrSpeed: 0, stage: 0 },
+  results: { score: 0, avrSpeed: 0, crtAnsCnt: 0 },
   studyId: 0,
   stage: 0,
   correctAnswerCount: 0,

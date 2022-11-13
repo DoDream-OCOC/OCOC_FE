@@ -1,4 +1,6 @@
 #pointEarnedUI {
+  position: absolute;
+
   /* [Temp] 높이 수정 필요 */
   max-width: 20rem;
   width: 90vw;

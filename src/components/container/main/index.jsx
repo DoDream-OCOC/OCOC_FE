@@ -11,7 +11,6 @@ import './index.css';
  * align-items: center;
  * }
  */
-
 function MainContainer({ children }) {
   return <main>{children}</main>;
 }

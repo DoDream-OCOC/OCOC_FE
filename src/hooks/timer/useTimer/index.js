@@ -6,6 +6,8 @@ import React from 'react';
  * @returns time, stop
  * Review1 : useState와 useEffect를 깊게 공부해볼 필요가 있다 정말
  * Review2 : useEffect에서 변경된 상태를 처리하려면, useRef가 필요함
+ * Review3 : 브라우저에서 다른 탭으로 이동하면 타이머가 멈춤 -> 해결 필요
+ * Review4 : 렌더링마다 고유의 state와 effect가 있다
  */
 function useTimer(timeLimit) {
   const timer = React.useRef(null);
@@ -14,15 +16,17 @@ function useTimer(timeLimit) {
   const [isNoTime, setIsNoTime] = React.useState(false);
   const [isTimeOut, setIsTimeOut] = React.useState(false);
   const [isDone, setIsDone] = React.useState(false);
+  const [isReStart, setIsReStart] = React.useState(false);
 
   const stop = async () => {
-    clearInterval(timer.current);
     setIsDone(true);
+    clearInterval(timer.current);
   };
+
+  const reStart = () => setIsReStart(true);
 
   React.useEffect(() => {
     if (timeRef.current <= 0) {
-      stop();
       setIsTimeOut(true);
     }
   }, [time]);
@@ -34,12 +38,27 @@ function useTimer(timeLimit) {
   React.useEffect(() => {
     timer.current = setInterval(() => {
       timeRef.current -= 50;
-      setTime(timeRef.current); // [Temp] 일단 -1초
+      setTime(timeRef.current);
     }, 50);
     return () => clearInterval(timer.current);
   }, []);
 
-  return { time, isNoTime, isTimeOut, isDone, stop };
+  React.useEffect(() => {
+    if (isReStart) {
+      timeRef.current = timeLimit;
+      setTime(timeLimit);
+      setIsNoTime(false);
+      setIsTimeOut(false);
+      setIsDone(false);
+      setIsReStart(false);
+      timer.current = setInterval(() => {
+        timeRef.current -= 50;
+        setTime(timeRef.current);
+      }, 50);
+    }
+  }, [isReStart, timeLimit]);
+
+  return { time, isNoTime, isTimeOut, isDone, stop, reStart };
 }
 
 export default useTimer;

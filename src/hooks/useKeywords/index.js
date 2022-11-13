@@ -4,23 +4,40 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useGradedUI, useModal, useLife } from '../../hooks';
 import { gameSlice } from '../../store/slices';
-
-import { question } from '../../apis';
-import { gradeStudy } from '../../utils/gradeStudy';
+import { score } from '../../apis';
+import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
 
 function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { Modal, openModal, closeModal } = useModal();
-  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage]);
-  const { studyId, results, stage } = useSelector(state => state.game);
-  const { isCrtAns, isGrading, stageRes, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
+  const { Modal, openModal } = useModal();
+  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
+  const { studyId, stage, results } = useSelector(state => state.game);
+  const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
+  const [resState, setResState] = React.useState({
+    bestScore: 0,
+    diffValue: 0,
+    newRecord: true,
+    score: 0,
+    speed: 0,
+    topPercent: 0,
+  });
 
   const mutation = useMutation({
-    mutationFn: () => question.getQuestion(studyId),
+    mutationFn: async ({ tScore, avrSpeed, studyId }) =>
+      await score.postScore(tScore, avrSpeed, studyId).then(res =>
+        setResState({
+          bestScore: res.bestScore,
+          diffValue: res.diffValue,
+          newRecord: res.newRecord,
+          score: res.score,
+          speed: res.speed,
+          topPercent: res.topPercent,
+        }),
+      ),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -49,38 +66,42 @@ function useKeywords() {
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
   };
 
-  //스테이지 증가
-  const onIncreaseStage = () => {
-    const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
+  //빈칸 영작
+  const [sentences, setSentences] = React.useState();
+  const engSplit = english.split(' '); //english 띄어쓰기 기준으로 나눈 배열
 
-    if (!isCorrectAnswer) {
-      dispatch(gameSlice.actions.isNotCrtAnswer());
+  const createSentence = () => {
+    let _sentence = [];
+    for (let i = 0; i < clause; i++) {
+      let id = i;
+      let text = engSplit[i];
+      _sentence.push({ id, text });
     }
-
-    gradeGame(isCorrectAnswer, () => {
-      setNewKeywords([]);
-      dispatch(gameSlice.actions.increaseStage());
-    });
-
-    return isCrtAns;
+    return _sentence;
   };
 
-  //stage 10 되면 Modal 실행되게 하기
-  const onFinishStage = () => {
+  //스테이지 증가
+  const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const isCorrectAnswer = gradeStudy(strNewKeywords, english, id);
 
-    gradeGame(isCorrectAnswer, () => {
-      mutation.mutate();
-      openModal();
+    gradeGame({ strNewKeywords, english, id }, async () => {
+      setNewKeywords([]);
+      if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
+      dispatch(gameSlice.actions.increaseStage());
     });
+  };
 
-    return isCorrectAnswer;
+  // 마지막 stage또는 라이프가 전부 소멸됬을 경우
+  const handleGameOver = () => {
+    mutation.mutate({ tScore: results.score, avrSpeed: results.avrSpeed, studyId });
+    stop();
+    openModal();
   };
 
   //모달 창 띄우기
   const ShowModal = () => {
+    // [Todo] resState 사용해서 모달 state 띄워주기
+    console.log(resState);
     return (
       <>
         <Modal>
@@ -91,6 +112,11 @@ function useKeywords() {
     );
   };
 
+  React.useEffect(() => {
+    if (isTimeOut) onNextStage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimeOut]);
+
   return {
     keywords,
     newKeywords,
@@ -99,14 +125,18 @@ function useKeywords() {
     createKeywordsId,
     insertButton,
     removeButton,
-    onIncreaseStage,
-    onFinishStage,
+    onNextStage,
+    handleGameOver,
     isGrading,
     isCrtAns,
     TimerUI,
     PointEarnedUI,
     ShowModal,
     LifeState,
+    sentences,
+    setSentences,
+    engSplit,
+    createSentence,
   };
 }
 

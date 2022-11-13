@@ -10,17 +10,21 @@ export const gameSlice = createSlice({
     setStudyId(state, action) {
       state.studyId = action.payload.studyId;
     },
-    setAllCorpus(state, action) {
+    setInitCorpus(state, action) {
       state.datasets = action.payload.data;
       state.life = 3;
-    },
-    increaseStage(state, action) {
       state.stage++;
     },
-    isNotCrtAnswer(state, action) {
+    setExtraCorpus(state, action) {
+      state.datasets = [...state.datasets, ...action.payload.data];
+    },
+    increaseStage(state, _) {
+      state.stage++;
+    },
+    isNotCrtAnswer(state, _) {
       state.life--;
     },
-    cleanAllCorpus(state, action) {
+    cleanAllCorpus(state, _) {
       state.datasets = gameSlice.getInitialState().datasets;
       state.results = gameSlice.getInitialState().results;
       state.studyId = gameSlice.getInitialState().studyId;
@@ -28,8 +32,11 @@ export const gameSlice = createSlice({
       state.correctAnswerCount = gameSlice.getInitialState().correctAnswerCount;
     },
     setStudyResult(state, action) {
-      state.results = {};
-      // results에 ...score, ...avrSpeed, ...stage 받아와서 추가 해야합니다
+      const { score, avrSpeed, crtAnsCnt } = state.results;
+      const { elapsedT, pointEarned, isCrtAns } = action.payload;
+      if (!isCrtAns) return;
+      const _avrSpeed = parseInt((avrSpeed * crtAnsCnt + elapsedT) / (crtAnsCnt + 1));
+      state.results = { score: score + pointEarned, avrSpeed: _avrSpeed, crtAnsCnt: crtAnsCnt + 1 };
     },
     // 도중에 데이터가 날아갔을때는?
     // [Todo] studyResult.answerList.length에 따라서 progress bar랑 로그인 유도 페이지

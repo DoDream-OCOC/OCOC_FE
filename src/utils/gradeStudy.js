@@ -8,9 +8,11 @@ import { gameSlice } from '../store/slices';
  * @param {string} datasetId
  * @return isCorrect boolean
  */
-export const gradeStudy = (userAnswer, answer, datasetId) => {
+export const gradeStudy = async (userAnswer, answer, datasetId) => {
   setStudyResultInLS(userAnswer, datasetId);
-  return isCorrect(userAnswer, answer);
+  const isCrtAns = isCorrect(userAnswer, answer);
+  isCrtAns || store.dispatch(gameSlice.actions.isNotCrtAnswer());
+  return isCrtAns;
 };
 
 const isCorrect = (userAnswer, answer) => {

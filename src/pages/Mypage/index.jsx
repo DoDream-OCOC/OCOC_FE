@@ -12,7 +12,6 @@ import Lottie from 'lottie-react';
 import cloud_bg from '../../assets/OCOC/Cloud_background.json';
 
 import axios from 'axios';
-// 98 브랜치 머지 이슈 테스트
 
 function Mypage() {
   const navigate = useNavigate();
