@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
-import { sign } from '../../../apis';
+import { auth } from '../../../apis';
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
 import { createVldErr } from '../../../utils/validityError';
 
@@ -13,7 +13,7 @@ export const useSignUp = () => {
   const navigate = useNavigate();
   const mutaion = useMutation({
     // [Todo] 이메일, 패스워드만 보내는 중
-    mutationFn: data => sign.postJoinData(data),
+    mutationFn: data => auth.postJoinData(data),
     onSuccess: () => navigate('/'),
   });
   const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { email: '', password: '', confirmPassword: '' }, criteriaMode: 'all' });
