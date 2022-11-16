@@ -14,8 +14,8 @@ export const postLoginData = async ({ loginId, loginPassword }) => {
   });
 };
 
-export const postRefreshToken = async () => {
-  await ococ.post(`/${ROUTE}/refresh`, { headers: { refreshToken: store.getState().sign.X_AUTH_REFRESH_TOKEN } }).then(res => {
+export const postRefreshToken = async ({ refreshToken }) => {
+  await ococ.post(`/${ROUTE}/refresh`, { headers: { refreshToken } }).then(res => {
     console.log('reissue token success');
     return res;
   });
