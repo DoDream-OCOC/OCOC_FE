@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
@@ -8,12 +8,13 @@ import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal } from './modal';
+import Sentence from '../../components/BlankPage/sentences/Sentence';
 
 function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
-  const { clause, english, words, id } = useSelector(state => state.game.datasets[state.game.stage - 1]);
+  const { clause, english, words, id, blankIndex } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { studyId, stage, results } = useSelector(state => state.game);
   const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
@@ -69,6 +70,7 @@ function useKeywords() {
   //빈칸 영작
   const [sentences, setSentences] = React.useState();
   const engSplit = english.split(' '); //english 띄어쓰기 기준으로 나눈 배열
+  const [blankText, setBlankText] = React.useState(); //input에 들어갈 값 state
 
   const createSentence = () => {
     let _sentence = [];
@@ -80,15 +82,29 @@ function useKeywords() {
     return _sentence;
   };
 
+  //input 입력을 위한 onChange 함수
+  const onChange = useCallback(e => {
+    setBlankText(e.target.value);
+  }, []);
+
   //스테이지 증가
   const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
+    const answerText = engSplit[blankIndex + 2];
 
-    gradeGame({ strNewKeywords, english, id }, async () => {
-      setNewKeywords([]);
-      if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
-      dispatch(gameSlice.actions.increaseStage());
-    });
+    if (blankIndex > -1) {
+      gradeGame({ userAnswer: blankText, answer: answerText, datasetId: id }, async () => {
+        setBlankText('');
+        if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
+        dispatch(gameSlice.actions.increaseStage());
+      });
+    } else {
+      gradeGame({ userAnswer: strNewKeywords, answer: english, datasetId: id }, async () => {
+        setNewKeywords([]);
+        if (stage % 10 === 0) await setQuestions(studyId, parseInt((stage + 1) / 10) + 1);
+        dispatch(gameSlice.actions.increaseStage());
+      });
+    }
   };
 
   // 마지막 stage또는 라이프가 전부 소멸됬을 경우
@@ -137,6 +153,8 @@ function useKeywords() {
     setSentences,
     engSplit,
     createSentence,
+    blankText,
+    onChange,
   };
 }
 

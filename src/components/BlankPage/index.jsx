@@ -6,7 +6,7 @@ import { QuestionContainer } from '..';
 import style from './index.module.css';
 import Sentence from './sentences/Sentence';
 
-function BlankPage({ LifeState, sentences, setSentences, createSentence }) {
+function BlankPage({ LifeState, sentences, setSentences, createSentence, blankText, onChange }) {
   const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage } = useSelector(state => state.game);
 
@@ -19,7 +19,7 @@ function BlankPage({ LifeState, sentences, setSentences, createSentence }) {
     <>
       <QuestionContainer content={korean} />
       <div>
-        <Sentence sentences={sentences} />
+        <Sentence sentences={sentences} blankText={blankText} onChange={onChange} />
       </div>
       <LifeState />
     </>

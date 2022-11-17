@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gameSlice } from '../../store/slices';
 import { useKeywords } from '../../hooks';
 
-import { NavBar, MainContainer, ProgressBar1, Page, BlankPage } from '../../components';
+import { NavBar, MainContainer, ProgressBar1, Page, BlankPage, ClickPage } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import style from './index.module.css';
 
 function PlayGame() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { questionType } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage, life } = useSelector(state => state.game);
   const {
     keywords,
@@ -32,6 +31,8 @@ function PlayGame() {
     setSentences,
     engSplit,
     createSentence,
+    blankText,
+    onChange,
   } = useKeywords();
 
   React.useLayoutEffect(() => {
@@ -67,6 +68,8 @@ function PlayGame() {
               setSentences={setSentences}
               engSplit={engSplit}
               createSentence={createSentence}
+              blankText={blankText}
+              onChange={onChange}
             />
           </div>
           <PointEarnedUI />
