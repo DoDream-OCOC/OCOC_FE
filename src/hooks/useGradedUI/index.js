@@ -21,8 +21,8 @@ function useGradedUI({ level }) {
    * @param {boolean} _isCorrectAnswer
    * @param {Function} callback Function to call after timer ends
    */
-  const gradeGame = async ({ strNewKeywords, english, id }, callback) => {
-    const isCorrect = await gradeStudy(strNewKeywords, english, id);
+  const gradeGame = async ({ userAnswer, answer, datasetId }, callback) => {
+    const isCorrect = await gradeStudy(userAnswer, answer, datasetId);
     await stop();
     setIsGrading(true);
     setIsCrtAns(isCorrect);

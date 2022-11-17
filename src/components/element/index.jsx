@@ -78,10 +78,3 @@ export const Input = React.forwardRef(({ placeholder, vldErr, ...props }, ref) =
     </div>
   );
 });
-
-/**
- * BlankInput component
- **/
-export const BlankInput = () => {
-  return <input type="text" className={style.blank_container}></input>;
-};
