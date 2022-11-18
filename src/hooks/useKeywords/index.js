@@ -7,7 +7,7 @@ import { gameSlice } from '../../store/slices';
 import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
-import { PlayGameModal } from './modal';
+import { PlayGameModal, ResultModal } from './modal';
 import Sentence from '../../components/BlankPage/sentences/Sentence';
 
 function useKeywords() {
