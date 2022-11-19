@@ -6,7 +6,7 @@ import { ProgressBar1, QuestionContainer, ButtonContainer } from '../../componen
 import Button from './buttons/Button';
 import style from './index.module.css';
 
-function ClickPage({ keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState }) {
+function ClickPage({ keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, TimerUI, LifeState, CrtAnswerUI }) {
   const { korean } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { stage } = useSelector(state => state.game);
 
@@ -19,6 +19,7 @@ function ClickPage({ keywords, setKeywords, newKeywords, createKeywordsId, inser
     <>
       <div className={style.relative}>
         <QuestionContainer content={korean} />
+        <CrtAnswerUI />
         <ButtonContainer />
         <div className={style.absolute}>
           <Button isCorrect={isCrtAns} keywords={newKeywords} onClick={removeButton} />

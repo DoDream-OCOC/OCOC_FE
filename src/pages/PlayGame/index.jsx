@@ -34,6 +34,7 @@ function PlayGame() {
     createSentence,
     blankText,
     onChange,
+    CrtAnswerUI,
   } = useKeywords();
 
   React.useLayoutEffect(() => {
@@ -71,6 +72,7 @@ function PlayGame() {
               createSentence={createSentence}
               blankText={blankText}
               onChange={onChange}
+              CrtAnswerUI={CrtAnswerUI}
             />
           </div>
           <PointEarnedUI />
