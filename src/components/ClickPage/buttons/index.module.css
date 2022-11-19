@@ -12,7 +12,9 @@
 }
 
 .button_wrong {
-  border: 3px solid var(--Red);
+  background-color: var(--Red);
+  color: var(--Gray-0);
+  opacity: 70%;
 }
 
 .button_keyword_text {
