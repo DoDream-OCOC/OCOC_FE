@@ -3,7 +3,7 @@ import { useMainCard } from './useMainCard';
 
 import { Text, Empty, Button } from '../../../components/element';
 import { ReactComponent as OCOCTitle } from '../../../assets/OCOC/OCOC_text.svg';
-import { Turtle } from './turtle';
+import { Turtle } from '../../../components';
 import style from './index.module.css';
 
 export const MainCard = () => {
@@ -19,8 +19,10 @@ export const MainCard = () => {
         <OCOCTitle style={{ width: '9.43rem', height: '2.563rem', fill: 'var(--Green)', ZIndex: '3' }} />
       </div>
 
-      <Empty size="15rem" />
-      <Turtle />
+      <Empty size="13rem" />
+      <div style={{ width: '100%', maxWidth: '25rem', display: 'flex', height: '3rem', justifyContent: 'flex-start' }}>
+        <Turtle scale="6rem" />
+      </div>
       <Button onClick={() => letsPlayGame()} content="시작하기" />
       <Empty size="6rem" />
     </article>
