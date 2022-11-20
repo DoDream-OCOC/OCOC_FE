@@ -3,7 +3,7 @@ import { useMainCard } from './useMainCard';
 
 import { Text, Empty, Button } from '../../../components/element';
 import { ReactComponent as OCOCTitle } from '../../../assets/OCOC/OCOC_text.svg';
-import { Turtle } from './turtle';
+import { Turtle } from '../../../components';
 import style from './index.module.css';
 
 export const MainCard = () => {
