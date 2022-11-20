@@ -17,6 +17,8 @@ function SignUp() {
       <MainContainer>
         <article>
           <section className={style.sign_wrapper}>
+            <Empty size="1rem" />
+
             <Text size="H4" color="Text-2" content="회원가입" />
             <Empty size="2.5rem" />
             <form id={SIGN_UP} onSubmit={onSubmit}>
@@ -26,7 +28,7 @@ function SignUp() {
               <Empty size="2rem" />
               <Input {...reg.confirmPassword} vldErr={vldErr.confirmPassword} type="password" placeholder="비밀번호 재입력" />
             </form>
-            <Empty size="6rem" />
+            <Empty size="4rem" />
             <Button content="회원가입" type="submit" form={SIGN_UP} />
           </section>
         </article>
