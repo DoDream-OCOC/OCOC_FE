@@ -52,3 +52,8 @@
 .RSPBprogression {
   background-color: #2d9e1b;
 }
+
+.turtle_wrapper {
+  width: 2rem;
+  background-color: red;
+}

@@ -11,7 +11,9 @@ function ProgressBar1({ value }) {
   return (
     <>
       <div className={style.progress_navbar}>
-        <Turtle />
+        <div className={style.turtle_wrapper}>
+          <Turtle />
+        </div>
         <ProgressBar percent={value} unfilledBackground="var(--Gray-3)" filledBackground="var(--Green)" height="0.5rem">
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>

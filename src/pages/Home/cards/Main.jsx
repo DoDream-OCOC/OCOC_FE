@@ -19,8 +19,10 @@ export const MainCard = () => {
         <OCOCTitle style={{ width: '9.43rem', height: '2.563rem', fill: 'var(--Green)', ZIndex: '3' }} />
       </div>
 
-      <Empty size="15rem" />
-      <Turtle />
+      <Empty size="13rem" />
+      <div style={{ maxWidth: '25rem', display: 'flex', height: '3rem' }}>
+        <Turtle />
+      </div>
       <Button onClick={() => letsPlayGame()} content="시작하기" />
       <Empty size="6rem" />
     </article>
