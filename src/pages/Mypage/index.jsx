@@ -52,7 +52,7 @@ function Mypage() {
       <MainContainer>
         <Profile />
         <Empty size="2rem" />
-        <section>
+        <section style={{ maxWidth: '25rem', margin: '0 auto' }}>
           <ProgressBar1 />
         </section>
         <section style={{ marginTop: '4rem' }}>

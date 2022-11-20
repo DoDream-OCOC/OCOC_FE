@@ -1,8 +1,7 @@
 .progress_navbar {
   margin-top: 4rem;
   margin-bottom: 2rem;
-  width: 90vw;
-  max-width: 25rem;
+  width: 100%;
 }
 
 .progress_icon {
