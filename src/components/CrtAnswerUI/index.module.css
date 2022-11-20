@@ -1,0 +1,18 @@
+.click_answer {
+  width: '100%';
+  color: var(--Green);
+  background-color: var(--Green-light-2);
+  border-radius: 0.8rem;
+  padding: 0.8rem 1.2rem 1rem 1.2rem;
+  margin-top: -3.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.blank_answer {
+  width: '100%';
+  color: var(--Green);
+  background-color: var(--Green-light-2);
+  border-radius: 0.8rem;
+  padding: 0.8rem 1.2rem 1rem 1.2rem;
+  margin-top: -1.5rem;
+}

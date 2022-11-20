@@ -16,7 +16,7 @@ function useKeywords() {
   const { Modal, openModal } = useModal();
   const { clause, english, words, id, blankIndex } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { studyId, stage, results } = useSelector(state => state.game);
-  const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
+  const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI, CrtAnswerUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();
   const [resState, setResState] = React.useState({
     bestScore: 0,
@@ -155,6 +155,7 @@ function useKeywords() {
     createSentence,
     blankText,
     onChange,
+    CrtAnswerUI,
   };
 }
 

@@ -4,6 +4,7 @@ import { gameSlice } from '../../store/slices';
 import { gradeStudy } from '../../utils/gradeStudy';
 import useTimerUI from '../timer/useTimerUI';
 import { PointEarnedUI as PEUI } from '../../components/PointEarnedUI';
+import { CrtAnswerUI as CRTANS } from '../../components/CrtAnswerUI';
 /**
  * useGradedUI hook
  * 허브 느낌으로 가려고 함
@@ -36,8 +37,9 @@ function useGradedUI({ level }) {
   };
 
   const PointEarnedUI = () => <PEUI isGrading={isGrading} isCrtAns={isCrtAns} />;
+  const CrtAnswerUI = () => <CRTANS isGrading={isGrading} isCrtAns={isCrtAns} />;
 
-  return { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI };
+  return { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI, CrtAnswerUI };
 }
 
 export default useGradedUI;
