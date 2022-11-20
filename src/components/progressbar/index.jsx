@@ -8,10 +8,11 @@ import Turtle from '../Turtle';
 //<button className={style.progress_icon}><FaRegTimesCircle /></button>
 
 function ProgressBar1({ value }) {
+  const margin = value - 3 + '%';
   return (
     <>
       <div className={style.progress_navbar}>
-        <div className={style.turtle_wrapper}>
+        <div style={{ marginLeft: margin, display: 'flex', height: '1.5rem', overflow: 'hidden' }}>
           <Turtle />
         </div>
         <ProgressBar percent={value} unfilledBackground="var(--Gray-3)" filledBackground="var(--Green)" height="0.5rem">
