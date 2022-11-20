@@ -6,6 +6,7 @@ import ButtonContainer from './buttonContainer';
 import BlankPage from './BlankPage';
 import ClickPage from './ClickPage';
 import Page from './page';
+import Turtle from './Turtle';
 import { CrtAnswerUI } from './CrtAnswerUI';
 
-export { MainContainer, NavBar, ProgressBar1, QuestionContainer, ButtonContainer, BlankPage, ClickPage, Page, CrtAnswerUI };
+export { MainContainer, NavBar, ProgressBar1, QuestionContainer, ButtonContainer, BlankPage, ClickPage, Page, Turtle, CrtAnswerUI };
