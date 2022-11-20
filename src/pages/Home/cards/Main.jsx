@@ -20,8 +20,8 @@ export const MainCard = () => {
       </div>
 
       <Empty size="13rem" />
-      <div style={{ maxWidth: '25rem', display: 'flex', height: '3rem' }}>
-        <Turtle />
+      <div style={{ width: '100%', maxWidth: '25rem', display: 'flex', height: '3rem', justifyContent: 'flex-start' }}>
+        <Turtle scale="6rem" />
       </div>
       <Button onClick={() => letsPlayGame()} content="시작하기" />
       <Empty size="6rem" />

@@ -3,8 +3,8 @@ import Lottie from 'lottie-react';
 import turtle from '../../assets/OCOC/OCOC_turtle.json';
 import style from './index.module.css';
 
-function Turtle({}) {
-  return <Lottie animationData={turtle} />;
+function Turtle({ scale }) {
+  return <Lottie style={{ width: scale }} animationData={turtle} />;
 }
 
 export default Turtle;
