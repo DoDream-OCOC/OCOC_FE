@@ -117,12 +117,13 @@ function useKeywords() {
   //모달 창 띄우기
   const ShowModal = () => {
     // [Todo] resState 사용해서 모달 state 띄워주기
-    console.log(resState);
+    //console.log(resState);
     return (
       <>
         <Modal>
           {/*[Temp] onLogin 일단 보류*/}
           <PlayGameModal onBackToMain={() => navigate('/')} />
+          {/*<ResultModal resState={resState} onBackToMain={() => navigate('/')} />*/}
         </Modal>
       </>
     );
