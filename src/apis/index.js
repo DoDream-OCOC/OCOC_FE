@@ -1,6 +1,6 @@
 import * as study from './study';
 import * as question from './question';
-import * as auth from './auth';
+import * as sign from './sign';
 import * as score from './score';
 
-export { study, question, auth, score };
+export { study, question, sign, score };
