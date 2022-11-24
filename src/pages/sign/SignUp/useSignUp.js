@@ -12,9 +12,10 @@ const CPW = 'confirmPassword';
 export const useSignUp = () => {
   const navigate = useNavigate();
   const mutaion = useMutation({
-    // [Todo] 이메일, 패스워드만 보내는 중
-    mutationFn: data => sign.postJoinData({ id: data.email, password: data.password }),
+    mutationFn: data => sign.postJoinData({ id: data.email, password: data.password }).then(() => sign.postLoginData({ loginId: data.email, loginPassword: data.password })),
+    // [Temp] 일단 로그인 성공하면 로그인 시키고, main페이지로 이동
     onSuccess: () => navigate('/'),
+    onError: err => console.log(err),
   });
   const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { email: '', password: '', confirmPassword: '' }, criteriaMode: 'all' });
 
