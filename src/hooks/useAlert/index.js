@@ -11,21 +11,25 @@ const WARN = 'Warn';
 
 function useAlert() {
   const [isAlertOpend, setIsAlertOpend] = React.useState(false);
+  const [alertState, setAlertState] = React.useState({ type: '', content: '' });
   const ref = React.useRef();
 
-  const openAlert = () => setIsAlertOpend(true);
+  /**
+   * @prop {'Error' | 'Warn' | 'Success'} type
+   * @prop {string} content
+   */
+  const openAlert = (type, content) => {
+    setAlertState({ type, content });
+    setIsAlertOpend(true);
+  };
 
   React.useEffect(() => {
     const $alert = document.getElementById('root-alert');
     ref.current = $alert;
   }, []);
 
-  /**
-   * @param {'Error' | 'Warn' | 'Success'} type
-   * @param {string} content
-   * @returns
-   */
-  const Alert = ({ type, content }) => {
+  const Alert = () => {
+    const { type, content } = alertState;
     const COLOR = type === ERROR ? 'red' : type === WARN ? 'yellow' : 'green';
     const TITLE = type === ERROR ? '에러' : type === WARN ? '주의' : '성공';
 
