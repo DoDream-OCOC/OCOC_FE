@@ -6,5 +6,5 @@ const ROUTE = 'study';
  * @response studyId
  */
 export const postStudy = async () => {
-  return await ococ.post(`/${ROUTE}`);
+  return await ococ.post(`/${ROUTE}`).then(res => res);
 };
