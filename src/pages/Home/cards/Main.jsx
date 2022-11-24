@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMainCard } from './useMainCard';
+import { isSigned } from '../../../utils/isSigned';
 
 import { Text, Empty, Button } from '../../../components/element';
 import { ReactComponent as OCOCTitle } from '../../../assets/OCOC/OCOC_text.svg';
@@ -7,7 +8,7 @@ import { Turtle } from '../../../components';
 import style from './index.module.css';
 
 export const MainCard = () => {
-  const { letsPlayGame } = useMainCard();
+  const { letsPlayGame, goToSignInPage } = useMainCard();
 
   return (
     <article>
@@ -23,7 +24,7 @@ export const MainCard = () => {
       <div style={{ width: '100%', maxWidth: '25rem', display: 'flex', height: '3rem', justifyContent: 'flex-start' }}>
         <Turtle scale="6rem" />
       </div>
-      <Button onClick={() => letsPlayGame()} content="시작하기" />
+      <Button onClick={isSigned() ? () => letsPlayGame() : goToSignInPage()} content="시작하기" />
       <Empty size="6rem" />
     </article>
   );
