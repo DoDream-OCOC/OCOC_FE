@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { sign } from '../../../apis';
+import { useAlert } from '../../../hooks';
 import { isEmail, isRequired } from '../../../utils/validation';
 import { createVldErr } from '../../../utils/validityError';
 
@@ -10,11 +11,12 @@ const PW = 'password';
 
 export const useSignIn = () => {
   const navigate = useNavigate();
+  const { Alert, openAlert } = useAlert();
   const mutaion = useMutation({
     mutationFn: data => sign.postLoginData(data),
     // [Todo] 확인해보기 -> 뒤로가기
     onSuccess: () => navigate(-1),
-    onError: err => console.log(err),
+    onError: err => openAlert('Error', err),
   });
   const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });
 
@@ -27,5 +29,5 @@ export const useSignIn = () => {
 
   const vldErr = createVldErr(formState, [EMAIL, PW]);
 
-  return { navigate, reg, onSubmit, vldErr };
+  return { navigate, reg, onSubmit, vldErr, Alert };
 };

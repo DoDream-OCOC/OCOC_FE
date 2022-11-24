@@ -8,11 +8,12 @@ import { Text, Button, Empty, Input } from '../../../components/element';
 const SIGN_UP = 'sign-up';
 
 function SignUp() {
-  const { reg, onSubmit, vldErr } = useSignUp();
+  const { reg, onSubmit, vldErr, Alert } = useSignUp();
 
   return (
     <>
       <NavBar />
+      <Alert />
       <MainContainer>
         <article>
           <Text size="H4" color="Text-2" content="회원가입" />

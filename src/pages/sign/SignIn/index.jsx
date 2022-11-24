@@ -8,11 +8,12 @@ import { Text, Button, Empty, Input } from '../../../components/element';
 const SIGN_IN = 'sign-in';
 
 function SignIn() {
-  const { navigate, reg, onSubmit, vldErr } = useSignIn();
+  const { navigate, reg, onSubmit, vldErr, Alert } = useSignIn();
 
   return (
     <>
       <NavBar />
+      <Alert />
       <MainContainer>
         <article>
           <Text size="H4" color="Text-2" content="로그인" />

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { sign } from '../../../apis';
+import { useAlert } from '../../../hooks';
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
 import { createVldErr } from '../../../utils/validityError';
 
@@ -11,11 +12,12 @@ const CPW = 'confirmPassword';
 
 export const useSignUp = () => {
   const navigate = useNavigate();
+  const { Alert, openAlert } = useAlert();
   const mutaion = useMutation({
     mutationFn: data => sign.postJoinData({ id: data.email, password: data.password }).then(() => sign.postLoginData({ loginId: data.email, loginPassword: data.password })),
     // [Temp] 일단 로그인 성공하면 로그인 시키고, main페이지로 이동
     onSuccess: () => navigate('/'),
-    onError: err => console.log(err),
+    onError: err => openAlert('Error', err),
   });
   const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { email: '', password: '', confirmPassword: '' }, criteriaMode: 'all' });
 
@@ -37,5 +39,5 @@ export const useSignUp = () => {
 
   const vldErr = createVldErr(formState, [EMAIL, PW, CPW]);
 
-  return { reg, onSubmit, vldErr };
+  return { reg, onSubmit, vldErr, Alert };
 };
