@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { isSigned } from '../../utils/isSigned';
 
 import style from './index.module.css';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
@@ -18,15 +19,9 @@ function NavBar() {
   const [color, setColor] = useState(false);
 
   const changeColor = () => {
-    if (window.scrollY >= 10) {
-      setColor(true);
-    } else {
-      setColor(false);
-    }
+    if (window.scrollY >= 10) setColor(true);
+    else setColor(false);
   };
-
-  // [Todo] Token유무
-  const isSigned = false;
 
   window.addEventListener('scroll', changeColor);
 
@@ -45,7 +40,7 @@ function NavBar() {
               </Button>
             </div>
             {/* [Temp] 일단 로그인 창으로만 이동 */}
-            <Profile onClick={isSigned ? '' : () => navigate('/sign-in')} />
+            <Profile onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />
           </div>
         </div>
       </div>

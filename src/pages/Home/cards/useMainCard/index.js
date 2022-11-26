@@ -22,6 +22,7 @@ export const useMainCard = () => {
   });
 
   const letsPlayGame = () => mutation.mutate();
+  const goToSignInPage = () => navigate('/sign-in');
 
-  return { letsPlayGame };
+  return { letsPlayGame, goToSignInPage };
 };
