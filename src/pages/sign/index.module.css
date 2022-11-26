@@ -1,0 +1,12 @@
+.sign_wrapper {
+  margin: auto;
+  width: 95vw;
+  max-width: 27rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: white;
+  z-index: 1;
+}
+
+.sign_wrapper form {
+}

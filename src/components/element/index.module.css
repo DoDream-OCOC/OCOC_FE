@@ -77,8 +77,9 @@ span {
 /* Input */
 .input {
   padding: 1rem;
-  color: var(--Text-2);
-  background-color: var(--Gray-2);
+  color: var(--Text-1);
+  border: 1px var(--Gray-3) solid;
+  background-color: var(--Gray-0);
 }
 
 .input::placeholder {
