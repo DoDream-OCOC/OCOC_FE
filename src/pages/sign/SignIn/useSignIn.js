@@ -15,7 +15,7 @@ export const useSignIn = () => {
   const mutaion = useMutation({
     mutationFn: data => sign.postLoginData(data),
     // [Todo] 확인해보기 -> 뒤로가기
-    onSuccess: () => navigate(-1),
+    onSuccess: () => navigate('/my-page'),
     onError: err => openAlert('Error', err),
   });
   const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });

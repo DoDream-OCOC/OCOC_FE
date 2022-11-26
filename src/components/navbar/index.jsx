@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signSlice } from '../../store/slices';
+import { useDispatch } from 'react-redux';
 import { isSigned } from '../../utils/isSigned';
 
 import style from './index.module.css';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { ReactComponent as OCOCTitle } from '../../assets/OCOC/OCOC_text.svg';
 import { ReactComponent as Profile } from '../../assets/icons/icon_profile.svg';
-import { Button } from '../element';
+import { Button, Text } from '../element';
 
 function NavBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //setting mobile nav..?
   //const [click, setClick] = useState(false);
@@ -21,6 +24,11 @@ function NavBar() {
   const changeColor = () => {
     if (window.scrollY >= 10) setColor(true);
     else setColor(false);
+  };
+
+  const signOut = () => {
+    dispatch(signSlice.actions.clearToken());
+    navigate('/');
   };
 
   window.addEventListener('scroll', changeColor);
@@ -40,7 +48,7 @@ function NavBar() {
               </Button>
             </div>
             {/* [Temp] 일단 로그인 창으로만 이동 */}
-            <Profile onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />
+            {window.location.pathname === '/my-page' ? <Text content="로그아웃" onClick={signOut} /> : <Profile onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />}
           </div>
         </div>
       </div>

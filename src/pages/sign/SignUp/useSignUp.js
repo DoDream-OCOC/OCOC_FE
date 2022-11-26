@@ -15,8 +15,7 @@ export const useSignUp = () => {
   const { Alert, openAlert } = useAlert();
   const mutaion = useMutation({
     mutationFn: data => sign.postJoinData({ id: data.email, password: data.password }).then(() => sign.postLoginData({ loginId: data.email, loginPassword: data.password })),
-    // [Temp] 일단 로그인 성공하면 로그인 시키고, main페이지로 이동
-    onSuccess: () => navigate('/'),
+    onSuccess: () => navigate('/my-page'),
     onError: err => openAlert('Error', err),
   });
   const { register, handleSubmit, getValues, formState } = useForm({ mode: 'onChange', defaultValues: { email: '', password: '', confirmPassword: '' }, criteriaMode: 'all' });
