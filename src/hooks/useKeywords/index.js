@@ -122,8 +122,8 @@ function useKeywords() {
       <>
         <Modal>
           {/*[Temp] onLogin 일단 보류*/}
-          <PlayGameModal onBackToMain={() => navigate('/')} />
-          {/*<ResultModal resState={resState} onBackToMain={() => navigate('/')} />*/}
+          {/*<PlayGameModal onBackToMain={() => navigate('/')} />*/}
+          <ResultModal resState={resState} onBackToMain={() => navigate('/')} />
         </Modal>
       </>
     );
