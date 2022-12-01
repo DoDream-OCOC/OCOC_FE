@@ -25,7 +25,7 @@ export const ResultModal = ({ onLogIn, onBackToMain, resState }) => {
   return (
     <>
       <article>
-        <div style={{ maxHeight: '34rem', width: '46rem', borderRadius: '1.5rem 1.5rem 0rem 0rem', backgroundColor: 'var(--Gray-0)', textAlign: 'center', paddingBottom: '2rem' }}>
+        <div style={{ maxHeight: '34rem', width: '46rem', borderRadius: '1.5rem 1.5rem 1.5rem 1.5rem', backgroundColor: 'var(--Gray-0)', textAlign: 'center', paddingBottom: '2rem' }}>
           <div style={{ width: '100%', height: '4rem', borderRadius: '1.5rem 1.5rem 0rem 0rem', backgroundColor: 'var(--Gray-4)', paddingTop: '0.8rem' }}>
             <Text color="Text-3" content="게임 종료" size="H3" />
           </div>
@@ -43,11 +43,11 @@ export const ResultModal = ({ onLogIn, onBackToMain, resState }) => {
             <Text color="Text-3" content={score - bestScore} size="H4" />
           </div>
           <Empty size="2rem" />
-          <Button content="로그인 후 기록 저장하기" onClick={() => onLogIn()} style={{ backgroundColor: 'var(--Gray-0)', color: 'var(--Green)', border: 'solid 2px var(--Green)' }} />
+          {/*<Button content="로그인 후 기록 저장하기" onClick={() => onLogIn()} style={{ backgroundColor: 'var(--Gray-0)', color: 'var(--Green)', border: 'solid 2px var(--Green)' }} />*/}
           <Empty size="0.8rem" />
           <Button content="홈으로" onClick={() => onBackToMain()} style={{ backgroundColor: 'var(--Gray-1)', color: 'var(--Gray-4)' }} />
           <Empty size="0.8rem" />
-          <Button content="결과 공유하기" onClick={() => onBackToMain()} style={{ backgroundColor: 'transparent', color: 'var(--Black)' }} />
+          <Button content="결과 공유하기" style={{ backgroundColor: 'transparent', color: 'var(--Black)' }} />
         </div>
       </article>
     </>
