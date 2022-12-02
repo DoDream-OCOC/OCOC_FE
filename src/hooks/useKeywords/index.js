@@ -55,16 +55,23 @@ function useKeywords() {
     return _keywords;
   };
 
+  //버튼 onClick 애니메이션을 위한 useState
+  const [fadeInOut, setFadeInOut] = React.useState(false);
+
   //영작 칸에 띄울 단어 배열
   const insertButton = id => {
     setNewKeywords(newKeywords.concat(keywords.filter(keyword => keyword.id === id)));
     setKeywords(keywords.filter(keyword => keyword.id !== id));
+    setFadeInOut(null);
+    setFadeInOut(false);
   };
 
   //영작 칸에서 클릭한 버튼의 배열 제거
   const removeButton = id => {
     setKeywords(keywords.concat(newKeywords.filter(keyword => keyword.id === id)));
     setNewKeywords(newKeywords.filter(keyword => keyword.id !== id));
+    setFadeInOut(null);
+    setFadeInOut(false);
   };
 
   //빈칸 영작
@@ -157,6 +164,7 @@ function useKeywords() {
     blankText,
     onChange,
     CrtAnswerUI,
+    fadeInOut,
   };
 }
 

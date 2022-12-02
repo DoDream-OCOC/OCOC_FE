@@ -33,6 +33,7 @@ function PlayGame() {
     blankText,
     onChange,
     CrtAnswerUI,
+    fadeInOut,
   } = useKeywords();
 
   React.useLayoutEffect(() => {
@@ -71,6 +72,7 @@ function PlayGame() {
               blankText={blankText}
               onChange={onChange}
               CrtAnswerUI={CrtAnswerUI}
+              fadeInOut={fadeInOut}
             />
           </div>
           <PointEarnedUI />
