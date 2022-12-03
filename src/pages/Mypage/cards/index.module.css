@@ -60,3 +60,24 @@
   border-radius: 20px;
   background-color: var(--Gray-3);
 }
+
+.card_wrapper {
+  width: 17rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--Gray-0);
+  border-radius: 0.6rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  align-items: center;
+  padding: 1.7rem;
+  margin: 2rem;
+  margin-left: 1rem;
+}
+
+.set_icon {
+  margin: 1rem;
+  height: 11rem;
+  background-color: var(--Gray-3);
+  width: 11rem;
+  border-radius: 11rem;
+}
