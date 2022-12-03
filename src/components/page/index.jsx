@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { ClickPage, BlankPage } from '../../components';
 
-function Page({ keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, LifeState, blankText, onChange, CrtAnswerUI }) {
+function Page({ keywords, setKeywords, newKeywords, createKeywordsId, insertButton, removeButton, isCrtAns, LifeState, blankText, onChange, CrtAnswerUI, fadeInOut }) {
   const { questionType } = useSelector(state => state.game.datasets[state.game.stage - 1]);
 
   if (questionType === 'CLICK') {
@@ -18,6 +18,7 @@ function Page({ keywords, setKeywords, newKeywords, createKeywordsId, insertButt
           isCrtAns={isCrtAns}
           LifeState={LifeState}
           CrtAnswerUI={CrtAnswerUI}
+          fadeInOut={fadeInOut}
         />
       </>
     );

@@ -1,14 +1,16 @@
+import React from 'react';
 import { Text } from '../../../components/element';
 import style from './index.module.css';
 
-function ButtonItem({ keyword, onClick, isCorrect }) {
+function ButtonItem({ keyword, onClick, isCorrect, fadeInOut }) {
   const { id, text } = keyword;
+  const BTN_DEFAULT_STYLE = fadeInOut === false ? 'button_keyword' : 'button_fadeIn';
   const BTN_STYLE = isCorrect === null ? '' : isCorrect ? 'button_correct' : 'button_wrong';
 
   return (
     <>
       <button
-        className={`${style.button_keyword} ${style[BTN_STYLE]}`}
+        className={`${style[BTN_DEFAULT_STYLE]} ${style[BTN_STYLE]}`}
         onClick={() => {
           onClick(id);
         }}>
