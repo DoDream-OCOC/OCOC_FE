@@ -1,9 +1,10 @@
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Profile, Ranking } from './cards';
+import Profile from './Profie';
+import Ranking from './Ranking';
 
-function Modal() {
+function ChartModal() {
   const navigate = useNavigate();
   const [ranks, setRanks] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -58,4 +59,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default ChartModal;

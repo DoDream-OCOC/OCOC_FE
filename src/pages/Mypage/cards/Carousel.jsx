@@ -10,10 +10,12 @@ const Carousel = () => {
     centerMode: true,
     dots: true,
     infinite: false,
+    vertical: false,
     slidesToShow: 1,
     arrow: true,
     variableWidth: true,
     adaptiveHeight: true,
+    centerPadding: '40px',
   };
   return (
     <div className="carousel">

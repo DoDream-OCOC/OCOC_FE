@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import ProgressBar1 from '../../components/progressbar';
 import MainContainer from '../../components/container/main';
-import { Profile, Ranking } from './cards';
 import { Empty, Button, Text } from '../../components/element';
 import style from './index.module.css';
 
