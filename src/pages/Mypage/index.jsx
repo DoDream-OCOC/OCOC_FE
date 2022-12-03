@@ -21,9 +21,9 @@ function Mypage() {
     <>
       <Navbar />
       <MainContainer>
-        <article>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '90vw', maxWidth: '25rem' }}>
-            <Empty size="3rem" />
+            <Empty size="6rem" />
             <Text size="H3" content="{userId}님," />
             <Text size="H3" content="안녕하세요!" />
             <Empty size="3rem" />
@@ -32,7 +32,7 @@ function Mypage() {
             <Empty size="2rem" />
             <Carousel />
           </div>
-        </article>
+        </div>
         <section style={{ marginTop: '4rem' }}></section>
       </MainContainer>
     </>

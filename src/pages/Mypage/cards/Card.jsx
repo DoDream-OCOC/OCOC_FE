@@ -1,6 +1,7 @@
 import style from './index.module.css';
 import { ProgressBar1 } from '../../../components';
 import { Text, Empty, Button } from '../../../components/element';
+import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
 
 export const Card = () => {
   return (
@@ -11,9 +12,11 @@ export const Card = () => {
       </div>
       <Text size="B1" content="최고 점수: " />
       <div className={style.set_icon}></div>
-      <div>순위보기 아이콘</div>
-      <div>순위보기</div>
-      <div>시작하기</div>
+      <div className={style.chart_wrapper}>
+        <BarChart />
+        <div>순위보기</div>
+      </div>
+      <div className={style.innerbutton}>시작하기</div>
     </div>
   );
 };

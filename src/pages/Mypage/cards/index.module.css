@@ -81,3 +81,26 @@
   width: 11rem;
   border-radius: 11rem;
 }
+.innerbutton {
+  width: 105%;
+  height: 2.6rem;
+  margin: 0.5rem;
+  color: var(--Gray-0);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--Green);
+  border-radius: 1rem;
+
+  cursor: pointer;
+}
+
+.chart_wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem;
+  cursor: pointer;
+  color: var(--Gray-4);
+}
