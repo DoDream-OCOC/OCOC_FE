@@ -1,66 +1,3 @@
-.profile_wrapper {
-  width: 90vw;
-  max-width: 25rem;
-  margin-top: 5rem;
-  background-color: white;
-  border-radius: 1rem;
-}
-
-.name_wrapper {
-  display: flex;
-  margin: 1rem;
-  align-items: flex-end;
-}
-
-.name_wrapper * {
-  padding-right: 0.4rem;
-}
-
-.record_wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
-}
-
-.record_wrapper .record_score {
-  padding: 1rem;
-  background-color: #f8f8f8;
-  margin-right: 20px;
-  border-radius: 1rem;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.record_wrapper .record_speed {
-  padding: 1rem;
-  background-color: #f8f8f8;
-  border-radius: 1rem;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.title_wrapper {
-  width: 90vw;
-  padding: 1rem;
-  max-width: 25rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 20px;
-  background-color: var(--Green);
-}
-
-.title_wrapper_other {
-  width: 90vw;
-  padding: 1rem;
-  max-width: 25rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 20px;
-  background-color: var(--Gray-3);
-}
-
 .card_wrapper {
   width: 17rem;
   display: flex;
@@ -70,7 +7,7 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   align-items: center;
   padding: 1.7rem;
-  margin: 0.8rem;
+  margin: 1rem;
 }
 
 .set_icon {
