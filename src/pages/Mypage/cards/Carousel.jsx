@@ -12,6 +12,7 @@ const Carousel = () => {
     infinite: false,
     slidesToShow: 1,
     arrow: true,
+    variableWidth: true,
   };
   return (
     <div className="carousel">
