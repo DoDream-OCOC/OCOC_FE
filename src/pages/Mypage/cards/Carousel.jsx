@@ -13,14 +13,15 @@ const Carousel = () => {
     slidesToShow: 1,
     arrow: true,
     variableWidth: true,
+    adaptiveHeight: true,
   };
   return (
     <div className="carousel">
       <Slider {...settings}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card title="1. ?" />
+        <Card title="2. ?" />
+        <Card title="3. ?" />
+        <Card title="4. ?" />
       </Slider>
     </div>
   );

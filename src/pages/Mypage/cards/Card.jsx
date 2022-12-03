@@ -3,14 +3,19 @@ import { ProgressBar1 } from '../../../components';
 import { Text, Empty, Button } from '../../../components/element';
 import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
 
-export const Card = () => {
+import { useModal } from '../../../hooks';
+import { ChartModal } from '../modal';
+
+export const Card = ({ title }) => {
+  const { Modal, openModal } = useModal();
+
   return (
     <div className={style.card_wrapper}>
-      <Text size="H4" color="black" content="1.여행" />
+      <Text size="H4" color="black" content={title} />
       <div style={{ width: '100%', marginTop: '-3.4rem', marginBottom: '-1rem' }}>
-        <ProgressBar1 />
+        <ProgressBar1 value={0} />
       </div>
-      <Text size="B1" content="최고 점수: " />
+      <Text size="B1" content="최고 점수: {...}" />
       <div className={style.set_icon}></div>
       <div className={style.chart_wrapper}>
         <BarChart />
