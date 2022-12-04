@@ -1,9 +1,9 @@
 import style from './index.module.css';
 import { ProgressBar1 } from '../../../components';
-import { Text, Empty, Button } from '../../../components/element';
+import { Text, MyPageStartButton } from '../../../components/element';
 import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
 
-export const Card = ({ title, openModal }) => {
+export const Card = ({ title, openModal, isLock = false }) => {
   return (
     <div className={style.card_wrapper}>
       <Text size="H4" color="black" content={title} />
@@ -16,7 +16,7 @@ export const Card = ({ title, openModal }) => {
         <BarChart />
         <div>순위보기</div>
       </div>
-      <div className={style.innerbutton}>시작하기</div>
+      <MyPageStartButton isDisabled={isLock} content={!isLock ? '시작하기' : '이전 세트를 먼저 클리어해야 합니다!'} />
     </div>
   );
 };

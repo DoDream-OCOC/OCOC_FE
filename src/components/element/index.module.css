@@ -74,6 +74,29 @@ span {
   background-color: var(--Green);
 }
 
+.mypage_button {
+  width: 105%;
+  height: 2.6rem;
+  border: 0px;
+  margin: 0.5rem;
+  color: var(--Gray-0);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--Green);
+  border-radius: 1rem;
+
+  cursor: pointer;
+}
+
+.mypage_disabled_button {
+  color: var(--Gray-4);
+  background: none;
+
+  cursor: auto;
+}
+
 /* Input */
 .input {
   padding: 1rem;

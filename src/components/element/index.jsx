@@ -62,6 +62,15 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
   );
 };
 
+export const MyPageStartButton = ({ isDisabled = false, content, ...props }) => {
+  const disabled = isDisabled;
+  return (
+    <button className={`${style.mypage_button} ${disabled && style.mypage_disabled_button}`} disabled={disabled} {...props}>
+      {content}
+    </button>
+  );
+};
+
 /**
  * Input component
  * @prop {string} placeholder
