@@ -5,19 +5,26 @@ import MainContainer from '../../components/container/main';
 
 import { score } from '../../apis';
 import { Text, Empty, Button } from '../../components/element';
+import ChartModal from '../Mypage/modal';
+import { useModal } from '../../hooks';
 
 function Test() {
   // [Todo] 브라우저 탭 돌리면 멈추는 거 해결하기
   const navigate = useNavigate();
+  const { Modal, closeModal, openModal } = useModal();
 
   const testPost = async () => {
     const res = await score.postScore(30, 3000, 1290);
     console.log(res);
+    openModal();
   };
 
   return (
     <>
       <NavBar />
+      <Modal>
+        <ChartModal closeModal={closeModal} />
+      </Modal>
       <MainContainer>
         <article>
           <Text size="H3" color="black" content="테스트 페이지입니다." style={{ wordSpacing: '-3px' }} />
