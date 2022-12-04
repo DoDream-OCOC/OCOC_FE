@@ -1,6 +1,7 @@
 import React from 'react';
 import { useModal } from '../../hooks';
 import { useMutation } from 'react-query';
+import { info } from '../../apis';
 
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
@@ -9,17 +10,26 @@ import ChartModal from './modal';
 import { Turtle } from '../../components';
 import Carousel from './cards/Carousel';
 
-const curLevel = {
-  여행: 'TRV',
-  음식: 'FOD',
-  예약: 'BOK',
-  구매: 'BUY',
+const LEVEL = {
+  TRV: 1,
+  FOD: 2,
+  BOK: 3,
+  BUY: 4,
 };
 
 function Mypage() {
-  const mutation = useMutation({ mutationFn: async () => {}, onSuccess: () => {} });
+  const mutation = useMutation({
+    mutationFn: async () => await info.getCurGameSet().then(res => res),
+    onSuccess: res => setCurLevel(LEVEL[res]),
+  });
+  const [curLevel, setCurLevel] = React.useState(0);
   const { Modal, openModal, closeModal } = useModal();
   // [Todo] 마이페이지에서 데이터 받아서 뿌리기
+
+  React.useLayoutEffect(() => {
+    mutation.mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -39,7 +49,7 @@ function Mypage() {
             {/* [todo] 요건 어떻게? */}
             <Button content="PART 1 일상생활" />
             <Empty size="2rem" />
-            <Carousel openModal={openModal} />
+            <Carousel openModal={openModal} curLevel={curLevel} />
           </div>
         </div>
         <section style={{ marginTop: '4rem' }}></section>

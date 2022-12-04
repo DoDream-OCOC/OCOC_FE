@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Card } from './Card';
 
-const Carousel = ({ openModal }) => {
+const Carousel = ({ openModal, curLevel }) => {
   const mutation = useMutation({ mutationFn: async query => {}, onSuccess: () => {} });
   const settings = {
     className: 'center',
@@ -23,10 +23,10 @@ const Carousel = ({ openModal }) => {
     <div className="carousel">
       <Slider {...settings}>
         {/* [Todo] highScore랑 isLock 합쳐서 객체로 관리하기 */}
-        <Card title="1. 여행" openModal={openModal} onBtnClick={mutation.mutate('여행')} highScore={10} isLock={false} />
-        <Card title="2. 음식" openModal={openModal} onBtnClick={mutation.mutate('음식')} highScore={20} isLock={false} />
-        <Card title="3. 예약" openModal={openModal} onBtnClick={mutation.mutate('예약')} highScore={30} isLock={false} />
-        <Card title="4. 구매" openModal={openModal} onBtnClick={mutation.mutate('구매')} highScore={40} isLock={true} />
+        <Card title="1. 여행" openModal={openModal} onBtnClick={mutation.mutate('여행')} highScore={10} isLock={1 > curLevel} />
+        <Card title="2. 음식" openModal={openModal} onBtnClick={mutation.mutate('음식')} highScore={20} isLock={2 > curLevel} />
+        <Card title="3. 예약" openModal={openModal} onBtnClick={mutation.mutate('예약')} highScore={30} isLock={3 > curLevel} />
+        <Card title="4. 구매" openModal={openModal} onBtnClick={mutation.mutate('구매')} highScore={40} isLock={4 > curLevel} />
       </Slider>
     </div>
   );
