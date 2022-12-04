@@ -19,7 +19,7 @@ export const Card = ({ title, highScore, onBtnClick, isLock = false, svg }) => {
           <ProgressBar1 value={0} />
         </div>
         <Text size="B1" content={`최고 점수: ${highScore}`} />
-        <div className={style.set_icon}></div>
+        <div className={style.set_icon}>{svg}</div>
         {/* [Error] openModal 리렌더링 에러 */}
         <div className={style.chart_wrapper} onClick={() => openModal()}>
           <BarChart />
