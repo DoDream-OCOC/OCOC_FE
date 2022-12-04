@@ -1,7 +1,7 @@
 .profile_wrapper {
   width: 90vw;
   max-width: 25rem;
-  margin-top: 5rem;
+  margin-top: 1rem;
   background-color: white;
   border-radius: 1rem;
 }
@@ -23,7 +23,7 @@
 }
 
 .record_wrapper .record_score {
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: #f8f8f8;
   margin-right: 20px;
   border-radius: 1rem;
@@ -33,7 +33,7 @@
 }
 
 .record_wrapper .record_speed {
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: #f8f8f8;
   border-radius: 1rem;
   width: 50%;
@@ -59,4 +59,9 @@
   justify-content: space-between;
   border-radius: 20px;
   background-color: var(--Gray-3);
+}
+
+.modal_wrapper {
+  background-color: var(--Gray-2);
+  border-radius: 20px;
 }

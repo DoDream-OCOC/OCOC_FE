@@ -1,14 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
 import Profile from './Profie';
 import Ranking from './Ranking';
+import { ReactComponent as Clear } from '../../../assets/icons/Clear.svg';
+import style from './index.module.css';
 
-function ChartModal() {
-  const navigate = useNavigate();
-  const [ranks, setRanks] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+function ChartModal({ closeModal }) {
   // const fetchRanks = async () => {
   //   try {
   //     // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -48,12 +44,17 @@ function ChartModal() {
   // );
   return (
     <>
-      <div>
-        <Profile />
-        <Ranking rank="MY" id="test" score="12344" />
-        <Ranking rank="1" id={0} score={0} />
-        <Ranking rank="2" id={0} score={0} />
-        <Ranking rank="3" id={0} score={0} />
+      <div className={style.modal_wrapper}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+          <Clear style={{ margin: '10px' }} onClick={closeModal} />
+        </div>
+        <div style={{ margin: '0rem 1rem 2rem 1rem' }}>
+          <Profile />
+          <Ranking rank="MY" id="test" score="12344" />
+          <Ranking rank="1" id={0} score={0} />
+          <Ranking rank="2" id={0} score={0} />
+          <Ranking rank="3" id={0} score={0} />
+        </div>
       </div>
     </>
   );

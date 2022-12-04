@@ -1,23 +1,36 @@
 import React from 'react';
-import { Text, Empty, Button } from '../../../components/element';
+import { Text } from '../../../components/element';
+import { ReactComponent as Star } from '../../../assets/icons/Star_border.svg';
 import style from './index.module.css';
 
 const Profile = () => {
   return (
     <section>
+      <div style={{ display: 'flex', alignItems: 'left', width: '100%' }}>
+        <Text size="H3" content="랭킹" />
+      </div>
       <div className={style.profile_wrapper}>
         <div className={style.name_wrapper}>
           <Text size="H4" color="black" content="홍길동" />
-          <Text size="B3" color="black" content=" 획득 업적 > " />
         </div>
         <div className={style.record_wrapper}>
           <div className={style.record_score}>
-            <Text size="B1" color="black" content="최고점수" />
-            <Text size="H4" color="black" content="1234점" />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Star />
+              <Text size="B1" color="black" content="최고점수" />
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <Text size="H4" color="black" content="1234점" />
+            </div>
           </div>
           <div className={style.record_speed}>
-            <Text size="B1" color="black" content="평균속도" />
-            <Text size="H4" color="black" content="123/분" />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Star />
+              <Text size="B1" color="black" content="평균속도" />
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <Text size="H4" color="black" content="12문장" />
+            </div>
           </div>
         </div>
       </div>

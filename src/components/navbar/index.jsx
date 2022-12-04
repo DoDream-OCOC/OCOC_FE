@@ -37,7 +37,8 @@ function NavBar() {
     <>
       <div className={color ? [style.navborder, style.Navbar].join(' ') : style.Navbar}>
         <div className={style.navbar_wrapper}>
-          <div className={style.flex} onClick={() => navigate('/')}>
+          {/* 비회원일 때는 /, 회원일때는 my-page */}
+          <div className={style.flex} onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')}>
             <Logo style={{ marginRight: '0.5rem' }} />
             <OCOCTitle style={{ width: '3.87rem', height: '1.06rem', fill: 'var(--Black)' }} />
           </div>
