@@ -1,25 +1,25 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useModal } from '../../hooks';
+import { useMutation } from 'react-query';
 
 import Navbar from '../../components/navbar';
-import ProgressBar1 from '../../components/progressbar';
 import MainContainer from '../../components/container/main';
 import { Empty, Button, Text } from '../../components/element';
 import ChartModal from './modal';
-import style from './index.module.css';
-
-import Lottie from 'lottie-react';
 import { Turtle } from '../../components';
-import cloud_bg from '../../assets/OCOC/Cloud_background.json';
-
 import Carousel from './cards/Carousel';
 
+const curLevel = {
+  여행: 'TRV',
+  음식: 'FOD',
+  예약: 'BOK',
+  구매: 'BUY',
+};
+
 function Mypage() {
+  const mutation = useMutation({ mutationFn: async () => {}, onSuccess: () => {} });
   const { Modal, openModal, closeModal } = useModal();
   // [Todo] 마이페이지에서 데이터 받아서 뿌리기
-
-  // 아직 users가 받아와 지지 않았을 때는 아무것도 표시되지 않도록 해줍니다.
 
   return (
     <>
