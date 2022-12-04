@@ -1,18 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Text } from '../../../components/element';
-import axios from 'axios';
+import React from 'react';
 import Profile from './Profie';
 import Ranking from './Ranking';
 import { ReactComponent as Clear } from '../../../assets/icons/Clear.svg';
 import style from './index.module.css';
 
 function ChartModal({ closeModal }) {
-  const navigate = useNavigate();
-  const [ranks, setRanks] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   // const fetchRanks = async () => {
   //   try {
   //     // 요청이 시작 할 때에는 error 와 users 를 초기화하고

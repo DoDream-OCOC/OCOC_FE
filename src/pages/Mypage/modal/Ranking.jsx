@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Empty, Button } from '../../../components/element';
+import { Text, Empty } from '../../../components/element';
 import style from './index.module.css';
 
 const Ranking = ({ rank, id, score }) => {

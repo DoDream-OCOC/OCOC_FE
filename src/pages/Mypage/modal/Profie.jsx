@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Empty, Button } from '../../../components/element';
+import { Text } from '../../../components/element';
 import { ReactComponent as Star } from '../../../assets/icons/Star_border.svg';
 import style from './index.module.css';
 

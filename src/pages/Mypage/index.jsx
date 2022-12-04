@@ -1,5 +1,4 @@
 import React from 'react';
-import { useModal } from '../../hooks';
 import { useMutation } from 'react-query';
 import { info } from '../../apis';
 
@@ -23,7 +22,7 @@ function Mypage() {
     onSuccess: res => setCurLevel(LEVEL[res]),
   });
   const [curLevel, setCurLevel] = React.useState(0);
-  const { Modal, openModal, closeModal } = useModal();
+
   // [Todo] 마이페이지에서 데이터 받아서 뿌리기
 
   React.useLayoutEffect(() => {
@@ -34,9 +33,7 @@ function Mypage() {
   return (
     <>
       <Navbar />
-      <Modal>
-        <ChartModal closeModal={closeModal} />
-      </Modal>
+
       <MainContainer>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '90vw', maxWidth: '25rem' }}>
@@ -49,7 +46,7 @@ function Mypage() {
             {/* [todo] 요건 어떻게? */}
             <Button content="PART 1 일상생활" />
             <Empty size="2rem" />
-            <Carousel openModal={openModal} curLevel={curLevel} />
+            <Carousel curLevel={curLevel} />
           </div>
         </div>
         <section style={{ marginTop: '4rem' }}></section>
