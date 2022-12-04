@@ -17,7 +17,6 @@ import Carousel from './cards/Carousel';
 
 function Mypage() {
   const { Modal, openModal, closeModal } = useModal();
-  React.useEffect(() => openModal(), []);
 
   // 아직 users가 받아와 지지 않았을 때는 아무것도 표시되지 않도록 해줍니다.
 
@@ -37,7 +36,7 @@ function Mypage() {
             <Turtle scale="6rem" />
             <Button content="PART 1 일상생활" />
             <Empty size="2rem" />
-            <Carousel />
+            <Carousel openModal={openModal} />
           </div>
         </div>
         <section style={{ marginTop: '4rem' }}></section>

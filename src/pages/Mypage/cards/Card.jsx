@@ -3,23 +3,7 @@ import { ProgressBar1 } from '../../../components';
 import { Text, Empty, Button } from '../../../components/element';
 import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
 
-import { useModal } from '../../../hooks';
-import ChartModal from '../modal';
-import { func } from 'prop-types';
-
-export const Card = ({ title }) => {
-  const { Modal, openModal } = useModal(ChartModal);
-
-  const ShowModal = () => {
-    return (
-      <>
-        <Modal>
-          <ChartModal />
-        </Modal>
-      </>
-    );
-  };
-
+export const Card = ({ title, openModal }) => {
   return (
     <div className={style.card_wrapper}>
       <Text size="H4" color="black" content={title} />

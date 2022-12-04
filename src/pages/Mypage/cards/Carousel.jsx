@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Card } from './Card';
 
-const Carousel = () => {
+const Carousel = ({ openModal }) => {
   const settings = {
     className: 'center',
     centerMode: true,
@@ -20,10 +20,10 @@ const Carousel = () => {
   return (
     <div className="carousel">
       <Slider {...settings}>
-        <Card title="1. ?" />
-        <Card title="2. ?" />
-        <Card title="3. ?" />
-        <Card title="4. ?" />
+        <Card title="1. ?" openModal={openModal} />
+        <Card title="2. ?" openModal={openModal} />
+        <Card title="3. ?" openModal={openModal} />
+        <Card title="4. ?" openModal={openModal} />
       </Slider>
     </div>
   );
