@@ -13,7 +13,7 @@ function ProgressBar1({ value }) {
     <>
       <div className={style.progress_navbar}>
         <div style={{ marginLeft: margin, display: 'flex', height: '1.5rem', overflow: 'hidden', justifyContent: 'flex-start' }}>
-          <Turtle scale="4rem" />
+          <Turtle scale="3rem" />
         </div>
         <ProgressBar percent={value} unfilledBackground="var(--Gray-3)" filledBackground="var(--Green)" height="0.5rem">
           <Step transition="scale">{({ accomplished }) => <span className={accomplished ? style.circleGr : style.circle}></span>}</Step>

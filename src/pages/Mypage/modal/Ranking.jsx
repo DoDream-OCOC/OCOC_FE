@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Empty, Button } from '../../../components/element';
 import style from './index.module.css';
 
-export const Ranking = ({ rank, id, score }) => {
+const Ranking = ({ rank, id, score }) => {
   return (
     <section>
       <Empty size="0.5rem" />
@@ -14,3 +14,5 @@ export const Ranking = ({ rank, id, score }) => {
     </section>
   );
 };
+
+export default Ranking;

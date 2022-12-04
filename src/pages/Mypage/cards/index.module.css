@@ -1,62 +1,42 @@
-.profile_wrapper {
-  width: 90vw;
-  max-width: 25rem;
-  margin-top: 5rem;
-  background-color: white;
-  border-radius: 1rem;
-}
-
-.name_wrapper {
+.card_wrapper {
+  width: 17rem;
   display: flex;
-  margin: 1rem;
-  align-items: flex-end;
-}
-
-.name_wrapper * {
-  padding-right: 0.4rem;
-}
-
-.record_wrapper {
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
+  background: var(--Gray-0);
+  border-radius: 0.6rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  align-items: center;
+  padding: 1.7rem;
   margin: 1rem;
 }
 
-.record_wrapper .record_score {
-  padding: 1rem;
-  background-color: #f8f8f8;
-  margin-right: 20px;
-  border-radius: 1rem;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.record_wrapper .record_speed {
-  padding: 1rem;
-  background-color: #f8f8f8;
-  border-radius: 1rem;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.title_wrapper {
-  width: 90vw;
-  padding: 1rem;
-  max-width: 25rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 20px;
-  background-color: var(--Green);
-}
-
-.title_wrapper_other {
-  width: 90vw;
-  padding: 1rem;
-  max-width: 25rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 20px;
+.set_icon {
+  margin: 1rem;
+  height: 11rem;
   background-color: var(--Gray-3);
+  width: 11rem;
+  border-radius: 11rem;
+}
+.innerbutton {
+  width: 105%;
+  height: 2.6rem;
+  margin: 0.5rem;
+  color: var(--Gray-0);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--Green);
+  border-radius: 1rem;
+
+  cursor: pointer;
+}
+
+.chart_wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem;
+  cursor: pointer;
+  color: var(--Gray-4);
 }
