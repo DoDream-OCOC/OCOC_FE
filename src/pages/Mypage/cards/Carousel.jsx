@@ -21,10 +21,10 @@ const Carousel = ({ openModal }) => {
     <div className="carousel">
       <Slider {...settings}>
         {/* [Todo] isLock을 통해 비활성화 작업하기 */}
-        <Card title="1. 여행" openModal={openModal} />
-        <Card title="2. 음식" openModal={openModal} />
-        <Card title="3. 예약" openModal={openModal} />
-        <Card title="4. 구매" openModal={openModal} />
+        <Card title="1. 여행" openModal={openModal} highScore={10} isLock={false} />
+        <Card title="2. 음식" openModal={openModal} highScore={20} isLock={false} />
+        <Card title="3. 예약" openModal={openModal} highScore={30} isLock={false} />
+        <Card title="4. 구매" openModal={openModal} highScore={40} isLock={true} />
       </Slider>
     </div>
   );
