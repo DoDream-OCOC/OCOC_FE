@@ -20,10 +20,11 @@ const Carousel = ({ openModal }) => {
   return (
     <div className="carousel">
       <Slider {...settings}>
-        <Card title="1. ?" openModal={openModal} />
-        <Card title="2. ?" openModal={openModal} />
-        <Card title="3. ?" openModal={openModal} />
-        <Card title="4. ?" openModal={openModal} />
+        {/* [Todo] isLock을 통해 비활성화 작업하기 */}
+        <Card title="1. 여행" openModal={openModal} />
+        <Card title="2. 음식" openModal={openModal} />
+        <Card title="3. 예약" openModal={openModal} />
+        <Card title="4. 구매" openModal={openModal} />
       </Slider>
     </div>
   );
