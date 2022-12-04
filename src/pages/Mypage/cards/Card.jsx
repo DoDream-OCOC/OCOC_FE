@@ -1,10 +1,10 @@
 import style from './index.module.css';
 
-import { ProgressBar1 } from '../../../components';
+import { ProgressBar1, Turtle } from '../../../components';
 import { Text, MyPageStartButton } from '../../../components/element';
 import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
 
-export const Card = ({ title, highScore, onBtnClick, openModal, isLock = false }) => {
+export const Card = ({ title, highScore, onBtnClick, openModal, isLock = false, svg }) => {
   return (
     <div className={style.card_wrapper}>
       <Text size="H4" color="black" content={title} />
@@ -12,7 +12,7 @@ export const Card = ({ title, highScore, onBtnClick, openModal, isLock = false }
         <ProgressBar1 value={0} />
       </div>
       <Text size="B1" content={`최고 점수: ${highScore}`} />
-      <div className={style.set_icon}></div>
+      <div className={style.set_icon}>{svg}</div>
       {/* [Error] openModal 리렌더링 에러 */}
       <div className={style.chart_wrapper} onClick={() => openModal()}>
         <BarChart />
