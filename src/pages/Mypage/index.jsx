@@ -1,10 +1,12 @@
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../hooks';
 
 import Navbar from '../../components/navbar';
 import ProgressBar1 from '../../components/progressbar';
 import MainContainer from '../../components/container/main';
 import { Empty, Button, Text } from '../../components/element';
+import ChartModal from './modal';
 import style from './index.module.css';
 
 import Lottie from 'lottie-react';
@@ -14,11 +16,17 @@ import cloud_bg from '../../assets/OCOC/Cloud_background.json';
 import Carousel from './cards/Carousel';
 
 function Mypage() {
+  const { Modal, openModal, closeModal } = useModal();
+  React.useEffect(() => openModal(), []);
+
   // 아직 users가 받아와 지지 않았을 때는 아무것도 표시되지 않도록 해줍니다.
 
   return (
     <>
       <Navbar />
+      <Modal>
+        <ChartModal closeModal={closeModal} />
+      </Modal>
       <MainContainer>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '90vw', maxWidth: '25rem' }}>
