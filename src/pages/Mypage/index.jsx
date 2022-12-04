@@ -5,7 +5,6 @@ import { info } from '../../apis';
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 import { Empty, Button, Text } from '../../components/element';
-import ChartModal from './modal';
 import { Turtle } from '../../components';
 import Carousel from './cards/Carousel';
 
