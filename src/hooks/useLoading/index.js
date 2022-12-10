@@ -12,8 +12,7 @@ function useLoading() {
   }, []);
 
   const Loading = React.useCallback(({ isLoading, ...props }) => {
-    // if (ref.current && isLoading) return createPortal(<LoadingSVG id={style.loading} {...props} />, ref.current);
-    if (ref.current)
+    if (ref.current && isLoading)
       return createPortal(
         <div id={style.bg_blur}>
           <LoadingSVG id={style.loading} {...props} />
