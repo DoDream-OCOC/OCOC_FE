@@ -18,7 +18,7 @@ function useAlert() {
    * @prop {'Error' | 'Warn' | 'Success'} type
    * @prop {string} content
    */
-  const openAlert = (type, content) => {
+  const openAlert = (type = 'Error', content) => {
     setAlertState({ type, content });
     setIsAlertOpend(true);
   };
@@ -39,7 +39,7 @@ function useAlert() {
       }, []);
 
       return (
-        <div className={`${style.AlertContainer} ${style[COLOR]}`} style={{ backgroundColor: COLOR }}>
+        <div className={`${style.AlertContainer} ${style[COLOR]}`}>
           {type === ERROR ? <ErrorIcon /> : type === WARN ? <WarnIcon /> : <SuccessIcon />}
           <div className={style.text}>
             <Text size="B2" content={TITLE} />
@@ -50,7 +50,6 @@ function useAlert() {
     };
 
     if (ref.current && isAlertOpend) {
-      // if (ref.current) {
       return createPortal(<AlertComponent />, ref.current);
     }
   };

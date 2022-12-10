@@ -15,7 +15,6 @@ export const useSignIn = () => {
   const { Loading } = useLoading();
   const mutation = useMutation({
     mutationFn: data => sign.postLoginData(data),
-    // [Todo] 확인해보기 -> 뒤로가기
     onSuccess: () => navigate('/my-page'),
     onError: err => openAlert('Error', err),
   });
