@@ -13,10 +13,12 @@ import turtleTravel from '../../../assets/icons/turtleTravel.png';
 import turtleCook from '../../../assets/icons/turtleCook.png';
 import turtleShopping from '../../../assets/icons/turtleShopping.png';
 import turtleReservation from '../../../assets/icons/turtleReservation.png';
+import useLoading from '../../../hooks/useLoading';
 
 const Carousel = ({ curLevel }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { Loading } = useLoading();
   const mutation = useMutation({
     mutationFn: async () => {
       await study.postStudy().then(async res => {
@@ -41,6 +43,7 @@ const Carousel = ({ curLevel }) => {
 
   return (
     <div className="carousel">
+      <Loading isLoading={mutation.isLoading} />
       <Slider {...settings}>
         {/* [Todo] highScore랑 isLock 합쳐서 객체로 관리하기 */}
         <Card title="1. 여행" onBtnClick={() => mutation.mutate()} highScore={10} isLock={1 > curLevel} iconPng={turtleTravel} />
