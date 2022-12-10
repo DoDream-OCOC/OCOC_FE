@@ -50,6 +50,7 @@ function useAlert() {
     };
 
     if (ref.current && isAlertOpend) {
+      // if (ref.current) {
       return createPortal(<AlertComponent />, ref.current);
     }
   };
