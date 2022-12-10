@@ -9,12 +9,13 @@ import style from '../../../pages/sign/index.module.css';
 const SIGN_IN = 'sign-in';
 
 function SignIn() {
-  const { navigate, reg, onSubmit, vldErr, Alert } = useSignIn();
+  const { navigate, reg, onSubmit, vldErr, Alert, Loading } = useSignIn();
 
   return (
     <>
       <NavBar />
       <Alert />
+      <Loading />
       <MainContainer>
         <article>
           <section className={style.sign_wrapper}>

@@ -6,5 +6,6 @@ import useInitialRender from './useInitialRender';
 import useKeywords from './useKeywords';
 import useTimerUI from './timer/useTimerUI';
 import useLife from './useLife';
+import useLoading from './useLoading';
 
-export { useAlert, useGradedUI, useModal, useScrollTo, useInitialRender, useKeywords, useTimerUI, useLife };
+export { useAlert, useGradedUI, useModal, useScrollTo, useInitialRender, useKeywords, useTimerUI, useLife, useLoading };
