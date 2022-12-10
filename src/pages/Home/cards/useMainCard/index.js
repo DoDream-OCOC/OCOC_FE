@@ -24,8 +24,8 @@ export const useMainCard = () => {
   const letsPlayGame = () => mutation.mutate();
   const goToSignInPage = () => navigate('/sign-in');
 
-  React.useLayoutEffect(() => {
-    isSigned() && navigate('/my-page');
+  React.useEffect(() => {
+    if (isSigned()) navigate('/my-page');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
