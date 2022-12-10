@@ -18,7 +18,7 @@ export const Card = ({ title, highScore, onBtnClick, isLock = false, iconPng }) 
           <ProgressBar1 value={0} />
         </div>
         <Text size="B1" content={`최고 점수: ${highScore}`} />
-        <img alt="" src={iconPng} className={isLock === true ? style.set_icon : style.set_icon_grey} />
+        <img alt="" src={iconPng} className={isLock !== true ? style.set_icon : style.set_icon_grey} />
         <div className={style.chart_wrapper} onClick={() => openModal()}>
           <BarChart />
           <div>순위보기</div>
