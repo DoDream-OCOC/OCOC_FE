@@ -21,7 +21,6 @@ function Mypage() {
     onSuccess: res => setCurLevel(LEVEL[res]),
   });
   const [curLevel, setCurLevel] = React.useState(0);
-
   // [Todo] 마이페이지에서 데이터 받아서 뿌리기
 
   React.useLayoutEffect(() => {
@@ -42,7 +41,6 @@ function Mypage() {
             <Text size="H3" content="안녕하세요!" />
             <Empty size="3rem" />
             <Turtle scale="6rem" />
-            {/* [todo] 요건 어떻게? */}
             <Button content="PART 1 일상생활" />
             <Empty size="2rem" />
             <Carousel curLevel={curLevel} />

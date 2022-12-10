@@ -1,7 +1,6 @@
 import style from './index.module.css';
 import { useModal } from '../../../hooks';
-
-import { ProgressBar1, Turtle } from '../../../components';
+import { ProgressBar1 } from '../../../components';
 import { Text, MyPageStartButton } from '../../../components/element';
 import ChartModal from '../modal';
 import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
@@ -19,8 +18,7 @@ export const Card = ({ title, highScore, onBtnClick, isLock = false, iconPng }) 
           <ProgressBar1 value={0} />
         </div>
         <Text size="B1" content={`최고 점수: ${highScore}`} />
-        <img src={iconPng} className={isLock === true ? style.set_icon : style.set_icon_grey} />
-        {/* [Error] openModal 리렌더링 에러 */}
+        <img alt="" src={iconPng} className={isLock === true ? style.set_icon : style.set_icon_grey} />
         <div className={style.chart_wrapper} onClick={() => openModal()}>
           <BarChart />
           <div>순위보기</div>
