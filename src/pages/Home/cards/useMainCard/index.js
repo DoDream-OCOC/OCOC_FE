@@ -17,8 +17,6 @@ export const useMainCard = () => {
       });
     },
     onSuccess: () => navigate('/play-game'),
-    // [Todo] alert 붙여주기
-    // onError: err => console.log(err),
   });
 
   const letsPlayGame = () => mutation.mutate();

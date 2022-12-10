@@ -39,7 +39,12 @@ function useModal() {
       };
 
       if (ref.current && isModalOpened) {
-        return createPortal(<ModalComponent />, ref.current);
+        return createPortal(
+          <div id={style.bg_blur}>
+            <ModalComponent />
+          </div>,
+          ref.current,
+        );
       }
     },
     [isModalOpened],
