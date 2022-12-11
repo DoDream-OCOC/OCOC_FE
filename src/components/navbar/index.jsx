@@ -38,16 +38,11 @@ function NavBar() {
       <div className={color ? [style.navborder, style.Navbar].join(' ') : style.Navbar}>
         <div className={style.navbar_wrapper}>
           {/* 비회원일 때는 /, 회원일때는 my-page */}
-          <div className={style.flex} onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')}>
+          <div className={style.flex} onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/')}>
             <Logo style={{ marginRight: '0.5rem' }} />
             <OCOCTitle style={{ width: '3.87rem', height: '1.06rem', fill: 'var(--Black)' }} />
           </div>
           <div style={{ display: 'flex' }}>
-            <div className={style.mobileapp}>
-              <Button style={{ width: '4rem', height: '2rem' }} onClick={() => navigate('/')}>
-                APP
-              </Button>
-            </div>
             {/* [Temp] 일단 로그인 창으로만 이동 */}
             {window.location.pathname === '/my-page' ? <Text content="로그아웃" onClick={signOut} /> : <Profile onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />}
           </div>

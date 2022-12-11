@@ -24,7 +24,7 @@ export const MainCard = () => {
       <div style={{ width: '100%', maxWidth: '25rem', display: 'flex', height: '3rem', justifyContent: 'flex-start' }}>
         <Turtle scale="6rem" />
       </div>
-      <Button onClick={isSigned() ? () => letsPlayGame() : goToSignInPage()} content="시작하기" />
+      <Button onClick={isSigned() ? () => letsPlayGame() : () => goToSignInPage()} content="시작하기" />
       <Empty size="6rem" />
     </article>
   );

@@ -18,8 +18,7 @@
 }
 
 .red {
-  background-color: var(--Red);
-  /* 백그라운드만 opacity 안되나? */
+  background-color: var(--Red-light);
 }
 
 .yellow {

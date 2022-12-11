@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { sign } from '../../../apis';
-import { useAlert } from '../../../hooks';
+import { useAlert, useLoading } from '../../../hooks';
 import { isEmail, isRequired } from '../../../utils/validation';
 import { createVldErr } from '../../../utils/validityError';
 
@@ -12,12 +12,13 @@ const PW = 'password';
 export const useSignIn = () => {
   const navigate = useNavigate();
   const { Alert, openAlert } = useAlert();
-  const mutaion = useMutation({
+  const { Loading } = useLoading();
+  const mutation = useMutation({
     mutationFn: data => sign.postLoginData(data),
-    // [Todo] 확인해보기 -> 뒤로가기
     onSuccess: () => navigate('/my-page'),
     onError: err => openAlert('Error', err),
   });
+  const tmpLoading = () => <Loading isLoading={mutation.isLoading} />;
   const { register, handleSubmit, formState } = useForm({ defaultValues: { email: '', password: '' } });
 
   const reg = {
@@ -25,9 +26,9 @@ export const useSignIn = () => {
     password: { ...register(PW, { validate: { isRequired: val => isRequired(val) || '비밀번호를 입력해야 합니다.' } }) },
   };
 
-  const onSubmit = handleSubmit(async data => mutaion.mutate({ loginId: data.email, loginPassword: data.password }));
+  const onSubmit = handleSubmit(async data => mutation.mutate({ loginId: data.email, loginPassword: data.password }));
 
   const vldErr = createVldErr(formState, [EMAIL, PW]);
 
-  return { navigate, reg, onSubmit, vldErr, Alert };
+  return { navigate, reg, onSubmit, vldErr, Alert, Loading: tmpLoading };
 };
