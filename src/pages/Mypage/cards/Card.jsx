@@ -10,7 +10,7 @@ export const Card = ({ title, highScore, onBtnClick, isLock = false, iconPng }) 
   return (
     <>
       <Modal>
-        <ChartModal closeModal={closeModal} />
+        <ChartModal closeModal={closeModal} highScore={highScore} />
       </Modal>
       <div className={style.card_wrapper}>
         <Text size="H4" color="black" content={title} />

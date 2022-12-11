@@ -4,7 +4,7 @@ import Ranking from './Ranking';
 import { ReactComponent as Clear } from '../../../assets/icons/Clear.svg';
 import style from './index.module.css';
 
-function ChartModal({ closeModal }) {
+function ChartModal({ closeModal, highScore }) {
   // const fetchRanks = async () => {
   //   try {
   //     // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -49,8 +49,8 @@ function ChartModal({ closeModal }) {
           <Clear style={{ margin: '10px' }} onClick={closeModal} />
         </div>
         <div style={{ margin: '0rem 1rem 2rem 1rem' }}>
-          <Profile />
-          <Ranking rank="MY" id="test" score="12344" />
+          <Profile highScore={highScore} />
+          <Ranking rank="MY" id="test" score={highScore} />
           <Ranking rank="1" id={0} score={0} />
           <Ranking rank="2" id={0} score={0} />
           <Ranking rank="3" id={0} score={0} />

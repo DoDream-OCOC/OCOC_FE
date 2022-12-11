@@ -3,7 +3,7 @@ import { Text } from '../../../components/element';
 import { ReactComponent as Star } from '../../../assets/icons/Star_border.svg';
 import style from './index.module.css';
 
-const Profile = () => {
+const Profile = ({ highScore }) => {
   return (
     <section>
       <div style={{ display: 'flex', alignItems: 'left', width: '100%' }}>
@@ -20,7 +20,7 @@ const Profile = () => {
               <Text size="B1" color="black" content="최고점수" />
             </div>
             <div style={{ textAlign: 'right' }}>
-              <Text size="H4" color="black" content="1234점" />
+              <Text size="H4" color="black" content={`${highScore}점`} />
             </div>
           </div>
           <div className={style.record_speed}>
