@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from 'react-query';
-import { info } from '../../apis';
+import { info, score } from '../../apis';
 
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
@@ -17,14 +17,30 @@ const LEVEL = {
 
 function Mypage() {
   const mutation = useMutation({
-    mutationFn: async () => await info.getCurGameSet().then(res => res),
-    onSuccess: res => setCurLevel(LEVEL[res]),
+    mutationFn: async () => {
+      const resObj = {};
+      await info.getCurGameSet().then(res => (resObj.curLevel = LEVEL[res]));
+      for (let lvl of Object.keys(LEVEL)) await score.getBestScoreBySet(lvl).then(res => (resObj[lvl] = res));
+      return resObj;
+    },
+    onSuccess: resObj => {
+      setCurLevel(resObj.curLevel);
+      for (let lvl of Object.keys(LEVEL))
+        setRankObj(prev => {
+          return { ...prev, [lvl]: resObj[lvl] };
+        });
+    },
   });
   const [curLevel, setCurLevel] = React.useState(0);
-  // [Todo] 마이페이지에서 데이터 받아서 뿌리기
+  const [rankObj, setRankObj] = React.useState({
+    TRV: 0,
+    FOD: 0,
+    BOK: 0,
+    BUY: 0,
+  });
 
   React.useLayoutEffect(() => {
-    mutation.mutate();
+    mutation.mutate(); // [Error] 두 번 요청되는 이유?
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -36,14 +52,14 @@ function Mypage() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '90vw', maxWidth: '25rem' }}>
             <Empty size="6rem" />
-            {/* [todo] 여기도 api 받아서 작업하기 */}
+            {/* userID 조회 api도 필요 */}
             <Text size="H3" content="{userId}님," />
             <Text size="H3" content="안녕하세요!" />
             <Empty size="3rem" />
             <Turtle scale="6rem" />
             <Button content="PART 1 일상생활" />
             <Empty size="2rem" />
-            <Carousel curLevel={curLevel} />
+            <Carousel curLevel={curLevel} rankObj={rankObj} />
           </div>
         </div>
         <section style={{ marginTop: '4rem' }}></section>
