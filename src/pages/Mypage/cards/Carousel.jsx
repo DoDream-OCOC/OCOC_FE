@@ -45,10 +45,11 @@ const Carousel = ({ curLevel, rankObj }) => {
     <div className="carousel">
       <Loading isLoading={mutation.isLoading} />
       <Slider {...settings}>
-        <Card title="1. 여행" onBtnClick={() => mutation.mutate('TRV')} highScore={rankObj.TRV} isLock={1 > curLevel} iconPng={turtleTravel} />
-        <Card title="2. 음식" onBtnClick={() => mutation.mutate('FOD')} highScore={rankObj.FOD} isLock={2 > curLevel} iconPng={turtleCook} />
-        <Card title="3. 예약" onBtnClick={() => mutation.mutate('BOK')} highScore={rankObj.BOK} isLock={3 > curLevel} iconPng={turtleReservation} />
-        <Card title="4. 구매" onBtnClick={() => mutation.mutate('BUY')} highScore={rankObj.BUY} isLock={4 > curLevel} iconPng={turtleShopping} />
+        {/* [Todo] 리펙터링 시급 */}
+        <Card title="1. 여행" set={'TRV'} onBtnClick={() => mutation.mutate('TRV')} highScore={rankObj.TRV} isLock={1 > curLevel} iconPng={turtleTravel} />
+        <Card title="2. 음식" set={'FOD'} onBtnClick={() => mutation.mutate('FOD')} highScore={rankObj.FOD} isLock={2 > curLevel} iconPng={turtleCook} />
+        <Card title="3. 예약" set={'BOK'} onBtnClick={() => mutation.mutate('BOK')} highScore={rankObj.BOK} isLock={3 > curLevel} iconPng={turtleReservation} />
+        <Card title="4. 구매" set={'BUY'} onBtnClick={() => mutation.mutate('BUY')} highScore={rankObj.BUY} isLock={4 > curLevel} iconPng={turtleShopping} />
       </Slider>
     </div>
   );

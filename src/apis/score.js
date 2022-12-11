@@ -26,7 +26,7 @@ export const getBestScoreBySet = async setType => {
  * @param {'TRV' | 'FOD' | 'BOK' | 'BUY'} setType
  */
 export const getScoreRank = async setType => {
-  return ococ.get(`/${ROUTE}/rank`, { setType });
+  return ococ.get(`/${ROUTE}/rank?setType=${setType}`).then(res => res.data.data);
 };
 
 /**
@@ -34,5 +34,5 @@ export const getScoreRank = async setType => {
  * @param {'TRV' | 'FOD' | 'BOK' | 'BUY'} setType
  */
 export const getScoreSpeed = async setType => {
-  return ococ.get(`/${ROUTE}/speed`, { setType });
+  return ococ.get(`/${ROUTE}/speed?setType=${setType}`).then(res => res.data.data);
 };

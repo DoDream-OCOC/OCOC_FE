@@ -3,7 +3,7 @@ import { Text } from '../../../components/element';
 import { ReactComponent as Star } from '../../../assets/icons/Star_border.svg';
 import style from './index.module.css';
 
-const Profile = ({ highScore }) => {
+const Profile = ({ highScore, speed }) => {
   return (
     <section>
       <div style={{ display: 'flex', alignItems: 'left', width: '100%' }}>
@@ -29,7 +29,7 @@ const Profile = ({ highScore }) => {
               <Text size="B1" color="black" content="평균속도" />
             </div>
             <div style={{ textAlign: 'right' }}>
-              <Text size="H4" color="black" content="12문장" />
+              <Text size="H4" color="black" content={`${parseInt(speed / 1000)}문장/분`} />
             </div>
           </div>
         </div>

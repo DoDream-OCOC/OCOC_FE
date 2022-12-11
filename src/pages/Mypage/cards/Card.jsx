@@ -5,12 +5,12 @@ import { Text, MyPageStartButton } from '../../../components/element';
 import ChartModal from '../modal';
 import { ReactComponent as BarChart } from '../../../assets/icons/Bar chart.svg';
 
-export const Card = ({ title, highScore, onBtnClick, isLock = false, iconPng }) => {
+export const Card = ({ title, set, highScore, onBtnClick, isLock = false, iconPng }) => {
   const { Modal, openModal, closeModal } = useModal();
   return (
     <>
       <Modal>
-        <ChartModal closeModal={closeModal} highScore={highScore} />
+        <ChartModal set={set} closeModal={closeModal} highScore={highScore} />
       </Modal>
       <div className={style.card_wrapper}>
         <Text size="H4" color="black" content={title} />
