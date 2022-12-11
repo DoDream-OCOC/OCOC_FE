@@ -12,3 +12,12 @@ const ROUTE = 'score';
 export const postScore = async (score, avrSpeed, studyId) => {
   return await ococ.post(`/${ROUTE}/`, { score, speed: avrSpeed, studyId }).then(res => res.data.data);
 };
+
+/**
+ * Get best score by set [9시반에 다시 작업 ㄱ]
+ * @param {'TRV' | 'FOD' | 'BOK' | 'BUY'} setType
+ * @returns
+ */
+export const getBestScoreBySet = async setType => {
+  return await ococ.get(`/${ROUTE}/best/`, { setType });
+};
