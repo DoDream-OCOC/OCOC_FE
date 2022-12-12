@@ -28,12 +28,16 @@ function useGradedUI({ level }) {
     setIsGrading(true);
     setIsCrtAns(isCorrect);
     isCorrect && dispatch(gameSlice.actions.setStudyResult({ elapsedT: timeResRef.current.elapsedT, pointEarned: level * 10 + (timeResRef.current.isBonus ? 5 : 0), isCrtAns: isCorrect }));
-    setTimeout(() => {
-      callback();
-      setIsCrtAns(null);
-      setIsGrading(false);
-      reStart();
-    }, 1500);
+    setTimeout(
+      () => {
+        callback();
+        setIsCrtAns(null);
+        setIsGrading(false);
+        reStart();
+      },
+      // 틀렸을 때는 5000, 맞았을 때는 1500
+      isCorrect ? 1500 : 5000,
+    );
   };
 
   const PointEarnedUI = () => <PEUI isGrading={isGrading} isCrtAns={isCrtAns} />;

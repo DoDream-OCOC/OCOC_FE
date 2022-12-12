@@ -17,7 +17,7 @@ export const PointEarnedUI = ({ isGrading, isCrtAns }) => {
     return (
       isGrading && (
         <div id={styled.pointEarnedUI}>
-          <Lottie id={styled.pointEarnedUI} animationData={check_false} />
+          <Lottie id={styled.pointEarnedUI} animationData={check_false} loop={false} />
         </div>
       )
     );
