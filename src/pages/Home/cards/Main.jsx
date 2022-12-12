@@ -15,7 +15,7 @@ export const MainCard = () => {
       <Empty size="1rem" />
       <Empty size="1rem" />
       <div className={style.text_wrapper}>
-        <Text size="H4" color="black" content="영어 순서 맞추기 게임," />
+        <Text size="H4" color="black" content="클릭으로 하는 영어 작문 공부," />
         <Empty size="0.6rem" />
         <OCOCTitle style={{ width: '9.43rem', height: '2.563rem', fill: 'var(--Green)', ZIndex: '3' }} />
       </div>
