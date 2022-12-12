@@ -19,7 +19,7 @@ function BlankPage({ LifeState, sentences, setSentences, createSentence, blankTe
     <>
       <QuestionContainer content={korean} />
       <CrtAnswerUI />
-      <div>
+      <div style={{ backgroundColor: 'white', padding: '1.3rem', borderRadius: '0.5rem', marginBottom: '1rem' }}>
         <Sentence sentences={sentences} blankText={blankText} onChange={onChange} />
       </div>
       <LifeState />
