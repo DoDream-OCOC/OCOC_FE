@@ -56,6 +56,7 @@ span {
 /* [Todo] Btn이 Input에도 중북으로 사용되는 거 고려하기 */
 /* Button */
 .button {
+  cursor: pointer;
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   letter-spacing: 1px;
 

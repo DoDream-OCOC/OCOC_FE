@@ -44,7 +44,11 @@ function NavBar() {
           </div>
           <div style={{ display: 'flex' }}>
             {/* [Temp] 일단 로그인 창으로만 이동 */}
-            {window.location.pathname === '/my-page' ? <Text content="로그아웃" onClick={signOut} /> : <Profile onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />}
+            {window.location.pathname === '/my-page' ? (
+              <Text style={{ cursor: 'pointer' }} content="로그아웃" onClick={signOut} />
+            ) : (
+              <Profile style={{ cursor: 'pointer' }} onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />
+            )}
           </div>
         </div>
       </div>

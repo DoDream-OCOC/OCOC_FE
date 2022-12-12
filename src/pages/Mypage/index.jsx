@@ -51,14 +51,14 @@ function Mypage() {
       <MainContainer>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '90vw', maxWidth: '25rem' }}>
-            <Empty size="6rem" />
+            <Empty size="3.6rem" />
             {/* userID 조회 일단 보류 */}
             {/* <Text size="H3" content="{userId}님," /> */}
-            <Text size="H3" content="하단 세트를 차례대로 풀어보세요!" />
-            <Empty size="3rem" />
-            <Turtle scale="6rem" />
-            <Button content="PART 1 일상생활" />
-            <Empty size="2rem" />
+            <Text size="H4" content="안녕하세요!" />
+            <Empty size="0rem" />
+
+            <Text size="H4" content="세트들을 차례대로 풀어보세요!" />
+            <Empty size="0.5rem" />
             <Carousel curLevel={curLevel} rankObj={rankObj} />
           </div>
         </div>
