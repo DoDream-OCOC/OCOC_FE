@@ -16,13 +16,13 @@ function App() {
   const { stage, life } = useSelector(state => state.game);
   const [color, setColor] = useState('#D2FFFC');
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (stage >= 11) {
       setColor('#FFEAD2');
     } else if (stage >= 21) {
       setColor('#DADEFC');
     }
-  });
+  }, [stage]);
 
   return (
     <>
