@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
@@ -5,6 +6,7 @@ import { sign } from '../../../apis';
 import { useAlert, useLoading } from '../../../hooks';
 import { isEmail, isEngAndNum, isSpecialCharactors, isMinLength, isRequired } from '../../../utils/validation';
 import { createVldErr } from '../../../utils/validityError';
+import { isSigned } from '../../../utils/isSigned';
 
 const EMAIL = 'email';
 const PW = 'password';
@@ -38,6 +40,11 @@ export const useSignUp = () => {
   const onSubmit = handleSubmit(async data => mutation.mutate(data));
 
   const vldErr = createVldErr(formState, [EMAIL, PW, CPW]);
+
+  React.useEffect(() => {
+    if (isSigned()) navigate('/my-page');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { reg, onSubmit, vldErr, Alert, Loading: tmpLoading };
 };
