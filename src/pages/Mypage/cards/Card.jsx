@@ -15,7 +15,7 @@ export const Card = ({ title, set, highScore, onBtnClick, isLock = false, iconPn
       <div className={style.card_wrapper}>
         <Text size="H4" color="black" content={title} />
         <div style={{ width: '100%', marginTop: '-3.4rem', marginBottom: '-1rem' }}>
-          <ProgressBar1 value={0} />
+          <ProgressBar1 value={parseInt((highScore / 500) * 100)} />
         </div>
         <Text size="B1" content={`최고 점수: ${highScore}`} />
         <img alt="" src={iconPng} className={isLock !== true ? style.set_icon : style.set_icon_grey} />

@@ -15,7 +15,7 @@ export const PlayGameModal = ({ onLogIn, onBackToMain }) => {
       <Empty size="1.6rem" />
       <Button content="로그인하기" onClick={() => onLogIn()} />
       <Empty size="0.5rem" />
-      <Button content="그냥 할래요" onClick={() => onBackToMain()} style={{ backgroundColor: 'var(--Gray-1)', color: 'var(--Gray-4)' }} />
+      <Button content="그냥 할래요" onClick={onBackToMain} style={{ backgroundColor: 'var(--Gray-1)', color: 'var(--Gray-4)' }} />
     </article>
   );
 };
