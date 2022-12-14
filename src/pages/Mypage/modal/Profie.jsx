@@ -3,7 +3,7 @@ import { Text } from '../../../components/element';
 import { ReactComponent as Star } from '../../../assets/icons/Star_border.svg';
 import style from './index.module.css';
 
-const Profile = ({ highScore, speed }) => {
+const Profile = ({ userName, highScore, speed }) => {
   return (
     <section>
       <div style={{ display: 'flex', alignItems: 'left', width: '100%' }}>
@@ -11,7 +11,7 @@ const Profile = ({ highScore, speed }) => {
       </div>
       <div className={style.profile_wrapper}>
         <div className={style.name_wrapper}>
-          <Text size="H4" color="black" content="홍길동" />
+          <Text size="H4" color="black" content={`${userName}님`} />
         </div>
         <div className={style.record_wrapper}>
           <div className={style.record_score}>
