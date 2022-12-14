@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from '../../store';
+import { auth } from '..';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -26,7 +27,11 @@ ococ.interceptors.request.use(
 );
 
 ococ.interceptors.response.use(
-  response => response,
+  response => {
+    if (response.data.errorResponse?.code === 'ERROR_0004' || response.data.errorResponse?.code === 'ERROR_0007') window.location.replace('/sign-in');
+    else if (response.data.errorResponse?.code === 'ERROR_0005') auth.postRefreshToken();
+    return response;
+  },
   async error => {
     console.log('err:', error);
 
