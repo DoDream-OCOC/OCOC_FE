@@ -1,6 +1,7 @@
 import axios from 'axios';
 import store from '../../store';
 import { auth } from '..';
+import { signSlice } from '../../store/slices';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -28,19 +29,14 @@ ococ.interceptors.request.use(
 
 ococ.interceptors.response.use(
   response => {
-    if (response.data.errorResponse?.code === 'ERROR_0004' || response.data.errorResponse?.code === 'ERROR_0007') window.location.replace('/sign-in');
-    else if (response.data.errorResponse?.code === 'ERROR_0005') auth.postRefreshToken();
+    if (response.data.errorResponse?.code === 'ERROR_0004' || response.data.errorResponse?.code === 'ERROR_0007') {
+      store.dispatch(signSlice.actions.clearToken());
+      window.location.replace('/sign-in');
+    } else if (response.data.errorResponse?.code === 'ERROR_0005') auth.postRefreshToken();
     return response;
   },
   async error => {
     console.log('err:', error);
-
-    // [Temp] 재발급 보류
-    // if (error?.errorResponse.code === TOKEN_EXPIRED) {
-    //   const X_AUTH_REFRESH_TOKEN = store.getState().sign.X_AUTH_REFRESH_TOKEN || null;
-    //   X_AUTH_REFRESH_TOKEN === null && window.location.replace('/sign-in');
-    //   await auth.postRefreshToken(`Bearer ${X_AUTH_REFRESH_TOKEN}`);
-    // }
 
     return Promise.reject(error);
   },

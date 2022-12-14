@@ -9,6 +9,7 @@ import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
 import { PlayGameModal, ResultModal } from './modal';
 import Sentence from '../../components/BlankPage/sentences/Sentence';
+import { isSigned } from '../../utils/isSigned';
 
 function useKeywords() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function useKeywords() {
 
   const mutation = useMutation({
     mutationFn: async ({ tScore, avrSpeed, studyId }) =>
-      await score.postScore(tScore, avrSpeed, studyId).then(res =>
+      await score.postScore(tScore, avrSpeed, studyId).then(res => {
         setResState({
           bestScore: res.bestScore,
           diffValue: res.diffValue,
@@ -37,8 +38,10 @@ function useKeywords() {
           score: res.score,
           speed: res.speed,
           topPercent: res.topPercent,
-        }),
-      ),
+        });
+        return res;
+      }),
+    onSuccess: res => console.log(res),
   });
 
   const [keywords, setKeywords] = React.useState([]); //words 배열
@@ -94,7 +97,8 @@ function useKeywords() {
     setBlankText(e.target.value);
   }, []);
 
-  //스테이지 증가
+  // 스테이지 증가
+  // [Todo] 코드가 뭘 하는지 알 수가 없음
   const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
     const answerText = engSplit[blankIndex + 2];
@@ -123,13 +127,10 @@ function useKeywords() {
 
   //모달 창 띄우기
   const ShowModal = () => {
-    // [Todo] resState 사용해서 모달 state 띄워주기
-    //console.log(resState);
     return (
       <>
         <Modal>
           {/*[Temp] onLogin 일단 보류*/}
-          {/*<PlayGameModal onBackToMain={() => navigate('/')} />*/}
           <ResultModal resState={resState} onBackToMain={() => navigate('/')} />
         </Modal>
       </>
@@ -140,6 +141,16 @@ function useKeywords() {
     if (isTimeOut) onNextStage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeOut]);
+
+  React.useEffect(() => {
+    if (!isSigned()) navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    if (!isSigned()) navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     keywords,

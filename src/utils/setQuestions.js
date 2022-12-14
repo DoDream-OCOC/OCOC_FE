@@ -4,6 +4,7 @@ import { question } from '../apis';
 
 /**
  * Set questions by RTK. It will request API and dispatch corpus by case
+ * [Todo] 이 것도 여기만 api 따로 뺀게 너무 이상. api폴더와 store 폴더 분리 후, store 폴더 안에 dispatchs 파일만들기
  * @param {*} studyId
  * @param {*} level
  */
