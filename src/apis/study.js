@@ -7,5 +7,6 @@ const ROUTE = 'study';
  * @response studyId
  */
 export const postStudy = async ({ setType = 'TRV' }) => {
+  console.log(setType);
   return await ococ.post(`/${ROUTE}`, { setType }).then(res => res);
 };
