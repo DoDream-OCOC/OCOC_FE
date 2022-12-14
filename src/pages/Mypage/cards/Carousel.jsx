@@ -21,7 +21,7 @@ const Carousel = ({ curLevel, rankObj }) => {
   const { Loading } = useLoading();
   const mutation = useMutation({
     mutationFn: async setType => {
-      await study.postStudy(setType).then(async res => {
+      await study.postStudy({ setType }).then(async res => {
         dispatch(gameSlice.actions.setStudyId(res.data.data));
         await setQuestions(res.data.data.studyId, 1);
       });
