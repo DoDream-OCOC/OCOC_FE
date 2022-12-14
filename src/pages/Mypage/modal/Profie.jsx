@@ -29,7 +29,7 @@ const Profile = ({ userName, highScore, speed }) => {
               <Text size="B1" color="black" content="평균속도" />
             </div>
             <div style={{ textAlign: 'right' }}>
-              <Text size="H4" color="black" content={`${parseInt(speed / 1000)}문장/분`} />
+              <Text size="H4" color="black" content={`${parseInt(speed / 1000)}초/문장`} />
             </div>
           </div>
         </div>
