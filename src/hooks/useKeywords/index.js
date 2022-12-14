@@ -97,7 +97,7 @@ function useKeywords() {
   //스테이지 증가
   const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const answerText = engSplit[blankIndex + 2];
+    const answerText = engSplit[blankIndex];
 
     if (blankIndex > -1) {
       gradeGame({ userAnswer: blankText, answer: answerText, datasetId: id }, async () => {
