@@ -7,7 +7,7 @@ import style from './index.module.css';
 /**
  * Text component
  * @param {'H1'| 'H2' | 'H3' | 'H4' | 'H5' | 'B1' | 'B2' | 'B3'} size text size
- * @prop {'Text-1' | 'Text-2' | Red} color text's color
+ * @prop {'Text-1' | 'Text-2' | 'Text-3' | Red} color text's color
  * @prop {string} content text's content
  * @returns Common text
  */
@@ -58,6 +58,15 @@ export const GradingButton = ({ isDisabled = false, isGrading = false, content, 
     <button className={style.button} style={{ opacity: disabled ? '0.5' : '1' }} disabled={disabled} {...props}>
       {!isGrading ? content : '채점중입니다'}
       {isGrading && <Loading />}
+    </button>
+  );
+};
+
+export const MyPageStartButton = ({ isDisabled = false, content, ...props }) => {
+  const disabled = isDisabled;
+  return (
+    <button className={`${style.mypage_button} ${disabled && style.mypage_disabled_button}`} disabled={disabled} {...props}>
+      {content}
     </button>
   );
 };

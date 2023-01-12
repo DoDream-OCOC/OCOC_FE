@@ -2,7 +2,7 @@
   "name": "ococ-fe",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "https://server.ococ.kr",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "dotenv-webpack": "^8.0.1",
+    "jwt-decode": "^3.1.2",
     "lottie-react": "^2.3.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -20,10 +21,12 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-step-progress-bar": "^1.0.3",
     "react-uuid": "^1.0.3",
     "redux-persist": "^6.0.0",
     "shortid": "^2.2.16",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

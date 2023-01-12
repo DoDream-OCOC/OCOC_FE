@@ -1,0 +1,15 @@
+.sentences_container {
+  margin-right: 0.3rem;
+}
+
+/* BlankInput */
+.blank_container {
+  width: 6rem;
+  outline: none;
+  border: none;
+  background: none;
+  border-bottom: solid 2px #000000;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  text-align: center;
+}

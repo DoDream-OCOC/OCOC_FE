@@ -1,0 +1,78 @@
+.button_keyword {
+  margin: 0.5rem 0.33vw;
+  background-color: var(--Gray-3);
+  color: var(--Text-1);
+  border: none;
+  border-radius: 1.25rem;
+}
+
+.button_keyword:active {
+  animation: fadeout 0.05s;
+  -webkit-animation: fadeout 0.05s; /* Safari and Chrome */
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  /* Safari and Chrome */
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.button_fadeIn {
+  margin: 0.5rem 0.33vw;
+  background-color: var(--Gray-3);
+  color: var(--Text-1);
+  border: none;
+  border-radius: 1.25rem;
+  display: inline-block;
+  animation: fadein 0.4s;
+  -webkit-animation: fadein 0.4s; /* Safari and Chrome */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.button_correct {
+  background-color: var(--Green);
+  color: var(--Gray-0);
+}
+
+.button_wrong {
+  background-color: var(--Red);
+  color: var(--Gray-0);
+  opacity: 70%;
+}
+
+.button_keyword_text {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}

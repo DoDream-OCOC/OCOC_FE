@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signSlice } from '../../store/slices';
+import { useDispatch } from 'react-redux';
+import { isSigned } from '../../utils/isSigned';
 
 import style from './index.module.css';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 import { ReactComponent as OCOCTitle } from '../../assets/OCOC/OCOC_text.svg';
 import { ReactComponent as Profile } from '../../assets/icons/icon_profile.svg';
-import { Button } from '../element';
+import { Button, Text } from '../element';
 
 function NavBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //setting mobile nav..?
   //const [click, setClick] = useState(false);
@@ -18,15 +22,14 @@ function NavBar() {
   const [color, setColor] = useState(false);
 
   const changeColor = () => {
-    if (window.scrollY >= 10) {
-      setColor(true);
-    } else {
-      setColor(false);
-    }
+    if (window.scrollY >= 10) setColor(true);
+    else setColor(false);
   };
 
-  // [Todo] Token유무
-  const isSigned = false;
+  const signOut = () => {
+    dispatch(signSlice.actions.clearToken());
+    navigate('/');
+  };
 
   window.addEventListener('scroll', changeColor);
 
@@ -34,18 +37,18 @@ function NavBar() {
     <>
       <div className={color ? [style.navborder, style.Navbar].join(' ') : style.Navbar}>
         <div className={style.navbar_wrapper}>
-          <div className={style.flex} onClick={() => navigate('/')}>
+          {/* 비회원일 때는 /, 회원일때는 my-page */}
+          <div className={style.flex} onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/')}>
             <Logo style={{ marginRight: '0.5rem' }} />
             <OCOCTitle style={{ width: '3.87rem', height: '1.06rem', fill: 'var(--Black)' }} />
           </div>
           <div style={{ display: 'flex' }}>
-            <div className={style.mobileapp}>
-              <Button style={{ width: '4rem', height: '2rem' }} onClick={() => navigate('/')}>
-                APP
-              </Button>
-            </div>
             {/* [Temp] 일단 로그인 창으로만 이동 */}
-            <Profile onClick={isSigned ? '' : () => navigate('/sign-in')} />
+            {window.location.pathname === '/my-page' ? (
+              <Text style={{ cursor: 'pointer' }} content="로그아웃" onClick={signOut} />
+            ) : (
+              <Profile style={{ cursor: 'pointer' }} onClick={isSigned() ? () => navigate('/my-page') : () => navigate('/sign-in')} />
+            )}
           </div>
         </div>
       </div>

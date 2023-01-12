@@ -28,19 +28,27 @@ function useModal() {
     ref.current = $modal;
   }, []);
 
-  const Modal = ({ children }) => {
-    const ModalComponent = () => {
-      return (
-        <div className={style.modalContainer}>
-          <div className={style.children}>{children}</div>
-        </div>
-      );
-    };
+  const Modal = React.useCallback(
+    ({ children }) => {
+      const ModalComponent = () => {
+        return (
+          <div className={style.modalContainer}>
+            <div className={style.children}>{children}</div>
+          </div>
+        );
+      };
 
-    if (ref.current && isModalOpened) {
-      return createPortal(<ModalComponent />, ref.current);
-    }
-  };
+      if (ref.current && isModalOpened) {
+        return createPortal(
+          <div id={style.bg_blur}>
+            <ModalComponent />
+          </div>,
+          ref.current,
+        );
+      }
+    },
+    [isModalOpened],
+  );
 
   return { Modal, openModal, closeModal };
 }

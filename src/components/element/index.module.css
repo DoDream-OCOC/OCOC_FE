@@ -56,6 +56,7 @@ span {
 /* [Todo] Btn이 Input에도 중북으로 사용되는 거 고려하기 */
 /* Button */
 .button {
+  cursor: pointer;
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   letter-spacing: 1px;
 
@@ -74,11 +75,35 @@ span {
   background-color: var(--Green);
 }
 
+.mypage_button {
+  width: 105%;
+  height: 2.6rem;
+  border: 0px;
+  margin: 0.5rem;
+  color: var(--Gray-0);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--Green);
+  border-radius: 1rem;
+
+  cursor: pointer;
+}
+
+.mypage_disabled_button {
+  color: var(--Gray-4);
+  background: none;
+
+  cursor: auto;
+}
+
 /* Input */
 .input {
   padding: 1rem;
-  color: var(--Text-2);
-  background-color: var(--Gray-2);
+  color: var(--Text-1);
+  border: 1px var(--Gray-3) solid;
+  background-color: var(--Gray-0);
 }
 
 .input::placeholder {

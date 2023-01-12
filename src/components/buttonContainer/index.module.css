@@ -1,0 +1,9 @@
+.input_box_container {
+  margin-bottom: 2.5rem;
+  cursor: pointer;
+}
+
+.input_box {
+  height: 3.625rem;
+  border-bottom: 2px solid var(--Gray-3);
+}

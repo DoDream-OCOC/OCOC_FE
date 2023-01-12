@@ -1,72 +1,68 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useMutation } from 'react-query';
+import { info, score } from '../../apis';
 
 import Navbar from '../../components/navbar';
-import ProgressBar1 from '../../components/progressbar';
 import MainContainer from '../../components/container/main';
-import { Profile, Ranking } from './cards';
 import { Empty, Button, Text } from '../../components/element';
-import style from './index.module.css';
+import { Turtle } from '../../components';
+import Carousel from './cards/Carousel';
 
-import Lottie from 'lottie-react';
-import cloud_bg from '../../assets/OCOC/Cloud_background.json';
-
-import axios from 'axios';
+const LEVEL = {
+  TRV: 1,
+  FOD: 2,
+  BOK: 3,
+  BUY: 4,
+};
 
 function Mypage() {
-  const navigate = useNavigate();
-  const [ranks, setRanks] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const resObj = {};
+      await info.getCurGameSet().then(res => (resObj.curLevel = LEVEL[res]));
+      for (let lvl of Object.keys(LEVEL)) await score.getBestScoreBySet(lvl).then(res => (resObj[lvl] = res));
+      return resObj;
+    },
+    onSuccess: resObj => {
+      setCurLevel(resObj.curLevel);
+      for (let lvl of Object.keys(LEVEL))
+        setRankObj(prev => {
+          return { ...prev, [lvl]: resObj[lvl] };
+        });
+    },
+  });
+  const [curLevel, setCurLevel] = React.useState(0);
+  const [rankObj, setRankObj] = React.useState({
+    TRV: 0,
+    FOD: 0,
+    BOK: 0,
+    BUY: 0,
+  });
 
-  const fetchRanks = async () => {
-    try {
-      // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-      setError(null);
-      setRanks(null);
-      // loading 상태를 true 로 바꿉니다.
-      setLoading(true);
-      const response = await axios.get('https://server.ococ.kr/score/rank');
-      setRanks(response.data); // 데이터는 response.data 안에 들어있습니다.
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
-  };
-
-  useLayoutEffect(() => {
-    fetchRanks();
+  React.useLayoutEffect(() => {
+    mutation.mutate(); // [Error] 두 번 요청되는 이유?
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    console.log(ranks?.data);
-  }, [ranks]);
-  if (loading) return <div>로딩중..</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
-
-  // 아직 users가 받아와 지지 않았을 때는 아무것도 표시되지 않도록 해줍니다.
 
   return (
     <>
       <Navbar />
+
       <MainContainer>
-        <Profile />
-        <Empty size="2rem" />
-        <section>
-          <ProgressBar1 />
-        </section>
-        <section style={{ marginTop: '4rem' }}>
-          <Button onClick={() => navigate('')} content="시작하기" />
-        </section>
-        <section>
-          <Empty size="2rem" />
-          <Text size="H3" content="랭킹" />
-          <Empty size="0.5rem" />
-        </section>
-        <Ranking rank="MY" id="test" score="12344" />
-        <Ranking rank="1" id={ranks?.data[0].username} score={ranks?.data[0].bestScore} />
-        <Ranking rank="2" id={ranks?.data[1].username} score={ranks?.data[1].bestScore} />
-        <Ranking rank="3" id={ranks?.data[2].username} score={ranks?.data[2].bestScore} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '90vw', maxWidth: '25rem' }}>
+            <Empty size="3.6rem" />
+            {/* userID 조회 일단 보류 */}
+            {/* <Text size="H3" content="{userId}님," /> */}
+            <Text size="H4" content="안녕하세요!" />
+            <Empty size="0rem" />
+
+            <Text size="H4" content="세트들을 차례대로 풀어보세요!" />
+            <Empty size="0.5rem" />
+            <Carousel curLevel={curLevel} rankObj={rankObj} />
+          </div>
+        </div>
+        <section style={{ marginTop: '4rem' }}></section>
       </MainContainer>
     </>
   );
