@@ -1,5 +1,6 @@
 # 영차영차 - FE
 
+<div>
  <img src="https://img.shields.io/badge/React-3178C6?style=flat&logo=React&logoColor=white"/>
 <img src=https://img.shields.io/badge/MSW-fff>
 <img src=https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white>
@@ -7,6 +8,7 @@
 <img src=https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white>
 <img src=https://img.shields.io/badge/React_query-FF4154?style=flat&logo=ReactQuery&logoColor=white>
 <img src=https://img.shields.io/badge/React_hook_form-EC5990?style=flat&logo=ReactHookForm&logoColor=white>
+</div>
 
 <br>
 <br>
