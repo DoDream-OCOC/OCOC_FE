@@ -9,6 +9,7 @@ const ococ = axios.create({
   headers: { Accept: 'application/json' },
   baseURL: BASE_URL,
 });
+
 ococ.interceptors.request.use(
   config => {
     const X_AUTH_ACCESS_TOKEN = store.getState().sign.X_AUTH_ACCESS_TOKEN || null;

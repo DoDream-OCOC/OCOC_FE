@@ -4,8 +4,7 @@ import { info, score } from '../../apis';
 
 import Navbar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
-import { Empty, Button, Text } from '../../components/element';
-import { Turtle } from '../../components';
+import { Empty, Text } from '../../components/element';
 import Carousel from './cards/Carousel';
 
 const LEVEL = {

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { gameSlice } from '../../store/slices';
 import { useKeywords } from '../../hooks';
-import { NavBar, MainContainer, ProgressBar1, Page, BlankPage, ClickPage } from '../../components';
+import { NavBar, MainContainer, ProgressBar1, Page } from '../../components';
 import { Empty, GradingButton } from '../../components/element';
 import style from './index.module.css';
 

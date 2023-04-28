@@ -7,8 +7,7 @@ import { gameSlice } from '../../store/slices';
 import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
-import { PlayGameModal, ResultModal } from './modal';
-import Sentence from '../../components/BlankPage/sentences/Sentence';
+import { ResultModal } from './modal';
 import { isSigned } from '../../utils/isSigned';
 
 function useKeywords() {
@@ -141,11 +140,6 @@ function useKeywords() {
     if (isTimeOut) onNextStage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeOut]);
-
-  React.useEffect(() => {
-    if (!isSigned()) navigate('/');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   React.useEffect(() => {
     if (!isSigned()) navigate('/');

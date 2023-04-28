@@ -1,9 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Text, Empty } from '../../components/element';
 
 import { QuestionContainer } from '../../components';
-import style from './index.module.css';
 import Sentence from './sentences/Sentence';
 
 function BlankPage({ LifeState, sentences, setSentences, createSentence, blankText, onChange, CrtAnswerUI }) {

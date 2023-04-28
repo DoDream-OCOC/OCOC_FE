@@ -3,15 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/navbar';
 import MainContainer from '../../components/container/main';
 
-import { auth } from '../../apis';
 import { Text, Button } from '../../components/element';
 
 function Test() {
   const navigate = useNavigate();
 
-  const testPost = async () => {
-    const res = await auth.postRefreshToken();
-  };
+  const testPost = async () => {};
 
   return (
     <>
