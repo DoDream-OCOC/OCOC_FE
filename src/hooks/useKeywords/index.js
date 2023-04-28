@@ -7,15 +7,14 @@ import { gameSlice } from '../../store/slices';
 import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
-import { PlayGameModal, ResultModal } from './modal';
-import Sentence from '../../components/BlankPage/sentences/Sentence';
+import { ResultModal } from './modal';
 import { isSigned } from '../../utils/isSigned';
 
 function useKeywords() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Modal, openModal } = useModal();
-  const { clause, english, words, id, blankIndex } = useSelector(state => state.game.datasets[state.game.stage - 1]);
+  const { clause = 0, english, words, id, blankIndex } = useSelector(state => state.game.datasets[state.game.stage - 1]);
   const { studyId, stage, results } = useSelector(state => state.game);
   const { isCrtAns, isGrading, isTimeOut, stop, gradeGame, TimerUI, PointEarnedUI, CrtAnswerUI } = useGradedUI({ level: parseInt(stage / 10) + 1 });
   const { LifeState } = useLife();

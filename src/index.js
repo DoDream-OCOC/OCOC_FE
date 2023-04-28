@@ -20,10 +20,10 @@ const queryClient = new QueryClient({
 
 let persistor = persistStore(store);
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
-  const { worker } = require('./mocks/browser');
-  worker.start();
-}
+// if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
+//   const { worker } = require('./mocks/browser');
+//   worker.start();
+// }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

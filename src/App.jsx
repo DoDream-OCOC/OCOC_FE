@@ -13,7 +13,7 @@ import Background from './components/background';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const { stage, life } = useSelector(state => state.game);
+  const { stage } = useSelector(state => state.game);
   const [color, setColor] = useState('#D2FFFC');
 
   React.useEffect(() => {

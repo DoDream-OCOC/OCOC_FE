@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useKeywords } from '../../hooks';
 
-import { ProgressBar1, QuestionContainer, ButtonContainer } from '../../components';
+import { QuestionContainer, ButtonContainer } from '../../components';
 import Button from './buttons/Button';
 import style from './index.module.css';
 
