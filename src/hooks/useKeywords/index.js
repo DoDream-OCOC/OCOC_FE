@@ -7,8 +7,7 @@ import { gameSlice } from '../../store/slices';
 import { score } from '../../apis';
 import { setQuestions } from '../../utils/setQuestions';
 import shortid from 'shortid';
-import { PlayGameModal, ResultModal } from './modal';
-import Sentence from '../../components/BlankPage/sentences/Sentence';
+import { ResultModal } from './modal';
 import { isSigned } from '../../utils/isSigned';
 
 function useKeywords() {
@@ -101,7 +100,7 @@ function useKeywords() {
   // [Todo] 코드가 뭘 하는지 알 수가 없음
   const onNextStage = () => {
     const strNewKeywords = newKeywords.map(t => t.text).join(' ');
-    const answerText = engSplit[blankIndex + 2];
+    const answerText = engSplit[blankIndex];
 
     if (blankIndex > -1) {
       gradeGame({ userAnswer: blankText, answer: answerText, datasetId: id }, async () => {
@@ -141,11 +140,6 @@ function useKeywords() {
     if (isTimeOut) onNextStage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeOut]);
-
-  React.useEffect(() => {
-    if (!isSigned()) navigate('/');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   React.useEffect(() => {
     if (!isSigned()) navigate('/');

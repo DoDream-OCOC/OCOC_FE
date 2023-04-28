@@ -1,10 +1,8 @@
 import React from 'react';
 import style from './index.module.css';
-import { gameSlice } from '../../store/slices';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Life } from '../../assets/icons/life.svg';
 import { ReactComponent as EmptyLife } from '../../assets/icons/emptyLife.svg';
-import { useKeywords } from '../../hooks';
 
 function LifeContainer() {
   const { life } = useSelector(state => state.game);

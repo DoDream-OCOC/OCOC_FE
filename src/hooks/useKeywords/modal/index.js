@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { Text, Button, Empty } from '../../../components/element';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import style from './index.module.css';
-import { Empty, Text } from '../element';
+import { Text } from '../element';
 
 export const CrtAnswerUI = ({ isGrading, isCrtAns }) => {
   const { english, questionType } = useSelector(state => state.game.datasets[state.game.stage - 1]);
